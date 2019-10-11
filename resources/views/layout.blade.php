@@ -10,11 +10,11 @@
 
 
 <body>
-    <header>
+    <header role="banner">
         <h1>Titre de la page</h1>
     </header>
 
-    <nav>
+    <nav role="navigation" aria-label="Main Navigation">
         <ol>
             <li>
                 <a href="#">menu 1</a>
@@ -31,7 +31,7 @@
         </ol>
     </nav>
 
-    <main>
+    <main role="main">
         <h2>Titre principal</h2>
         <article>
             <p>Contenu</p>
@@ -46,7 +46,7 @@
         <h3>Contenu complémentaire</h3>
     </aside>
 
-    <footer>
+    <footer role="contentinfo">
         <p>Informations à propos de la page</p>
     </footer>
 
