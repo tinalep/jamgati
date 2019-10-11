@@ -2,9 +2,10 @@
 <html>
 
 <head>
-    <title>Titre de la page</title>
+    <title>Jamgati</title>
     <meta charset="utf-8">
     <meta name="description" content="description de la page">
+    <link rel="shortcut icon" type="image/x-icon" href=../img/logo.png />
 </head>
 
 
