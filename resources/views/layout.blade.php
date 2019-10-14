@@ -5,7 +5,7 @@
     <title>Jamgati</title>
     <meta charset="utf-8">
     <meta name="description" content="description de la page">
-    <link rel="icon" type="image/png" href="img/logo.png"/>
+    <link rel="icon" type="image/png" href="assets/images/img-logo-jamgati.png"/>
 </head>
 
 
