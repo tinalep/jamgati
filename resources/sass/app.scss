@@ -1,11 +1,24 @@
 @import "../../node_modules/rfs/scss";
 
 // Common 
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//Common 
 @import 'common/global';
 @import 'common/variables';
+@import 'common/functions';
 
-// Components
+//Components
+@import 'components/typography';
 @import 'components/buttons';
 
-// Layout
+//Layout 
 @import 'layout/header';
+
