@@ -51,7 +51,7 @@
 
 // Layout
 body{
-    font-size: 16px;
+    @include font-size(16px);
     margin: 0 auto;
 }
 

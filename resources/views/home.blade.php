@@ -5,12 +5,12 @@
         <div class="header-nav">
                 <a href=""><img src="assets/images/img-logo-jamgati.png"> </a>
             <nav>
-                <ul>
-                    <li><a class="activ-link" href="">Accueil</a></li>
-                    <li><a href="">Tableau</a></li> 
-                    <li><a href="">Formulaire</a></li>
-                    <li><a href="">Menu</a></li>
-                    <li><a href="">Documentation</a></li>
+                <ul role ="menubar" aria-label="string">
+                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="">Accueil</a></li>
+                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link"  href="">Tableau</a></li> 
+                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Formulaire</a></li>
+                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Menu</a></li>
+                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Documentation</a></li>
                 </ul>
             </nav>
         </div>
