@@ -1,0 +1,41 @@
+.heading-1{
+    @include font-size(rem(72));
+    font-family: $font-lato-bold;
+    font-style: normal;
+    font-weight: normal;
+    line-height: rem(86);
+    text-align: justify;
+}
+
+.heading-2{
+    @include font-size(rem(48));
+    font-family: $font-lato-bold;
+    font-style: normal;
+    font-weight: normal;
+    line-height: rem(58);
+    span{
+        @include font-size(rem(18));
+        font-family: $font-lato-bold;
+        font-style: normal;
+        font-weight: normal;
+        line-height: rem(22);
+        text-transform: uppercase;
+        color: $color-dark-grey;
+    }
+}
+
+.heading-3{
+    @include font-size(rem(24));
+    font-family: $font-lato-bold;
+    font-style: normal;
+    font-weight: normal;
+    line-height: rem(29);
+}
+
+.heading-4{
+    @include font-size(rem(20));
+    font-family: $font-lato-bold;
+    font-style: normal;
+    font-weight: normal;
+    line-height: rem(24);
+}

@@ -13,6 +13,8 @@
 
 <body>
     @yield('header')
+
+    @yield('content')
         
     <nav role="navigation" aria-label="Main Navigation">
         <ol>
