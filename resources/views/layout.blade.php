@@ -5,16 +5,15 @@
     <title>Jamgati</title>
     <meta charset="utf-8">
     <meta name="description" content="description de la page">
-    <link rel="icon" type="image/png" href="assets/images/img-logo-jamgati.png"/>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="icon" type="image/png" href="assets/images/img-logo-jamgati.png" />
 </head>
 
 
 
 <body>
-    <header role="banner">
-        <h1>Titre de la page</h1>
-    </header>
-
+    @yield('header')
+        
     <nav role="navigation" aria-label="Main Navigation">
         <ol>
             <li>
