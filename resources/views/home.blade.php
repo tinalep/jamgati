@@ -6,7 +6,7 @@
                 <a href=""><img src="assets/images/img-logo-jamgati.png"> </a>
             <nav>
                 <ul>
-                    <li><a href="">Accueil</a></li>
+                    <li><a class="activ-link" href="">Accueil</a></li>
                     <li><a href="">Tableau</a></li> 
                     <li><a href="">Formulaire</a></li>
                     <li><a href="">Menu</a></li>
@@ -15,8 +15,8 @@
             </nav>
         </div>
         <div class="header-id">
-            <a class="button button-bgrred" href="">Connexion</a>
-            <a class="button button-bgnone" href="">Inscription</a>
+            <a class="button button-bgnone" href="">Connexion</a>
+            <a class="button button-bgred" href="">Inscription</a>
         </div>
     </header>
 @endsection

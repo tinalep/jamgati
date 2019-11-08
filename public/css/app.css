@@ -56,16 +56,43 @@ a {
   text-decoration: none;
 }
 
+.button {
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: inline;
+}
+
+.button-bgred {
+  padding: 10px 18px;
+  background: linear-gradient(271.19deg, rgba(235, 51, 73, 0.9) 2.9%, rgba(244, 92, 67, 0.9) 104.44%);
+  border: 2px solid linear-gradient(271.19deg, rgba(235, 51, 73, 0.9) 2.9%, rgba(244, 92, 67, 0.9) 104.44%);
+  color: #ffffff;
+}
+
+.button-bgnone {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 2px solid #B30511;
+  color: #B30511;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   height: 50px;
-  padding: 10 30px;
+  padding: 10px 30px;
 }
 
 .header-nav {
   display: flex;
+}
+
+.header-nav a {
+  width: 40px;
+}
+
+.header-nav a img {
+  width: 100%;
 }
 
 .header ul {
@@ -73,11 +100,41 @@ a {
 }
 
 .header ul li {
+  position: relative;
+  padding: 0 10px;
   list-style-type: none;
 }
 
 .header ul li a {
   font-family: "Lato Regular";
   color: #000000;
+}
+
+.header ul li .activ-link::before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(271.19deg, rgba(235, 51, 73, 0.9) 2.9%, rgba(244, 92, 67, 0.9) 104.44%);
+  bottom: -30%;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+}
+
+.header ul li .activ-link::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  right: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 100%;
+  background: linear-gradient(271.19deg, rgba(235, 51, 73, 0.9) 2.9%, rgba(244, 92, 67, 0.9) 104.44%);
+}
+
+.header-id {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
 }
 
