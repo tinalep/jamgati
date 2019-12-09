@@ -1,9 +1,10 @@
 @extends('layout')
 
 @section('header')
-<header class="header">
+<header>
+    <div class="header">
         <div class="header-nav">
-                <a href=""><img src="assets/images/img-logo-jamgati.png"> </a>
+                <a class="header-logo" href=""><img src="assets/images/img-logo-jamgati.png"> </a>
             <nav>
                 <ul role ="menubar" aria-label="string">
                     <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="">Accueil</a></li>
@@ -18,6 +19,9 @@
             <a class="button button-bgnone" href="">Connexion</a>
             <a class="button button-bgred" href="">Inscription</a>
         </div>
+        <div class="cross" id="cross"><i class="fas fa-times"></i></div>
+    </div>
+    <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </header>
 @endsection
 
