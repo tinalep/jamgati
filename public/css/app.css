@@ -10717,9 +10717,12 @@ a {
   font-style: normal;
   font-weight: normal;
   line-height: 3.625rem;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .heading-2 span {
+  display: block;
   font-size: 1.125rem;
   font-family: "Lato Bold";
   font-style: normal;
@@ -10763,6 +10766,18 @@ a {
   background-color: transparent;
   border: 2px solid #B30511;
   color: #B30511;
+}
+
+.section {
+  margin-top: 93px;
+}
+
+.card {
+  padding: 35px 28px;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
+  border: none;
+  border-radius: 30px;
 }
 
 .header {
@@ -10825,5 +10840,109 @@ a {
   align-items: center;
   justify-content: space-between;
   width: 20%;
+}
+
+.header-home {
+  background-image: url(../images/bg-home.svg?ac329eab2b5016f2bd3d6d7d2b32cf7e);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 80px;
+  padding-bottom: 250px;
+}
+
+.main-title {
+  max-width: 60%;
+  margin-bottom: 24px;
+}
+
+.highlight-navigation {
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04);
+  padding: 23px 15px 30px;
+}
+
+.highlight-navigation > div {
+  padding-left: 34px;
+  padding-right: 34px;
+}
+
+.highlight-navigation > div:not(:last-child) {
+  border-right: 1px solid #E7E7E7;
+}
+
+.highlight-navigation a {
+  display: block;
+  color: #000000;
+}
+
+.highlight-navigation a:after {
+  content: "";
+  width: 41px;
+  height: 8px;
+  display: inline-block;
+  background-image: url(../images/icon-arrow.svg?f990061729d4036867976439536b0fbe);
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 15px;
+}
+
+.video {
+  position: relative;
+}
+
+.video:after {
+  content: "";
+  width: 450px;
+  height: 430px;
+  display: block;
+  background-image: url(../images/img-bg-video.png?7cf18560786e8ec690b07179b46fbe6c);
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 auto;
+  margin-top: -195px;
+}
+
+.steps-home {
+  margin-top: 60px;
+  margin-bottom: 38px;
+}
+
+.steps-home .number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato Bold";
+  font-weight: normal;
+  width: 51px;
+  height: 51px;
+  border-radius: 50%;
+  background: linear-gradient(76.36deg, #FF512F -47.35%, #F09819 90.78%);
+  color: #ffffff;
+}
+
+.tools-home {
+  background-image: url(../images/img-tools.png?bdaeb2287a10bad6e9143e1b78e8fa5d);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 160px;
+  margin-bottom: 165px;
+}
+
+.cards-home {
+  margin-top: 35px;
+}
+
+.cards-home .card {
+  width: calc(50% - 27.5px);
+}
+
+.dev-home {
+  margin-top: 85px;
+  margin-bottom: 118px;
+}
+
+.dev-home > div {
+  margin-bottom: 42px;
 }
 

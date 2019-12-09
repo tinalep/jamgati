@@ -13,7 +13,10 @@
     font-style: normal;
     font-weight: normal;
     line-height: rem(58);
+    text-align: center;
+    margin: 0 auto;
     span{
+        display: block;
         @include font-size(rem(18));
         font-family: $font-lato-bold;
         font-style: normal;
