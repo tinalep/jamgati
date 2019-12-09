@@ -1,7 +1,15 @@
 .button {
+    width: 80%;
+    min-width: 150px;
+    margin: 10px;
     border-radius : 20px;
-    box-sizing: border-box;
-    display: inline;
+    text-align: center;
+    
+    @include md-breakpoint() {
+        display: inline;
+        width: auto;
+        margin: 30px;
+    }
     
     &-bgred {
         padding: 10px 18px;

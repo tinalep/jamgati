@@ -36915,10 +36915,18 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nav */ "./resources/js/nav.js");
+console.log('app');
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+
+var n = new _nav__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
 /***/ }),
 
@@ -36964,6 +36972,108 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/nav.js":
+/*!*****************************!*\
+  !*** ./resources/js/nav.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'gsap'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var plugins = [!(function webpackMissingModule() { var e = new Error("Cannot find module 'gsap'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())];
+
+var Nav =
+/*#__PURE__*/
+function () {
+  function Nav() {
+    _classCallCheck(this, Nav);
+
+    // Bouton burger (ouvre la nav)
+    this.burger = document.querySelector('#burger'); // Bouton croix (ferme la nav)
+
+    this.cross = document.querySelector('#cross'); // Elements du header
+
+    this.header = document.querySelector('.header');
+    this.nav = document.querySelector('.header-nav');
+    this.ul = document.querySelector('ul');
+    this.li = document.querySelector('li');
+    this.link = document.querySelector('.nav-link');
+
+    if (this.isMobile()) {
+      this.init();
+    } else {// Si la page n'est pas en version mobile :
+      // la classe ne sert à rien
+    }
+  } // Fonction qui calcule la taille du document
+
+
+  _createClass(Nav, [{
+    key: "isMobile",
+    value: function isMobile() {
+      // w = width du document
+      var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+      if (w <= 768) {
+        // Si version mobile (w) => retourne true
+        return true;
+      }
+
+      return false;
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      console.log('init');
+      this.initEvent();
+    }
+  }, {
+    key: "initEvent",
+    value: function initEvent() {
+      var _this = this;
+
+      this.burger.addEventListener('click', function () {
+        _this.openNav();
+      });
+      this.cross.addEventListener('click', function () {
+        _this.closeNav();
+      });
+    }
+  }, {
+    key: "openNav",
+    value: function openNav() {
+      var tm = new !(function webpackMissingModule() { var e = new Error("Cannot find module 'gsap'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(); // Header qui se déplace de gauche à droite : APPARAIT 
+
+      tm.to(this.header, 0.5, {
+        left: 0
+      });
+    }
+  }, {
+    key: "closeNav",
+    value: function closeNav() {
+      var tm = new !(function webpackMissingModule() { var e = new Error("Cannot find module 'gsap'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(); // Header qui se déplace de droite à gauche : DISPARAIT
+
+      tm.to(this.header, 0.5, {
+        left: '-104%'
+      });
+    }
+  }]);
+
+  return Nav;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Nav);
 
 /***/ }),
 

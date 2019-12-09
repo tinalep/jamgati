@@ -13,3 +13,4 @@
 
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
+Route::resource('/form', 'FormController'); 
