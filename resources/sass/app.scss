@@ -14,8 +14,19 @@
 
 //Components
 @import 'components/typography';
+@import 'components/icons';
+@import 'components/profil';
 @import 'components/buttons';
+@import 'components/section';
+@import 'components/card';
+@import 'components/sidebar';
 
 //Layout 
 @import 'layout/header';
+<<<<<<< HEAD
 @import 'layout/footer';
+=======
+@import 'layout/home';
+@import 'layout/board';
+
+>>>>>>> bd562316f5ec7ed031da4832bec34cd7c1de4e51

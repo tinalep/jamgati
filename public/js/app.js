@@ -42479,8 +42479,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/vhosts/lepeltier.mmi-unistra.fr/jamgati-dev.lepeltier.mmi-unistra.fr/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/vhosts/lepeltier.mmi-unistra.fr/jamgati-dev.lepeltier.mmi-unistra.fr/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/vhosts/koessler.mmi-unistra.fr/httpdocs/laravel/jamgati/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/vhosts/koessler.mmi-unistra.fr/httpdocs/laravel/jamgati/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
