@@ -14,3 +14,4 @@
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/form', 'FormController'); 
+Route::get('/board', 'BoardController@index')->name('board');

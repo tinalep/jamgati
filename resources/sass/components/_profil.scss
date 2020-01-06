@@ -1,0 +1,15 @@
+.profil{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-end;
+    font-family: $font-lato-bold;
+    img{
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+}
