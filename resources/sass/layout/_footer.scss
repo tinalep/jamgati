@@ -1,0 +1,55 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    color: $color-text;
+    
+    @include md-breakpoint() {
+        justify-content: space-between;
+        align-items: unset;
+        flex-direction: row;
+        margin-top: 0;
+    }
+    
+    
+    &-links {
+        width: 100%;
+        
+        @include md-breakpoint() {
+            width: 45%;
+        }
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            
+            @include md-breakpoint() {
+                align-items: unset;
+                flex-direction: row;
+            }
+
+            li {
+                list-style-type: none;
+            }
+        }
+
+        .help {
+            display: flex;
+
+            .icon {
+                margin-right: 5px;
+            }
+
+        }
+
+        a {
+            color: $color-text;
+            text-decoration: none;
+        }
+    }
+}
