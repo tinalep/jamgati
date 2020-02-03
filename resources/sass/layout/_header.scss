@@ -65,11 +65,7 @@ header {
             @include md-breakpoint() {
                 padding: 0 10px;
             }
-            
-            a  {
-                color: inherit
-            }
-
+        
             .activ-link {
                 display: none;
 
