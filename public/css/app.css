@@ -1,6 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
-
-@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -10878,15 +10876,155 @@ a.text-dark:focus {
   }
 }
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
 body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: "Lato", sans-serif;
   font-size: 1rem;
   margin: 0 auto;
   height: 100%;
 }
 
-a {
-  text-decoration: none;
+.container {
+  flex-grow: 1;
 }
 
 h1 {
@@ -10937,6 +11075,16 @@ p {
   font-weight: 300;
   font-size: 1rem;
   color: #000000;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .heading-1 {
@@ -11084,11 +11232,18 @@ p {
 }
 
 .card {
-  padding: 35px 28px;
+  display: flex;
+  justify-content: center;
+  min-width: 172px;
+  padding: 13px 28px;
   background-color: #ffffff;
   box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
   border: none;
   border-radius: 30px;
+}
+
+.dropdown-menu.show {
+  left: -45% !important;
 }
 
 .sidebar {
@@ -11266,24 +11421,24 @@ header {
   }
 }
 
-.header__noauth-logo {
+.header__noauth .header-logo {
   width: 40px;
 }
 
-.header__noauth-nav {
+.header__noauth .header-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 @media (min-width: 768px) {
-  .header__noauth-nav {
+  .header__noauth .header-nav {
     flex-direction: row;
     align-items: unset;
   }
 }
 
-.header__noauth-nav a img {
+.header__noauth .header-nav a img {
   width: 100%;
 }
 
@@ -11312,10 +11467,6 @@ header {
   .header__noauth ul li {
     padding: 0 10px;
   }
-}
-
-.header__noauth ul li a {
-  color: inherit;
 }
 
 .header__noauth ul li .activ-link {
@@ -11390,42 +11541,10 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: absolute;
-  bottom: 0;
-}
-
-html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-#container {
-  width: 674px;
-  min-height: 100%;
-  height: 100%;
-  position: relative;
-  margin: 0 auto;
-}
-
-#body {
-  width: 616px;
-  padding: 5px 14px 5px 14px;
-  margin: 0 auto;
-  padding-bottom: 20px;
-}
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  margin-top: 20px;
-  color: #000000;
 }
 
 @media (min-width: 768px) {
-  #footer {
+  .footer {
     justify-content: space-between;
     align-items: unset;
     flex-direction: row;
@@ -11434,17 +11553,17 @@ html {
   }
 }
 
-#footer-links {
+.footer-links {
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  #footer-links {
+  .footer-links {
     width: 50%;
   }
 }
 
-#footer-links ul {
+.footer-links ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11452,25 +11571,25 @@ html {
 }
 
 @media (min-width: 768px) {
-  #footer-links ul {
+  .footer-links ul {
     align-items: unset;
     flex-direction: row;
   }
 }
 
-#footer-links ul li {
+.footer-links ul li {
   list-style-type: none;
 }
 
-#footer-links .help {
+.footer-links .help {
   display: flex;
 }
 
-#footer-links .help .icon {
+.footer-links .help .icon {
   margin-right: 5px;
 }
 
-#footer-links a {
+.footer-links a {
   color: #000000;
   text-decoration: none;
 }
