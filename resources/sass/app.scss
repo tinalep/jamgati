@@ -11,6 +11,7 @@
 @import 'common/global';
 @import 'common/variables';
 @import 'common/functions';
+@import 'common/mixins';
 
 //Components
 @import 'components/typography';
@@ -20,6 +21,7 @@
 @import 'components/section';
 @import 'components/card';
 @import 'components/sidebar';
+@import 'components/table';
 
 //Layout 
 @import 'layout/header';
