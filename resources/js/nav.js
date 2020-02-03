@@ -4,6 +4,9 @@ const plugins = [TimelineMax];
 
 var Nav = class {
     constructor() {
+        this.header = document.querySelector('.header__noauth');
+
+        if(this.header) {
         // Bouton burger (ouvre la nav)
         this.burger = document.querySelector('#burger');
 
@@ -11,7 +14,6 @@ var Nav = class {
         this.cross = document.querySelector('#cross');
 
         // Elements du header
-        this.header = document.querySelector('.header');
         this.nav = document.querySelector('.header-nav');
         this.ul = document.querySelector('ul');
         this.li = document.querySelector('li');
@@ -21,8 +23,10 @@ var Nav = class {
             this.init();
         } else {
             // Si la page n'est pas en version mobile :
-            this.burger.display = none;
+            this.burger.display = 'none';
         }
+    }
+
     }
 
     // Fonction qui calcule la taille du document
