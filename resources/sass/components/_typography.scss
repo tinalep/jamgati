@@ -73,6 +73,10 @@ p{
     @include text($color-text);
 }
 
+b, strong{
+    font-weight: bold;
+}
+
 .heading-1{
     @include heading-1();
 }
