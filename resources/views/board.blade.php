@@ -22,6 +22,7 @@
                 <div class="profil card">
                     <img src="assets/images/img-profile.jpg" alt="Natasha">
                     <p class="m-0">Nastasha Turner <i class="fas fa-chevron-down"></i></p>
+                    <a class="button button-bgnone" href="{{ route('logout') }}">Déconnexion</a>
                 </div>
         
                 <div class="dashboard">

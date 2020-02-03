@@ -15,8 +15,9 @@
 </head>
 
 <body>
+    @guest
     <header>
-        <div class="header">
+        <div class="header__noauth">
             <div class="header-nav" role="navigation" aria-label="Main Navigation">
                 <a class="header-logo" href=""><img src="{{asset("assets/images/img-logo-jamgati.png")}}"> </a>
                 <nav>
@@ -42,6 +43,7 @@
         </div>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </header>
+    @guest
     
     @yield('content')
 
