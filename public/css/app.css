@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -11237,11 +11237,18 @@ a:hover {
 }
 
 .card {
-  padding: 35px 28px;
+  display: flex;
+  justify-content: center;
+  min-width: 172px;
+  padding: 13px 28px;
   background-color: #ffffff;
   box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
   border: none;
   border-radius: 30px;
+}
+
+.dropdown-menu.show {
+  left: -45% !important;
 }
 
 .sidebar {

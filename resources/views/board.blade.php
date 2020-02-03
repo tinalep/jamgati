@@ -1,5 +1,9 @@
 @extends('layout')
 
+<?php
+$user = Auth::user();
+?>
+
 @section('content')
     <div class="page-dashboard d-flex">
         <div class="sidebar d-flex flex-column justify-content-between">
@@ -20,9 +24,15 @@
         
             <main role="main">
                 <div class="profil card">
-                    <img src="assets/images/img-profile.jpg" alt="Natasha">
-                    <p class="m-0">Nastasha Turner <i class="fas fa-chevron-down"></i></p>
-                    <a class="button" href="{{ route('logout') }}">Déconnexion</a>
+
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <p class="m-0"><?php echo $user->name;?></p>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item"  href="{{ route('logout') }}">Déconnexion</a>
+                        </div>
+                      </div>
                 </div>
         
                 <div class="dashboard">
