@@ -1,0 +1,124 @@
+.Form{
+    text-align: left;
+}
+
+.form-container{
+    display:flex;
+    flex-direction: row;
+    padding: 50px;
+}
+
+.form-group{
+    padding-top: 0px;
+}
+
+.form-edit{
+    flex: 1;
+    height: 100vh;
+    background: rgba(230, 92, 0, 0.05);
+    border: 2px solid rgba(230, 92, 0, 0.05);
+    border-radius: 50px;
+}
+
+.form-show{
+    margin-left: 40px;
+    flex:4;
+    height: 100vh;
+}
+
+.form-edit__header{
+    padding: 30px 20px;
+    border-bottom: solid 2px rgba(230, 92, 0, 0.05);
+}
+.form-edit__title{
+    font-weight: bold;
+    color: #000000;
+}
+.form-show__title{
+    margin-top: 10px;
+    font-size: 48px;
+}
+
+.form-show__body{
+    height: auto;
+}
+
+.form-show__typography{
+    height: 100px;
+}
+
+.form-show__preview{
+    padding-left: 20%;
+}
+
+.form-created__h1{
+    padding-left: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    display: block;
+}
+
+.edit-button{
+    background: white;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 5px;
+    font-weight: bold;
+    color: black;
+    border-radius: 50px;
+}
+
+.edit-button:hover{ 
+    background: rgba(230, 92, 0, 0.37);
+}
+
+
+.edit-card{
+    border-bottom: solid 2px rgba(230, 92, 0, 0.05);
+}
+
+.edit-card__header{
+    padding: 20px;
+    color: #464646;
+    position: relative;
+}
+.edit-card__title{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    
+}
+.edit-card__button{
+    position: absolute;
+    font-weight: bold;
+    right: 20px;
+}
+
+.edit-card__header:hover{
+    color: black;
+}
+
+
+.edit-card__section{
+    padding: 10px 20px;
+}
+
+.edit-card__type{
+    color: #000000;
+    font-weight: bold;
+}
+
+.select-field{
+    padding: 10px 0px;
+}
+
+.edit-card__label{
+    padding-top:10px;
+}
+
+.custom-fa{
+    margin-left: 15px;
+    border: solid 1px;
+    border-radius: 50%;
+    background: white;
+}

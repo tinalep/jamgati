@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//Common 
+@import 'common/global';
+@import 'common/variables';
+@import 'common/functions';
+
+//Components
+@import 'components/typography';
+@import 'components/icons';
+@import 'components/profil';
+@import 'components/buttons';
+@import 'components/section';
+@import 'components/card';
+@import 'components/sidebar';
+
+@import 'components/form';
+
+//Layout 
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/home';
+@import 'layout/board';
