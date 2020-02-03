@@ -15,3 +15,8 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/form', 'FormController'); 
 Route::get('/board', 'BoardController@index')->name('board');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

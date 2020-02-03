@@ -1,8 +1,8 @@
-@import "../../node_modules/rfs/scss";
-
-// Common 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -23,8 +23,10 @@
 @import 'components/sidebar';
 @import 'components/table';
 
+@import 'components/form';
+
 //Layout 
 @import 'layout/header';
+@import 'layout/footer';
 @import 'layout/home';
 @import 'layout/board';
-

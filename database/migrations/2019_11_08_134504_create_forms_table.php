@@ -20,21 +20,13 @@ class CreateFormsTable extends Migration
 
             $table->string('name');
             $table->string('slug');
-<<<<<<< HEAD
-            
-            $table->integer('nb_fields');
-=======
             $table->integer('nb_fields');
 
->>>>>>> 60b64f29ef7b0e2a8c1d5b07bbd1937b8be542ac
             $table->string('html_class');
             $table->string('html_id');
         });
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 60b64f29ef7b0e2a8c1d5b07bbd1937b8be542ac
     /**
      * Reverse the migrations.
      *
@@ -44,8 +36,4 @@ class CreateFormsTable extends Migration
     {
         Schema::dropIfExists('forms');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 60b64f29ef7b0e2a8c1d5b07bbd1937b8be542ac
