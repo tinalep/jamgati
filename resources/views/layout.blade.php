@@ -5,24 +5,81 @@
     <title>Jamgati</title>
     <meta charset="utf-8">
     <meta name="description" content="description de la page">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{asset("css/app.css")}}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{-- Script qui permet de charger FONTAWESOME plus rapidement --}}
     <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
-    <link rel="icon" type="image/png" href="assets/images/logo-jamgati.png" />
+    <link rel="icon" type="image/png" href="{{asset("assets/images/logo-jamgati.png")}}" />
 </head>
 
-
-
 <body>
-    @yield('header')
-
+    <header>
+        <div class="header">
+            <div class="header-nav" role="navigation" aria-label="Main Navigation">
+                <a class="header-logo" href=""><img src="{{asset("assets/images/img-logo-jamgati.png")}}"> </a>
+                <nav>
+                    <ul role="menubar" aria-label="string">
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="">Accueil</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Tableau</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Formulaire</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Menu</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Documentation</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-id">
+                @auth
+                <a class="button button-bgnone" href="{{ route('login') }}">Déconnexion</a>
+                @endauth
+                @guest
+                <a class="button button-bgnone" href="{{ route('login') }}">Connexion</a>
+                <a class="button button-bgred" href="{{ route('register') }}">Inscription</a>
+                @endguest
+            </div>
+            <div class="cross" id="cross"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+    </header>
+    
     @yield('content')
 
-    @yield('footer')
-
-<script src="js/app.js"></script>
+    <footer class="footer">
+        <div class="footer-links">
+            <ul>
+                <li>
+                    <a href="#">
+                        Mentions légales
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Données personnelles
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="help">
+                        <div class="icon">
+                            <img src="{{asset("assets/images/icon-help.svg")}}" alt="Page d'aide">
+                        </div>
+                        Aide
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon">
+                            <img src="{{asset("assets/images/icon-github.svg")}}" alt="Git Hub">
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-name">
+            © Jamgati - 2019
+        </div>
+    </footer>
+<script src="{{asset("js/app.js")}}"></script>
 </body>
 
 </html>

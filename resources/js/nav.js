@@ -21,7 +21,7 @@ var Nav = class {
             this.init();
         } else {
             // Si la page n'est pas en version mobile :
-            // la classe ne sert à rien
+            this.burger.display = none;
         }
     }
 

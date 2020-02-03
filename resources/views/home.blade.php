@@ -1,30 +1,5 @@
 @extends('layout')
 
-@section('header')
-<header>
-    <div class="header">
-        <div class="header-nav" role="navigation" aria-label="Main Navigation">
-            <a class="header-logo" href=""><img src="assets/images/img-logo-jamgati.png"> </a>
-            <nav>
-                <ul role="menubar" aria-label="string">
-                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="">Accueil</a></li>
-                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Tableau</a></li>
-                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Formulaire</a></li>
-                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Menu</a></li>
-                    <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Documentation</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="header-id">
-            <a class="button button-bgnone" href="">Connexion</a>
-            <a class="button button-bgred" href="">Inscription</a>
-        </div>
-        <div class="cross" id="cross"><i class="fas fa-times"></i></div>
-    </div>
-    <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
-</header>
-@endsection
-
 @section('content')
 <main role="main">
     <div class="section header-home">
@@ -140,41 +115,4 @@
 
 </main>
 
-@endsection
-
-@section('footer')
-<footer class="footer">
-    <div class="footer-links">
-        <ul>
-            <li>
-                <a href="#">
-                    Mentions légales
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    Données personnelles
-                </a>
-            </li>
-            <li>
-                <a href="#" class="help">
-                    <div class="icon">
-                        <img src="assets/images/icon-help.svg" alt="Page d'aide">
-                    </div>
-                    Aide
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="icon">
-                        <img src="assets/images/icon-github.svg" alt="Git Hub">
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="footer-name">
-        © Jamgati - 2019
-    </div>
-</footer>
 @endsection

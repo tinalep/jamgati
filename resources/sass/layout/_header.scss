@@ -110,7 +110,6 @@ header {
         
         @include md-breakpoint() {
             flex-direction: row;
-            width: 27%;
         }
     }
 
