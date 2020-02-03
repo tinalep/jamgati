@@ -11076,11 +11076,18 @@ h4 {
 }
 
 .card {
-  padding: 35px 28px;
+  display: flex;
+  justify-content: center;
+  min-width: 172px;
+  padding: 13px 28px;
   background-color: #ffffff;
   box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
   border: none;
   border-radius: 30px;
+}
+
+.dropdown-menu.show {
+  left: -45% !important;
 }
 
 .sidebar {
@@ -11258,24 +11265,24 @@ header {
   }
 }
 
-.header__noauth-logo {
+.header__noauth .header-logo {
   width: 40px;
 }
 
-.header__noauth-nav {
+.header__noauth .header-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 @media (min-width: 768px) {
-  .header__noauth-nav {
+  .header__noauth .header-nav {
     flex-direction: row;
     align-items: unset;
   }
 }
 
-.header__noauth-nav a img {
+.header__noauth .header-nav a img {
   width: 100%;
 }
 
