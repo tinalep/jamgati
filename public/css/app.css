@@ -10878,49 +10878,49 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "Lato Regular";
-  src: url(/fonts/lato-regular.woff2?bd33d7e16416dbbc7c4e9c3159b85c92) format("woff2"), url(/fonts/lato-regular.woff?b698e88ec31d977ba3cbd5dbffff0cdc) format("woff");
+  src: url(../fonts/lato-regular.woff2?bd33d7e16416dbbc7c4e9c3159b85c92) format("woff2"), url(../fonts/lato-regular.woff?b698e88ec31d977ba3cbd5dbffff0cdc) format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lato Light";
-  src: url(/fonts/lato-light.woff2?b961202510552034947199817639bd8e) format("woff2"), url(/fonts/lato-light.woff?e6b96f13640e3f80de7b17dbe38bb4d0) format("woff");
+  src: url(../fonts/lato-light.woff2?b961202510552034947199817639bd8e) format("woff2"), url(../fonts/lato-light.woff?e6b96f13640e3f80de7b17dbe38bb4d0) format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lato Thin";
-  src: url(/fonts/lato-thin.woff2?3bf06eaf0e9d62d9877ac24dabea7450) format("woff2"), url(/fonts/lato-thin.woff?393f9c432dd538a53eb13ba49e969b68) format("woff");
+  src: url(../fonts/lato-thin.woff2?3bf06eaf0e9d62d9877ac24dabea7450) format("woff2"), url(../fonts/lato-thin.woff?393f9c432dd538a53eb13ba49e969b68) format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lato Bold";
-  src: url(/fonts/lato-bold.woff2?374bdc84f96562255dc2fa08d5b51750) format("woff2"), url(/fonts/lato-bold.woff?e839640f89206d5543b3e9e4de65cd32) format("woff");
+  src: url(../fonts/lato-bold.woff2?374bdc84f96562255dc2fa08d5b51750) format("woff2"), url(../fonts/lato-bold.woff?e839640f89206d5543b3e9e4de65cd32) format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lato Semibold";
-  src: url(/fonts/lato-bold.woff2?374bdc84f96562255dc2fa08d5b51750) format("woff2"), url(/fonts/lato-bold.woff?e839640f89206d5543b3e9e4de65cd32) format("woff");
+  src: url(../fonts/lato-bold.woff2?374bdc84f96562255dc2fa08d5b51750) format("woff2"), url(../fonts/lato-bold.woff?e839640f89206d5543b3e9e4de65cd32) format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lato Extrabold";
-  src: url(/fonts/lato-extrabold.woff2?9699c08abe69382ac35039ab9109656e) format("woff2"), url(/fonts/lato-extrabold.woff?fab91ad9f5c641550a7a45a246917613) format("woff");
+  src: url(../fonts/lato-extrabold.woff2?9699c08abe69382ac35039ab9109656e) format("woff2"), url(../fonts/lato-extrabold.woff?fab91ad9f5c641550a7a45a246917613) format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lato Black";
-  src: url(/fonts/lato-black.woff2?0808786fae68f4229a94a5e1f64c19ae) format("woff2"), url(/fonts/lato-black.woff?0af454d0b7cdc4d21e63ab5667baafbb) format("woff");
+  src: url(../fonts/lato-black.woff2?0808786fae68f4229a94a5e1f64c19ae) format("woff2"), url(../fonts/lato-black.woff?0af454d0b7cdc4d21e63ab5667baafbb) format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -10985,7 +10985,7 @@ a {
   display: inline-block;
   width: 25px;
   height: 25px;
-  background-image: url(/images/icon-plus-circle.svg?3dac00d03f9b70750084cee528e9d088);
+  background-image: url(../images/icon-plus-circle.svg?3dac00d03f9b70750084cee528e9d088);
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;
@@ -10997,7 +10997,7 @@ a {
   display: inline-block;
   width: 25px;
   height: 25px;
-  background-image: url(/images/icon-dashboard.svg?31c5a414caf11e3eca52adb042148bb9);
+  background-image: url(../images/icon-dashboard.svg?31c5a414caf11e3eca52adb042148bb9);
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;
@@ -11009,7 +11009,7 @@ a {
   display: inline-block;
   width: 25px;
   height: 25px;
-  background-image: url(/images/icon-search.svg?0bc841f8202dc76ae99b94c6361ddadd);
+  background-image: url(../images/icon-search.svg?0bc841f8202dc76ae99b94c6361ddadd);
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;
@@ -11021,7 +11021,7 @@ a {
   display: inline-block;
   width: 25px;
   height: 25px;
-  background-image: url(/images/icon-settings.svg?542b0f512dfbb2a70a31a829139fbd0f);
+  background-image: url(../images/icon-settings.svg?542b0f512dfbb2a70a31a829139fbd0f);
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;
@@ -11447,7 +11447,7 @@ header {
 }
 
 .header-home {
-  background-image: url(/images/bg-home.svg?cfe0555fcf37d15f7a607d409a0c45b3);
+  background-image: url(../images/bg-home.svg?cfe0555fcf37d15f7a607d409a0c45b3);
   background-size: cover;
   background-repeat: no-repeat;
   padding-top: 80px;
@@ -11485,7 +11485,7 @@ header {
   width: 41px;
   height: 8px;
   display: inline-block;
-  background-image: url(/images/icon-arrow.svg?05b745cec6b1be64d7e17dc75ae25b8e);
+  background-image: url(../images/icon-arrow.svg?05b745cec6b1be64d7e17dc75ae25b8e);
   background-repeat: no-repeat;
   background-size: contain;
   margin-left: 15px;
@@ -11500,7 +11500,7 @@ header {
   width: 450px;
   height: 430px;
   display: block;
-  background-image: url(/images/img-bg-video.png?7cf18560786e8ec690b07179b46fbe6c);
+  background-image: url(../images/img-bg-video.png?7cf18560786e8ec690b07179b46fbe6c);
   background-repeat: no-repeat;
   background-size: contain;
   margin: 0 auto;
@@ -11526,7 +11526,7 @@ header {
 }
 
 .tools-home {
-  background-image: url(/images/img-tools.png?bdaeb2287a10bad6e9143e1b78e8fa5d);
+  background-image: url(../images/img-tools.png?bdaeb2287a10bad6e9143e1b78e8fa5d);
   background-size: contain;
   background-repeat: no-repeat;
   margin-top: 160px;

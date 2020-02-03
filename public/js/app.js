@@ -103371,6 +103371,8 @@ var n = new _nav__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
 __webpack_require__(/*! ./components/Form */ "./resources/js/components/Form.js");
 
+__webpack_require__(/*! ./components/Nav */ "./resources/js/components/Nav.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -103563,11 +103565,7 @@ var Form = function Form(props) {
     className: "form-show__typography"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-show__preview"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Formulaire de contact"), updatefieldsForm(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      addField(testFields[keys]);
-    }
-  }, "ADD"))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Formulaire de contact"), updatefieldsForm())))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Form);
@@ -103897,11 +103895,7 @@ var Edit = function Edit(props) {
       props.onClickDelete(updatingField[1]);
       setUpdatingFieldId(initField[1], 1);
     }
-  }, "Supprimer")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return console.log(props.fields);
-    }
-  }, "C"))));
+  }, "Supprimer")))))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Edit);
@@ -103991,6 +103985,141 @@ var Field = function Field(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Field);
+
+/***/ }),
+
+/***/ "./resources/js/components/Nav.js":
+/*!****************************************!*\
+  !*** ./resources/js/components/Nav.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Nav_Edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Nav/Edit */ "./resources/js/components/Nav/Edit.js");
+
+
+
+
+var Nav = function Nav(props) {
+  /* STATES */
+  var R = __webpack_require__(/*! ramda */ "./node_modules/ramda/es/index.js");
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "Form"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav_Edit__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-show"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-show__header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "form-show__title"
+  }, "Edition menu")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-show__body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-show__typography"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-show__preview"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Menu de navigation"))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Nav);
+
+if (document.getElementById('nav-root')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Nav, null), document.getElementById('nav-root'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Nav/Edit.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Nav/Edit.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Accordion */ "./node_modules/react-bootstrap/esm/Accordion.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var Edit = function Edit(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('0'),
+      _useState2 = _slicedToArray(_useState, 2),
+      editState = _useState2[0],
+      setEditState = _useState2[1];
+
+  var R = __webpack_require__(/*! ramda */ "./node_modules/ramda/es/index.js");
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-edit"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-edit__header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "form-edit__title"
+  }, "Titre menu")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    defaultActiveKey: "0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-card"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__["default"].Toggle, {
+    className: "edit-card__header",
+    as: "div",
+    onClick: function onClick() {
+      return setEditState('0');
+    },
+    eventKey: "0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "edit-card__title"
+  }, "INSERER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "edit-card__button"
+  }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__["default"].Collapse, {
+    eventKey: "0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-card__body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-card__section"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-card"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__["default"].Toggle, {
+    className: "edit-card__header",
+    as: "div",
+    onClick: function onClick() {
+      return setEditState('1');
+    },
+    eventKey: "1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "edit-card__title"
+  }, "MODIFIER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "edit-card__button"
+  }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__["default"].Collapse, {
+    eventKey: "1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-card__body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "edit-card__section"
+  }))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Edit);
 
 /***/ }),
 
@@ -104114,8 +104243,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Projets\TEST\jamgati\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Projets\TEST\jamgati\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Projets\jamgati\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Projets\jamgati\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

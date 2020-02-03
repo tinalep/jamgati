@@ -78,7 +78,7 @@
             </div>
 
             <div class="video">
-                <img class="d-block m-auto" src="assets/images/img-video.png" alt="video">
+                <img class="d-block m-auto" src="{{asset("assets/images/img-video.png")}}" alt="video">
             </div>
     
     </div>

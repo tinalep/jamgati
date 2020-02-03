@@ -10,3 +10,4 @@ import Nav from './nav';
 const n = new Nav(); 
 
 require('./components/Form');
+require('./components/Nav');
