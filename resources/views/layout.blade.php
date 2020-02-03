@@ -16,7 +16,7 @@
     
     <body>
         @guest
-    <header>
+    <header class="header header__fixed">
         <div class="header__noauth">
             <div class="header-nav" role="navigation" aria-label="Main Navigation">
                 <a class="header-logo" href=""><img src="{{asset("assets/images/img-logo-jamgati.png")}}"> </a>
