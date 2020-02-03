@@ -1,21 +1,21 @@
 <!doctype html>
 <html>
-
-<head>
-    <title>Jamgati</title>
-    <meta charset="utf-8">
-    <meta name="description" content="description de la page">
-    <link rel="stylesheet" href="{{asset("css/app.css")}}">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Script qui permet de charger FONTAWESOME plus rapidement --}}
-    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
-    <link rel="icon" type="image/png" href="{{asset("assets/images/logo-jamgati.png")}}" />
-</head>
-
-<body>
-    @guest
+    
+    <head>
+        <title>Jamgati</title>
+        <meta charset="utf-8">
+        <meta name="description" content="description de la page">
+        <link rel="stylesheet" href="{{asset("css/app.css")}}">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        {{-- Script qui permet de charger FONTAWESOME plus rapidement --}}
+        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+        <link rel="icon" type="image/png" href="{{asset("assets/images/logo-jamgati.png")}}" />
+    </head>
+    
+    <body>
+        @guest
     <header>
         <div class="header__noauth">
             <div class="header-nav" role="navigation" aria-label="Main Navigation">
@@ -31,19 +31,14 @@
                 </nav>
             </div>
             <div class="header-id">
-                @auth
-                <a class="button button-bgnone" href="{{ route('logout') }}">Déconnexion</a>
-                @endauth
-                @guest
                 <a class="button button-bgnone" href="{{ route('login') }}">Connexion</a>
                 <a class="button button-bgred" href="{{ route('register') }}">Inscription</a>
-                @endguest
             </div>
             <div class="cross" id="cross"><i class="fas fa-times"></i></div>
         </div>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </header>
-    @guest
+    @endguest
     
     @yield('content')
 
