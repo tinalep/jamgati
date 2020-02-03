@@ -2,7 +2,7 @@ header {
     position: relative;
 }
 
-.header {
+.header__noauth {
     position: absolute;
     top: 0;
     left: -104%;
@@ -67,8 +67,7 @@ header {
             }
             
             a  {
-                font-family: $font-lato-regular;
-                color: $color-text;
+                color: inherit
             }
 
             .activ-link {
@@ -110,7 +109,6 @@ header {
         
         @include md-breakpoint() {
             flex-direction: row;
-            width: 27%;
         }
     }
 
