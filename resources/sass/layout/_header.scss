@@ -24,11 +24,11 @@ header {
         background-color: transparent;
     }
 
-    &-logo {
+    .header-logo {
         width: 40px;
     }
     
-    &-nav {
+    .header-nav {
         display: flex;
         flex-direction: column;
         align-items: center;
