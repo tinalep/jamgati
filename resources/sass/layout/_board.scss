@@ -1,8 +1,107 @@
-.page-board{
+.page-dashboard{
     main{
         display: flex;
         flex-direction: column;
         width: calc(100% - 300px);
-        margin-right: 15px;
+        padding-right: 15px;
+        background-image: url(../images/bg-dashboard.svg);
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-position-y: -1350px;
+        background-position-x: -425px;
+    }
+
+    .dashboard_nav{
+        margin-top: 19px;
+        &__link{
+            position: relative;
+            display: inline-block;
+            font-family: $font-lato-bold;
+            font-weight: normal;
+            font-style: normal;
+            font-size: rem(18);
+            color: $color-dark-grey;
+            margin-right: 47px;
+            &:after{
+                content: "";
+                display:block;
+                width: 100%;
+                height: 2px;
+                background-color: $color-text;
+                opacity: 0;
+                transition: 0.3s all ease-in-out;
+            }
+            &--active,
+            &:hover{
+                text-decoration: none;
+                color: $color-text;
+                &:after{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .table_dashboard{
+        margin-top: 53px;
+        thead{
+            th{
+                font-family: $font-lato-regular;
+                font-weight: normal;
+                font-style: normal;
+                line-height: rem(19);
+                font-size: rem(16);
+                text-transform: uppercase;
+                color: $color-dark-grey;
+                padding: 0 21px 19px;
+            }
+        }
+
+        tbody{
+            tr{
+                box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
+                border-radius: $border-radius;
+                cursor: pointer;
+            }
+            td{
+                border-radius: $border-radius;
+                padding: 28px 21px;
+                background-color: $color-white;
+            }
+
+        }
+        &__title{
+            @include title-small-bold();
+        }
+
+        &__update{
+            @include text();
+        }
+    }
+
+    .nav_pagination{
+        margin-top: 55px;
+        ul{
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0 auto;
+            list-style-type: none;
+        }
+
+        a{
+            @include title-small-bold();
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: rem(35);
+            text-align: center;
+            border-radius: 50%;
+            &.active{
+                background: $gradient-orange;
+                color: $color-white;
+            }   
+
+        }
     }
 }
