@@ -35,19 +35,3 @@ $xl: 1200px;
         @content;
     }
 }
-
-
-// Font 
-@mixin title-small-bold($color : $color-text){
-    font-family: $font-lato-bold;
-    font-weight: normal;
-    font-size: rem(16);
-    color: $color;
-}
-
-@mixin text($color: $color-text){
-    font-family: $font-lato-light;
-    font-weight: normal;
-    font-size: rem(16);
-    color: $color;
-}
