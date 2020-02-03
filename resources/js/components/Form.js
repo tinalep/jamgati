@@ -87,10 +87,6 @@ const Form = props => {
                      
                             {updatefieldsForm()}
 
-                            <button onClick={()=>{
-                                addField(testFields[keys]);
-                            }}>ADD</button>
-                            
                         </div>
                         
                     </div>
