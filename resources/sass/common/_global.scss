@@ -1,12 +1,14 @@
 // Layout
 body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: 'Lato', sans-serif;
     @include font-size(16px);
     margin: 0 auto;
     height: 100%;
 }
 
-a {
-    text-decoration: none;
+.container{
+    flex-grow: 1;
 }
-
