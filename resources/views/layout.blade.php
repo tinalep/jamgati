@@ -31,19 +31,14 @@
                 </nav>
             </div>
             <div class="header-id">
-                @auth
-                <a class="button button-bgnone" href="{{ route('logout') }}">Déconnexion</a>
-                @endauth
-                @guest
                 <a class="button button-bgnone" href="{{ route('login') }}">Connexion</a>
                 <a class="button button-bgred" href="{{ route('register') }}">Inscription</a>
-                @endguest
             </div>
             <div class="cross" id="cross"><i class="fas fa-times"></i></div>
         </div>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </header>
-    @guest
+    @endguest
     
     @yield('content')
 
