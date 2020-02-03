@@ -1,44 +1,86 @@
-.heading-1{
+@mixin heading-1(){
     @include font-size(rem(72));
-    font-family: $font-lato-bold;
+    font-weight: bold;
     font-style: normal;
-    font-weight: normal;
     line-height: rem(86);
     text-align: justify;
 }
 
-.heading-2{
+@mixin heading-2(){
     @include font-size(rem(48));
-    font-family: $font-lato-bold;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     line-height: rem(58);
-    text-align: center;
     margin: 0 auto;
     span{
         display: block;
         @include font-size(rem(18));
-        font-family: $font-lato-bold;
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         line-height: rem(22);
         text-transform: uppercase;
         color: $color-dark-grey;
     }
+
+    &--center{
+        text-align: center;
+    }
 }
 
-.heading-3{
+@mixin heading-3(){
     @include font-size(rem(24));
-    font-family: $font-lato-bold;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     line-height: rem(29);
 }
 
-.heading-4{
+@mixin heading-4 {
     @include font-size(rem(20));
-    font-family: $font-lato-bold;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     line-height: rem(24);
+}
+
+@mixin title-small-bold($color : $color-text){
+    font-weight: bold;
+    font-size: rem(16);
+    color: $color;
+}
+
+@mixin text($color: $color-text){
+    font-weight: 300;
+    font-size: rem(16);
+    color: $color;
+}
+
+h1{
+    @include heading-1();
+}
+
+h2{
+    @include heading-2();
+}
+
+h3{
+    @include heading-3();
+}
+
+h4{
+    @include heading-4();
+}
+
+.heading-1{
+    @include heading-1();
+}
+
+.heading-2{
+    @include heading-2();
+}
+
+.heading-3{
+    @include heading-3();
+}
+
+.heading-4{
+    @include heading-4();
 }
