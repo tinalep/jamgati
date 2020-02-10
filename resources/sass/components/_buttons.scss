@@ -1,27 +1,27 @@
 .button {
     width: 80%;
-    min-width: 150px;
     margin: 10px;
-    border-radius : 20px;
+    border-radius : 50px;
     text-align: center;
+    font-weight: 700;
     
     @include md-breakpoint() {
         display: inline;
         width: auto;
-        margin: 30px;
+        margin: 15px;
     }
     
     &-bgred {
-        padding: 10px 18px;
+        padding: 18px 28px;
         background: $gradient-red;
-        border: 2px solid $gradient-red;
+        border-color: $gradient-red;
         color: $color-white;
     }
     
     &-bgnone {
-        padding: 8px 16px;
+        padding: 15px 28px;
         background-color: transparent;
-        border: 2px solid $color-red;
+        border: 3px solid $color-red;
         color: $color-red;
     }
 } 

@@ -104304,7 +104304,7 @@ function () {
       this.nav = document.querySelector('.header-nav');
       this.ul = document.querySelector('ul');
       this.li = document.querySelector('li');
-      this.link = document.querySelector('.nav-link');
+      this.link = document.querySelectorAll('.nav-link');
 
       if (this.isMobile()) {
         this.init();
@@ -104312,6 +104312,17 @@ function () {
         // Si la page n'est pas en version mobile :
         this.burger.display = 'none';
       }
+
+      var pathname = window.location.pathname;
+      console.log(pathname);
+      this.link.forEach(function (link) {
+        console.log(link.href);
+
+        if (link.href == pathname) {
+          console.log('active');
+          link.addClass("activ-link");
+        }
+      });
     }
   } // Fonction qui calcule la taille du document
 
