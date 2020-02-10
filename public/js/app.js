@@ -104020,19 +104020,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Nav_Edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Nav/Edit */ "./resources/js/components/Nav/Edit.js");
+/* harmony import */ var _Nav_Element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Nav/Element */ "./resources/js/components/Nav/Element.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
 
 var Nav = function Nav(props) {
   /* STATES */
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      elements = _useState2[0],
+      setElements = _useState2[1];
+
   var R = __webpack_require__(/*! ramda */ "./node_modules/ramda/es/index.js");
+
+  var updateNav = function updateNav(elt) {
+    var elts = R.clone(elements);
+    elts.concat(elt);
+    setElements(elts);
+  };
+
+  var showNav = function showNav() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, elements);
+  };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "Form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav_Edit__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav_Edit__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    onClickUpdate: updateNav
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-show"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-show__header"
@@ -104044,7 +104071,7 @@ var Nav = function Nav(props) {
     className: "form-show__typography"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-show__preview"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Menu de navigation"))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Menu de navigation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, showNav()))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Nav);
@@ -104067,7 +104094,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Accordion */ "./node_modules/react-bootstrap/esm/Accordion.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _Element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Element */ "./resources/js/components/Nav/Element.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -104080,13 +104108,85 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Edit = function Edit(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('0'),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
-      editState = _useState2[0],
-      setEditState = _useState2[1];
+      isNew = _useState2[0],
+      setIsNew = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Element__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    key: 0,
+    name: "",
+    pos: "",
+    link: "",
+    parent: "no",
+    fresh: "true"
+  })),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newElt = _useState4[0],
+      setNewElt = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Element__WEBPACK_IMPORTED_MODULE_2__["default"], null)),
+      _useState6 = _slicedToArray(_useState5, 2),
+      editElt = _useState6[0],
+      setEditElt = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      counter = _useState8[0],
+      setCounter = _useState8[1];
 
   var R = __webpack_require__(/*! ramda */ "./node_modules/ramda/es/index.js");
+
+  var setElt = function setElt(elt) {
+    if (isNew) setNewElt(elt);else setEditElt(elt);
+  };
+
+  var propsChanger = function propsChanger(props, value) {
+    var elt = R.clone(isNew ? newElt : editElt);
+
+    switch (props) {
+      case 'name':
+        elt.props.name = value;
+        break;
+
+      case 'link':
+        elt.props.link = value;
+        break;
+    }
+
+    return elt;
+  };
+
+  var handleChangeName = function handleChangeName(e) {
+    var elt = propsChanger('name', e.target.value);
+    setElt(elt);
+  };
+
+  var handleChangeLink = function handleChangeLink(e) {
+    var elt = propsChanger('link', e.target.value);
+    setElt(elt);
+  };
+
+  var displayEditElement = function displayEditElement() {
+    var elt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : newElt;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Nom"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      value: elt.props.name,
+      onChange: handleChangeName
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Lien"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      value: elt.props.link,
+      onChange: handleChangeLink
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Parent"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: ""
+    }, "-- Selection du parent --")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: function onClick(elt) {
+        return props.onClickUpdate(elt);
+      }
+    }, "Valider"), newElt);
+  };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-edit"
@@ -104102,7 +104202,7 @@ var Edit = function Edit(props) {
     className: "edit-card__header",
     as: "div",
     onClick: function onClick() {
-      return setEditState('0');
+      return setIsNew(true);
     },
     eventKey: "0"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -104115,13 +104215,13 @@ var Edit = function Edit(props) {
     className: "edit-card__body"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "edit-card__section"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, displayEditElement())))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "edit-card"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_1__["default"].Toggle, {
     className: "edit-card__header",
     as: "div",
     onClick: function onClick() {
-      return setEditState('1');
+      return setIsNew(false);
     },
     eventKey: "1"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -104138,6 +104238,33 @@ var Edit = function Edit(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Edit);
+
+/***/ }),
+
+/***/ "./resources/js/components/Nav/Element.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/Nav/Element.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Element = function Element(props) {
+  var displayThis = function displayThis() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: '//' + props.link
+    }, props.name + ' ' + 'position:' + props.pos));
+  };
+
+  return displayThis();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Element);
 
 /***/ }),
 

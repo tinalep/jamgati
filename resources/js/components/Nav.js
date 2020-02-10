@@ -1,20 +1,37 @@
 import React, { useState } from "react"
 import ReactDOM from 'react-dom';
 import Edit from './Nav/Edit'
+import Element from './Nav/Element'
 
 
 const Nav = props => {
 
     /* STATES */
 
+    const [elements, setElements]=useState([]);
+
 
     const R = require('ramda');
+
+    const updateNav = (elt)=>{
+        let elts = R.clone(elements);
+        elts.concat(elt);
+        setElements(elts);
+    }
+
+    const showNav = ()=>{
+        return(
+            <>
+                {elements}
+            </>
+        );
+    }
 
 
     return (
         <div className="Form">
             <div className="form-container">
-                <Edit />
+                <Edit onClickUpdate={updateNav} />
                 
                 <div className="form-show">
                     <div className="form-show__header">
@@ -24,9 +41,8 @@ const Nav = props => {
                         <div className="form-show__typography">
                         </div>
                         <div className="form-show__preview">
-
                             <h3>Menu de navigation</h3>
-
+                            <ul>{showNav()}</ul>
                         </div>
                         
                     </div>
