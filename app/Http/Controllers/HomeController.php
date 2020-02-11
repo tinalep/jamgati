@@ -35,4 +35,14 @@ class HomeController extends Controller
     {
         return view('nav.create');
     }
+
+    public function mentions()
+    {
+        return view('mentions');
+    }
+
+    public function data()
+    {
+        return view('data');
+    }
 }

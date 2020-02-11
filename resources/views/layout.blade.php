@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
     
     <head>
         <title>Jamgati</title>
@@ -46,12 +46,12 @@
         <div class="footer-links">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('mentions') }}">
                         Mentions légales
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('data') }}">
                         Données personnelles
                     </a>
                 </li>
@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="https://github.com/tinalep/jamgati">
                         <div class="icon">
                             <img src="{{asset("assets/images/icon-github.svg")}}" alt="Git Hub">
                         </div>
