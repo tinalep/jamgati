@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+<main role="main">
     <div class="section header-home">
         <div class="container">
             <div class="row main-title">
@@ -152,5 +153,5 @@
         </div>
 
     </div>
-
+</main>
 @endsection

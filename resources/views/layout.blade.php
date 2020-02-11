@@ -41,9 +41,8 @@
     </header>
     @endguest
     
-    <main role="main">
+   
     @yield('content')
-    </main>
 
     <footer class="footer">
         <div class="footer-links">
