@@ -1,15 +1,15 @@
 import {TimelineMax} from 'gsap';
 const plugins = [TimelineMax];
 
-
 var Nav = class {
     constructor() {
         this.header = document.querySelector('.header__noauth');
 
+        
         if(this.header) {
-        // Bouton burger (ouvre la nav)
-        this.burger = document.querySelector('#burger');
-
+            // Bouton burger (ouvre la nav)
+            this.burger = document.querySelector('#burger');
+            
         // Bouton croix (ferme la nav)
         this.cross = document.querySelector('#cross');
 
@@ -20,10 +20,11 @@ var Nav = class {
         this.link = document.querySelectorAll('.nav-link');
 
         if(this.isMobile()) {
+            console.log('mobile')
             this.init();
         } else {
             // Si la page n'est pas en version mobile :
-            this.burger.display = 'none';
+            this.burger.className = 'hide';
         }
 
         var pathname = window.location.pathname;
@@ -43,9 +44,8 @@ var Nav = class {
 
     // Fonction qui calcule la taille du document
     isMobile() { 
-
         // w = width du document
-        const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const w = window.screen.width;
         if (w <= 768) {
 
             // Si version mobile (w) => retourne true
