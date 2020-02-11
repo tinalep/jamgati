@@ -8,12 +8,18 @@ const Edit = props =>{
 
     const [isNew, setIsNew] = useState(true)
 
-    const [newElt, setNewElt] = useState(<Element key={0} name="" pos="" link="" parent="no" fresh="true" />)
+    const [newElt, setNewElt] = useState(<Element key={0} name="" pos="" link=""/>)
     const [editElt, setEditElt] = useState(<Element />)
 
     const [counter, setCounter] = useState(0);
 
     const R = require('ramda');
+
+    const prepareNextElt = ()=>
+    {
+        setCounter(counter+1)
+        setNewElt(<Element key={counter+1} name="" pos="" link=""/>)
+    }
 
     const setElt = (elt)=>{
         if(isNew)
@@ -22,39 +28,41 @@ const Edit = props =>{
             setEditElt(elt)
     }
 
-    const propsChanger = (props, value)=>{
+    const handleChangeElt = (e)=>{
+        let field = e.target;
         let elt = R.clone(isNew?newElt:editElt);
-        switch(props){
-            case 'name' : elt.props.name = value; break;
-            case 'link' : elt.props.link = value; break;
+        switch(field.id){
+            case 'eltName' : elt.props.name = field.value; break;
+            case 'eltLink' : elt.props.link = field.value; break;
+            default : console.log("Problem with handleChangeElt")
         }
-        return elt;
+        setElt(elt);
     }
 
-    const handleChangeName = (e)=>{
-        let elt = propsChanger('name',e.target.value)
-        setElt(elt);
-    }
-    const handleChangeLink = (e)=>{
-        let elt = propsChanger('link',e.target.value)
-        setElt(elt);
+    const handleChangeNavStyle = (e)=>{
+        let field = e.target;
+        let navStyle = R.clone(props.navStyle);
+        switch(field.id){
+            case 'navStyleDisplay' : navStyle.display = (field.checked?"flex":"block"); break;
+            default : console.log("Problem with handleChangeNavStyle")
+        }
+        props.updateNavStyle(navStyle)
     }
 
     const displayEditElement = (elt=newElt) =>{
         return (
         <>
             <label>Nom</label>
-            <input type="text" value={elt.props.name} onChange={handleChangeName}/>
-
+            <input type="text" value={elt.props.name} id="eltName" onChange={handleChangeElt}/>
+            <br/>
             <label>Lien</label>
-            <input type="text" value={elt.props.link} onChange={handleChangeLink}/>
-
+            <input type="text" value={elt.props.link} id="eltLink" onChange={handleChangeElt}/>
+            <br/>
             <label>Parent</label>
             <select>
                 <option value="">-- Selection du parent --</option>
             </select>
-            <button onClick={(elt)=>props.onClickUpdate(elt)}>Valider</button>
-            {newElt}
+            <button onClick={()=>{props.onClickUpdate(elt); prepareNextElt()}}>Valider</button>
         </>
         )
     }
@@ -89,6 +97,21 @@ const Edit = props =>{
                             <div className="edit-card__section">
                                 
                             </div>
+                        </div>
+                    </Accordion.Collapse>
+                </div>
+                <div className="edit-card">
+                    <Accordion.Toggle className="edit-card__header" as="div" eventKey="2">
+                        <span className="edit-card__title">STYLE
+                        </span>
+                        <span className="edit-card__button">+</span>
+                    </Accordion.Toggle>
+                    <Accordion.Collapse eventKey="2">
+                        <div className="edit-card__body">
+                            <div className="edit-card__section">
+                                <label className="mr-2">Horizontal?</label>
+                                <input type="checkbox" id="navStyleDisplay" checked={props.navStyle.display==='flex'} onChange={handleChangeNavStyle} />
+                           </div>
                         </div>
                     </Accordion.Collapse>
                 </div>

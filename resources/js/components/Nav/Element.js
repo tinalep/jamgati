@@ -2,7 +2,7 @@ import React from 'react';
 
 const Element = props => {
     const displayThis = ()=>{
-        return <li><a href={'//'+props.link}>{props.name+' '+'position:'+props.pos}</a></li>
+        return <li className="mx-2"><a target="_blank" href={'//'+props.link}>{props.name}</a></li>
     }
 
     return displayThis();

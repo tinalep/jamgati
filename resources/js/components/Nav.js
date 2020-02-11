@@ -9,14 +9,21 @@ const Nav = props => {
     /* STATES */
 
     const [elements, setElements]=useState([]);
+    const [navStyle, setNavStyle]=useState({display:"flex"})
 
 
     const R = require('ramda');
 
     const updateNav = (elt)=>{
+        console.log('The following elt is supposed to be add')
+        console.log(elements)
         let elts = R.clone(elements);
-        elts.concat(elt);
+        elts= elts.concat(elt);
         setElements(elts);
+    }
+
+    const updateNavStyle=(newStyle)=>{
+        setNavStyle(newStyle)
     }
 
     const showNav = ()=>{
@@ -31,7 +38,7 @@ const Nav = props => {
     return (
         <div className="Form">
             <div className="form-container">
-                <Edit onClickUpdate={updateNav} />
+                <Edit navStyle={navStyle} onClickUpdate={updateNav} updateNavStyle={updateNavStyle}/>
                 
                 <div className="form-show">
                     <div className="form-show__header">
@@ -42,7 +49,7 @@ const Nav = props => {
                         </div>
                         <div className="form-show__preview">
                             <h3>Menu de navigation</h3>
-                            <ul>{showNav()}</ul>
+                            <nav><ul style={{display:navStyle.display}}>{showNav()}</ul></nav>
                         </div>
                         
                     </div>
