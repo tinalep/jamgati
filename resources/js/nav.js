@@ -17,7 +17,7 @@ var Nav = class {
         this.nav = document.querySelector('.header-nav');
         this.ul = document.querySelector('ul');
         this.li = document.querySelector('li');
-        this.link = document.querySelector('.nav-link');
+        this.link = document.querySelectorAll('.nav-link');
 
         if(this.isMobile()) {
             console.log('mobile')
@@ -26,6 +26,18 @@ var Nav = class {
             // Si la page n'est pas en version mobile :
             this.burger.className = 'hide';
         }
+
+        var pathname = window.location.pathname;
+        console.log(pathname);
+
+        this.link.forEach(link => {
+            console.log(link.href);
+
+            if(link.href == pathname){
+                console.log('active');
+                link.addClass("activ-link")
+            }
+        });
     }
 
     }

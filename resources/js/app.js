@@ -8,7 +8,6 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,10 +26,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
 import Nav from './nav';
 const n = new Nav(); 
 
 require('./components/Form');
+require('./components/Nav');

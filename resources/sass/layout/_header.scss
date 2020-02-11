@@ -2,125 +2,148 @@ header {
     position: relative;
 }
 
-.header__noauth {
-    position: absolute;
-    top: 0;
-    left: -104%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    padding: 50px;
-    background-color: white;
-    z-index: 2;
-    
-    @include md-breakpoint() {
-        position: static;
-        flex-direction: row;
-        width: auto;
-        height: 50px;
-        padding: 10px 30px;
-        background-color: transparent;
-    }
-
-    .header-logo {
-        width: 40px;
+.header{
+    &__fixed{
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        background: $color-white;
+        z-index: 2;
     }
     
-    .header-nav {
+    &__noauth {
+        position: absolute;
+        top: 0;
+        left: -104%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        @include md-breakpoint() {
-            flex-direction: row;
-            align-items: unset;
-        }
-
-        a {
-            img {
-                width: 100%;
-            }
-        }
-    }
-    
-    ul {
-        display: flex;
-        flex-direction: column;
-        margin: 20px 0;
-        padding: 0;
-
-        @include md-breakpoint() {
-            flex-direction: row;
-            margin: 0;
-        }
-
-        li {
-            text-align: center;
-            position: relative;
-            padding: 10px;
-            list-style-type: none;
-            
-            @include md-breakpoint() {
-                padding: 0 10px;
-            }
-        
-            .activ-link {
-                display: none;
-
-                @include md-breakpoint() {
-                    display: block;
-                }
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    background: $gradient-red;
-                    bottom: 0;
-                    left: 10%;
-                    width: 80%;
-                    height: 2px;
-                }
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
-                    width: 3px;
-                    height: 3px;
-                    border-radius: 100%;
-                    background: $gradient-red;
-                }
-            }
-        }
-    }
-
-    &-id {
-        display: flex;
-        align-items: center;
         justify-content: space-between;
         flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        padding: 50px;
+        background-color: white;
+        z-index: 2;
         
         @include md-breakpoint() {
+            position: static;
             flex-direction: row;
+            align-items: center;
+            width: auto;
+            height: 100%;
+            padding: 15px 25px;
+            background-color: transparent;
         }
-    }
-
-    .cross {
-        @include md-breakpoint() {
-            display: none;
+    
+        .header-logo {
+            width: 40px;
+            height: 64px;
+            margin-right: 45px;
         }
-
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        font-size: 20px;
-        color: $color-pink;
-        cursor: pointer;
+        
+        .header-nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+    
+            @include md-breakpoint() {
+                flex-direction: row;
+                align-items: unset;
+            }
+    
+            a {
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+    
+        }
+        
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            height: 100%;
+    
+            @include md-breakpoint() {
+                flex-direction: row;
+                margin: 0;
+            }
+    
+            li {
+                text-align: center;
+                position: relative;
+                padding: 10px;
+                list-style-type: none;
+                
+                @include md-breakpoint() {
+                    margin-right: 34px ;
+                    padding: 5px 0;
+                }
+            
+                .activ-link {
+                    display: none;
+    
+                    @include md-breakpoint() {
+                        display: block;
+                    }
+    
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        background: $gradient-red;
+                        bottom: 0;
+                        left: 0;
+                        width: 85%;
+                        height: 2px;
+                    }
+    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        width: 3px;
+                        height: 3px;
+                        border-radius: 50%;
+                        background: $gradient-red;
+                    }
+                }
+            }
+    
+            .nav-link{
+                padding: 0;
+            }
+        }
+    
+        &-id {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            
+            @include md-breakpoint() {
+                flex-direction: row;
+            }
+        }
+    
+        .cross {
+            @include md-breakpoint() {
+                display: none;
+            }
+    
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 20px;
+            color: $color-pink;
+            cursor: pointer;
+        }
+    
     }
-
 }
 
 .burger {
@@ -129,6 +152,10 @@ header {
     right: 20px;
     color: $color-pink;
     cursor: pointer;
+    
+    @include md-breakpoint(){
+        display: none;
+    }
 }
 
 .hide {

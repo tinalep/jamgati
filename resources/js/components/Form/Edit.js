@@ -200,7 +200,6 @@ const Edit = props =>{
                             </div>
                         </div>
                     </Accordion.Collapse>
-                    <button onClick={()=>console.log(props.fields)}>C</button>
                 </div>
             </Accordion>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './Form';
+import Nav from './Nav';
 import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
