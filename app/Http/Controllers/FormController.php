@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\form;
+use App\Http\Requests\StoreFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FormController extends Controller
 {
@@ -15,7 +17,7 @@ class FormController extends Controller
     public function index()
     {
         $forms = \App\Form::all();
-        return view('forms', ['forms'=>$forms]);
+        return response()->json($forms);
     }
 
     /**
@@ -34,9 +36,17 @@ class FormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFormRequest $request)
     {
-        //
+        $data = $request->input();
+        $form = new \App\Form();
+        $form->fields = json_encode($data['fields']);
+        $form->name = $data['name'];
+        $form->slug = Str::slug($form->name);
+        $form->nb_fields = $data['nbFields'];
+        $form->save();
+        return response()
+        ->json($form);
     }
 
     /**
@@ -47,7 +57,7 @@ class FormController extends Controller
      */
     public function show(\App\Form $form)
     {
-        return view('form.show', ['form'=>$form]);
+        return response()->json($form);
     }
 
     /**

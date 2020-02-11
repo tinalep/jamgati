@@ -44,7 +44,7 @@ const Edit = props =>{
     const handleChangeUpdatingFieldFormat = (e)=>{
         let updatedField = R.clone(updatingField[editState]);
         updatedField.props.format = e.target.value;
-        updatedField.props.type = '';
+        updatedField.props.type = (e.target.value==='button'?e.target.value:'default');
         setUpdatingFieldId(updatedField,editState);
     }
     const handleChangeUpdatingFieldType = (e)=>{
@@ -162,7 +162,7 @@ const Edit = props =>{
                             {displayCustomizeField(updatingField[0].props)}
                             {updatingField[0].props.format==='' ? null : 
                                 <>   
-                                    <button onClick={()=>{props.onClickAdd(updatingField[0]);setUpdatingFieldId(initField[0],0)}}>Ajouter au formulaire</button>  
+                                    <button onClick={()=>{console.log(updatingField[0]);props.onClickAdd(updatingField[0]);setUpdatingFieldId(initField[0],0)}}>Ajouter au formulaire</button>  
                                 </>}
                             </div>
                         </div>
