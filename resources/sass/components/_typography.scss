@@ -50,7 +50,9 @@
 @mixin text($color: $color-text){
     font-weight: 300;
     font-size: rem(16);
+    line-height: rem(19);
     color: $color;
+    margin: 1rem 0;
 }
 
 h1{

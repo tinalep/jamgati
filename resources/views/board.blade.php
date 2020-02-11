@@ -8,9 +8,11 @@ $user = Auth::user();
     <div class="page-dashboard d-flex">
         <div class="sidebar d-flex flex-column justify-content-between">
             <div class="sidebar-nav">
+                <a href="{{ route('board') }}">
                 <div class="logo">
                     <img src="assets/images/logo-sidebar.png" alt="jamgati">
                 </div>
+                </a>
                 <nav class="sidebar-nav sidebar-nav-top">
                     <a class="icon-plus-circle" href="#">Nouveau</a>
                     <a class="icon-dashboard" href="#">Tableau de bord</a>

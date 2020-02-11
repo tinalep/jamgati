@@ -38,15 +38,15 @@
                 <h2 class="heading-2 heading-2--center"><span>Comment ça marche</span>Les 3 étapes</h2>
             </div>
             <div class="row steps-home">
-                <div class="col-4 d-flex justify-content-around">
+                <div class="col-4 d-flex justify-content-around step">
                     <p class="number">1</p>
                     <p class="w-75"><b>Choisissez le type de contenu</b> que vous souhaitez éditer</p>
                 </div>
-                <div class="col-4 d-flex justify-content-around">
+                <div class="col-4 d-flex justify-content-around step">
                     <p class="number">2</p>
                     <p class="w-75"><b>Ajoutez vos données</b> à l’aide de l’éditeur</p>
                 </div>
-                <div class="col-4 d-flex justify-content-around">
+                <div class="col-4 d-flex justify-content-around step">
                     <p class="number">3</p>
                     <p class="w-75"><b>Exportez</b> votre fichier pour obtenir le code HTML/CSS</p>
                 </div>
@@ -58,16 +58,16 @@
     
     </div>
     
-    <div class="section">
+    <div class="section advantages">
         <div class="container">
             <div class="row">
                 <h2 class="heading-2 heading-2--center"><span>L'avantage</span>Allez plus vite !</h2>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 advantage">
                     <div class="d-flex align-items-center">
                         <div class="illustration w-50">
-                                <img src="assets/images/img-upload.png" alt="upload-file">
+                            <img src="assets/images/img-upload.png" alt="upload-file">
                         </div>
                         <div class="w-50 offset-1">
                             <div class="content">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 advantage">
                     <div class="d-flex align-items-center">
                         <div class="w-50">
                             <div class="content">
@@ -112,7 +112,46 @@
                     <p>Une remarque ou une question ? Dirigez vous vers le footer pour accéder à notre Git et nous permettre de faire évoluer notre application web.</p>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="section dev-home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="heading-2 heading-2--center">Pour les développeurs</h2>
+                </div>
+                <div class="col-6 tech">
+                    <img src="assets/images/img-html.png" alt="html-5">
+                    <div class="text">
+                        <p><strong>HTML5</strong></p>
+                        <p>Pour pouvoir mettre en forme votre contenu, Jamgati utilise la technologie HTML5, nécessaire pour intégrer les éléments proposés</p>
+                    </div>
+                </div>
+                <div class="col-6 tech">
+                    <img src="assets/images/img-css.png" alt="css-6">
+                    <div class="text">
+                        <p><strong>CSS 6</strong></p>
+                        <p>Pour une agréable mise en forme de vos éléments. Ajouter vos couleurs, typographies ou encore taille de texte pour une personnalisation la plus complète possible.</p>
+                    </div>
+                </div>
+                <div class="col-6 tech">
+                    <img src="assets/images/img-bootstrap.png" alt="bootstrap">
+                    <div class="text">
+                        <p><strong>Bootstrap</strong></p>
+                        <p>Pour permettre aux utilisateurs de votre site d’accéder au contenu quelque soit </p>
+                    </div>
+                </div>
+                <div class="col-6 tech">
+                    <img src="assets/images/img-js.png" alt="javascript">
+                    <div class="text">
+                        <p><strong>Javascript</strong></p>
+                        <p>Principalement utilisé pour les menus, le langage javascript permet de créer des animations simples telles que celle utilisé pour l’ouverture du menu burger.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </main>
-
 @endsection

@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
     
     <head>
         <title>Jamgati</title>
@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{asset("css/app.css")}}">
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
         
         {{-- Script qui permet de charger FONTAWESOME plus rapidement --}}
         <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
@@ -40,18 +41,19 @@
     </header>
     @endguest
     
+   
     @yield('content')
 
     <footer class="footer">
         <div class="footer-links">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('mentions') }}">
                         Mentions légales
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('data') }}">
                         Données personnelles
                     </a>
                 </li>
@@ -64,7 +66,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="https://github.com/tinalep/jamgati">
                         <div class="icon">
                             <img src="{{asset("assets/images/icon-github.svg")}}" alt="Git Hub">
                         </div>

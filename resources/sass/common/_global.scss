@@ -6,9 +6,19 @@ body{
     font-family: 'Lato', sans-serif;
     @include font-size(16px);
     margin: 0 auto;
+    overflow-x: hidden;
     height: 100%;
 }
 
-.container{
+
+main{
+    margin-top: 94px;
     flex-grow: 1;
+}
+
+
+.page-dashboard{
+    main{
+        margin-top: 0;
+    }
 }

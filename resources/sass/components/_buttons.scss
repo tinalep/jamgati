@@ -11,6 +11,10 @@
         margin: 15px;
     }
     
+    &-no-border{
+        border: none;
+    }
+    
     &-bgred {
         padding: 18px 28px;
         background: $gradient-red;

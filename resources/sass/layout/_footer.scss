@@ -8,10 +8,14 @@
         justify-content: space-between;
         align-items: unset;
         flex-direction: row;
-        margin-top: 0;
+        margin-top: 50px;
+        margin-bottom: 20px;
         padding: 0 90px;
     }
     
+    &-name{
+        font-weight: 600;
+    }
     
     &-links {
         width: 100%;
@@ -37,6 +41,7 @@
 
         .help {
             display: flex;
+            align-items: center;
 
             .icon {
                 margin-right: 5px;
@@ -47,6 +52,7 @@
         a {
             color: $color-text;
             text-decoration: none;
+            font-weight: 600;
         }
     }
 }
