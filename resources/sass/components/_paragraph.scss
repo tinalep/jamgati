@@ -1,0 +1,9 @@
+.paragraph {
+    padding-bottom: 20px;
+
+    &_list {
+        .list {
+            list-style: disc;
+        }
+    }
+}
