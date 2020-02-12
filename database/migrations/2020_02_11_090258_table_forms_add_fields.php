@@ -14,7 +14,7 @@ class TableFormsAddFields extends Migration
     public function up()
     {
         Schema::table('forms', function (Blueprint $table) {
-            $table->json('fields');
+            $table->text('fields');
         });
     }
 
