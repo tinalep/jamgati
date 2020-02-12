@@ -24,8 +24,7 @@ $user = Auth::user();
             </nav>
         </div>
         
-            <main role="main">
-                <div class="profil card">
+            <main  name="content" role="main>                <div class="profil card">
 
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
