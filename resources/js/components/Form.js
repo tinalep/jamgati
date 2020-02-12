@@ -4,39 +4,10 @@ import Edit from './Form/Edit'
 import Field from './Form/Field'
 
 import axios from "axios";
-import { none } from "ramda";
+import {process} from '../functions.js'
+import { set } from "ramda";
 
 const Form = props => {
-
-    function process(str) {
-
-        var div = document.createElement('div');
-        div.innerHTML = str.trim();
-    
-        return format(div, 0).innerHTML;
-    }
-    
-    function format(node, level) {
-    
-        var indentBefore = new Array(level++ + 1).join('  '),
-            indentAfter  = new Array(level - 1).join('  '),
-            textNode;
-    
-        for (var i = 0; i < node.children.length; i++) {
-    
-            textNode = document.createTextNode('\n' + indentBefore);
-            node.insertBefore(textNode, node.children[i]);
-    
-            format(node.children[i], level);
-    
-            if (node.lastElementChild == node.children[i]) {
-                textNode = document.createTextNode('\n' + indentAfter);
-                node.appendChild(textNode);
-            }
-        }
-    
-        return node;
-    }
 
     const [myJson, setMyJson] = useState({})
     const [formName, setFormName] = useState('Formulaire de contact (click to change title)')
@@ -55,6 +26,7 @@ const Form = props => {
 
     const exportPopup = (on)=>{
         document.querySelector('#exportPopup').style.display = (on?'block':'none');
+        setExportMode('default')
     }
 
     const convertToData = ()=>{
@@ -100,7 +72,7 @@ const Form = props => {
 
     const showForm = (mode)=>{
         console.log(process(document.querySelector('#formPreview').outerHTML))
-        return(beauty_html(document.querySelector('#formPreview').outerHTML))
+        return(beauty_html(process(document.querySelector('#formPreview').outerHTML)))
     }
 
     const sendToBDD = ()=>{
@@ -148,7 +120,24 @@ const Form = props => {
         );
     }
 
-
+    const copyToClipBoard = (str)=>{
+        // Create new element
+        var el = document.createElement('textarea');
+        // Set value (string to be copied)
+        el.value = str;
+        // Set non-editable to avoid focus and move outside of view
+        el.setAttribute('readonly', '');
+        el.style = {position: 'absolute', left: '-9999px'};
+        document.body.appendChild(el);
+        // Select text inside element
+        el.select();
+        // Copy text to clipboard
+        document.execCommand('copy');
+        // Remove temporary element
+        document.body.removeChild(el);
+        // Alert the copied text //
+        alert("Le code HTML du formulaire a été copié dans le presse-papier");
+    }
 
     return (
         <div className="Form">
@@ -169,17 +158,19 @@ const Form = props => {
                     <br/>
                     <br/>
                     <br/>
+                    {exportMode=='default'?null:<>
                     <div className="show__exporttext">
                         <pre>
-                            <code>
-                                {exportMode=='default'?null:(showForm(exportMode))}
+                            <code id="toClipboard">
+                                {showForm(exportMode)}
                             </code>
                         </pre>
                     </div>
+                        <button className="text-center" onClick={()=>copyToClipBoard(showForm(exportMode))}>Copier dans le presse-papier</button>
+                    </>}
                     <br/>
                     <br/>
                     <br/>
-                    <button className="text-center">Copier dans le presse-papier</button>
                 </div>
             </div>
             <div className="form-container">
