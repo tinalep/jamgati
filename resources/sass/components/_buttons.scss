@@ -4,6 +4,10 @@
     border-radius : 50px;
     text-align: center;
     font-weight: 700;
+
+    &:focus{
+       outline: none;
+    }
     
     @include md-breakpoint() {
         display: inline;
@@ -17,6 +21,13 @@
     
     &-bgred {
         padding: 18px 28px;
+        background: $gradient-orange;
+        border-color: $gradient-orange;
+        color: $color-white;
+    }
+
+    &-bgorande {
+        padding: 18px 28px;
         background: $gradient-red;
         border-color: $gradient-red;
         color: $color-white;
@@ -27,5 +38,12 @@
         background-color: transparent;
         border: 3px solid $color-red;
         color: $color-red;
+    }
+
+    &-round{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        padding: 8px 8px;
     }
 } 
