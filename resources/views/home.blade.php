@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<main role="main">
+<main name="content" role="main">
     <div class="section header-home">
         <div class="container">
             <div class="row main-title">
@@ -40,15 +40,15 @@
             <div class="row steps-home">
                 <div class="col-4 d-flex justify-content-around step">
                     <p class="number">1</p>
-                    <p class="w-75"><b>Choisissez le type de contenu</b> que vous souhaitez éditer</p>
+                    <p class="w-75"><strong>Choisissez le type de contenu</strong> que vous souhaitez éditer</p>
                 </div>
                 <div class="col-4 d-flex justify-content-around step">
                     <p class="number">2</p>
-                    <p class="w-75"><b>Ajoutez vos données</b> à l’aide de l’éditeur</p>
+                    <p class="w-75"><strong>Ajoutez vos données</strong> à l’aide de l’éditeur</p>
                 </div>
                 <div class="col-4 d-flex justify-content-around step">
                     <p class="number">3</p>
-                    <p class="w-75"><b>Exportez</b> votre fichier pour obtenir le code HTML/CSS</p>
+                    <p class="w-75"><strong>Exportez</strong> votre fichier pour obtenir le code HTML/CSS</p>
                 </div>
             </div>
 
@@ -72,7 +72,9 @@
                         <div class="w-50 offset-1">
                             <div class="content">
                                 <h3>Importez vos fichiers</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                <p>
+                                    L’application Jamgati vous permet de créer l’élément que vous souhaitez à partir d’un fichier existant. Que ce soit à partir d’un fichier texte pour la création d’un tableau ou encore suite à un fichier de type Json, Jamgati vous offre un large panel de choix de conception. Cette fonctionnalité n’est néanmoins disponible qu’après vous être inscrit et identifié.                                
+                                </p>
                             </div>
                         </div>
                         </div>
@@ -83,7 +85,9 @@
                         <div class="w-50">
                             <div class="content">
                                 <h3>Utiliser un modèle</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                <p>
+                                    Vous manquez d’inspiration ou vous ne savez pas comment mettre en forme vos données ? Connectez vous et un certain nombre de modèles de base vous seront présentés pour vous faire gagner du temps. Du formulaire de contact jusqu’à la liste des courses, trouvez votre bonheur dans notre liste de modèles. 
+                                </p>
                             </div>
                         </div>
                         <div class="illustration w-50 offset-1">
@@ -99,7 +103,10 @@
             <div class="row">
                 <div class="col-12">
                     <h2 class="heading-2 heading-2--center"><span>Un outil</span>Pour tous</h2>
-                    <p class="w-75 m-auto text-center mt-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <p class="w-75 m-auto text-center mt-50">
+                        En un clin d’oeil, Jamgati créé l’élément que vous souhaitez. Grâce à son interface intuitive, vous pourrez créer autant d'objets que vous le souhaitez, rapidement et efficacement.
+                        Grâce à Jamgati, gagnez du temps sur votre projet web : tout est ici à votre disposition et fait pour vous aider à créer du code en un instant. Pas besoin d’avoir des compétences professionnelles en développement web pour pouvoir créer du contenu. Fini les recherches interminables et les vidéos tutorielles pour comprendre comment utiliser tel plugin pour créer un tel contenu. Tout est ici à portée de main, créé pour vous et pour tous.
+                  </p>
                 </div>
             </div>
             <div class="row justify-content-between cards-home">

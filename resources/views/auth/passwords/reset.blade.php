@@ -1,12 +1,11 @@
 @extends('layout')
 
 @section('content')
-<main role="main">
-    <div class="container sign">
+<main  name="content" role="main>    <div class="container sign">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header heading-3">{{ __('Reset Password') }}</div>
+                    <div class="card-header heading-3">{{ __('Réinitialiser son mot de passe') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('password.update') }}">
@@ -15,7 +14,7 @@
                             <input type="hidden" name="token" value="{{ $token }}">
 
                             <div class="form-group">
-                                <label for="email" class="col-md-4 col-form-label">{{ __('E-Mail Address') }}</label>
+                                <label for="email" class="col-md-4 col-form-label">{{ __('Adresse email') }}</label>
 
                                 <div class="col-12">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
@@ -29,7 +28,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Mot de passe') }}</label>
 
                                 <div class="col-12">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -53,7 +52,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-12">
                                     <button type="submit" class="button button-no-border button-bgred btn btn-primary">
-                                        {{ __('Reset Password') }}
+                                        {{ __('Réinitialiser le mot de passe') }}
                                     </button>
                                 </div>
                             </div>

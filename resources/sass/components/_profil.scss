@@ -4,12 +4,8 @@
     align-items: center;
     align-self: flex-end;
     font-weight: bold;
-    img{
-        display: inline-block;
-        width: 60px;
-        height: 60px;
-        object-fit: contain;
-        border-radius: 50%;
-        margin-right: 15px;
+    margin-top: 10px;
+    &.card{
+        padding: 0;
     }
 }
