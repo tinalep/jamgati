@@ -6,7 +6,7 @@
 
     @include md-breakpoint() {
         justify-content: space-between;
-        align-items: unset;
+        align-items: center;
         flex-direction: row;
         margin-top: 50px;
         margin-bottom: 20px;
@@ -30,7 +30,6 @@
             flex-direction: column;
             
             @include md-breakpoint() {
-                align-items: unset;
                 flex-direction: row;
             }
 
