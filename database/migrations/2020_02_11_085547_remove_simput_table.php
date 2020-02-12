@@ -13,7 +13,7 @@ class RemoveSimputTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('simputs');
+        Schema::dropIfExists('simput');
     }
 
     /**
@@ -23,7 +23,7 @@ class RemoveSimputTable extends Migration
      */
     public function down()
     {
-        Schema::create('simputs', function (Blueprint $table) {
+        Schema::create('simput', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->softDeletes();

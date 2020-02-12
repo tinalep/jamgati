@@ -17,7 +17,7 @@ class FormController extends Controller
     public function index()
     {
         $forms = \App\Form::all();
-        return response()->json($forms);
+        return response()->json($forms);    
     }
 
     /**

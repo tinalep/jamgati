@@ -7,6 +7,7 @@ const Edit = props =>{
     //Variables et states
 
     const R = require('ramda');
+    
 
     const [isNew, setIsNew] = useState(true)
     const types ={simple:{'text' : 'Texte simple', 'textarea' : 'Texte multi-ligne', 'date' : 'Date', 'number' : 'Nombre' , 'tel' : 'Numéro de téléphone','email':'Addresse e-mail','url':'Lien hypertexte','password':'Mot de passe','file':'Fichier','text-hidden':'Caché'},
@@ -30,7 +31,6 @@ const Edit = props =>{
     const handleChangeField = (e)=>{
         let input = e.target
         let field = R.clone(isNew?newField:editField);
-        console.log(e.target)
         switch(input.dataset.field){
             case 'type' : field.props.type = input.value; break;
             case 'label' : field.props.label = input.value; break;
