@@ -1,142 +1,129 @@
 import React, { useState } from "react"
 import Accordion from 'react-bootstrap/Accordion'
 import Field from './Field'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
-
 
 const Edit = props =>{
-
-    const [editState, setEditState] = useState('0')
+    
+    //Variables et states
 
     const R = require('ramda');
-    const formats = {'input':'Champ de saisie', 'select':'Champ de selection', 'button':'Bouton'}
-    const types ={
-        'input': {'text' : 'Texte simple', 'textarea' : 'Texte multi-ligne', 'date' : 'Date', 'number' : 'Nombre' , 'tel' : 'Numéro de téléphone','email':'Addresse e-mail','url':'Lien hypertexte','password':'Mot de passe','file':'Fichier','text-hidden':'Caché'},
-        'select':{'checkbox':'Cases à cocher', 'radio':'Boutons radios', 'list': 'Liste déroulante'}}
+
+    const [isNew, setIsNew] = useState(true)
+    const types ={simple:{'text' : 'Texte simple', 'textarea' : 'Texte multi-ligne', 'date' : 'Date', 'number' : 'Nombre' , 'tel' : 'Numéro de téléphone','email':'Addresse e-mail','url':'Lien hypertexte','password':'Mot de passe','file':'Fichier','text-hidden':'Caché'},
+                multiple:{'checkbox':'Cases à cocher', 'radio':'Boutons radios', 'list': 'Liste déroulante'},
+                special:{'button':'Boutton', 'text-hidden': 'Champ invisible'}}
+    const [newField, setNewField] = useState(<Field key={0} type='' label='' pos={0} values={['','','']} origin={-1}/>)
+    const [editField, setEditField] = useState(<Field pos={-1} origin={-1} />)
+    const [key, setKey] = useState(0);
 
     /**
-     * le champ qu'on est entrain de modifier
+     * Setteur conditionnel: en fonction de si on crée ou modifie un champs
+     * 
+     * Retourne void
      */
-    const [updatingField, setUpdatingField] = useState([<Field key={0} format='' label='' values={['','','']} pos={-1} />,<Field getKey={-1} />])
-    const initField = [<Field key={0} format='' label='' values={['','','']} pos={-1}/>,<Field getKey={-1} />]
-
-    /**
-     * setteur id car tableau
-     */
-    const setUpdatingFieldId= (field, id)=>{
-        let newUpdatingField = R.clone(updatingField);
-        newUpdatingField[id] = field;
-        setUpdatingField(newUpdatingField);
+    const setField = (field) =>{
+        if(isNew) setNewField(field)
+        else setEditField(field)
     }
 
-    /**
-     * stockage du champ à modifier dans updatingField
-     */
-    const handleChangeUpdatingField = (e)=>{
-        if(e.target.value>(-1)) {setUpdatingFieldId(props.fields[e.target.value],1)}
-        else {setUpdatingFieldId(<Field getKey={-1}/>,1)};
+    //Handler universel de tous les champs de saisie admin
+    const handleChangeField = (e)=>{
+        let input = e.target
+        let field = R.clone(isNew?newField:editField);
+        console.log(e.target)
+        switch(input.dataset.field){
+            case 'type' : field.props.type = input.value; break;
+            case 'label' : field.props.label = input.value; break;
+            case 'pos' : field.props.pos = input.value-1; break;
+            case 'update' : field = (input.value>-1?props.fields[input.value]:field) ; field.props.origin =  parseInt(input.value); field.props.pos = parseInt(input.value);  break;
+            case 'values' : field.props.values[input.dataset.id]= input.value; break;
+            case 'plus' : field.props.values.splice(input.dataset.id,0,'');  break;
+            case 'minus' : field.props.values.splice(input.dataset.id,1); break;
+
+            default : console.log('Problem in switch')
+        }
+        setField(field)
     }
 
-    /**
-     * changement des champs
-     */
-    const handleChangeUpdatingFieldFormat = (e)=>{
-        let updatedField = R.clone(updatingField[editState]);
-        updatedField.props.format = e.target.value;
-        updatedField.props.type = '';
-        setUpdatingFieldId(updatedField,editState);
-    }
-    const handleChangeUpdatingFieldType = (e)=>{
-        let updatedField = R.clone(updatingField[editState]);
-        updatedField.props.type = e.target.value;
-        setUpdatingFieldId(updatedField,editState);
-    }
-    const handleChangeUpdatingFieldLabel = (e)=>{
-        let updatedField = R.clone(updatingField[editState]);
-        updatedField.props.label = e.target.value;
-        setUpdatingFieldId(updatedField,editState);
-    }
-    const handleChangeUpdatingFieldValuesId = (e,id)=>{
-        let updatedField = R.clone(updatingField[editState]);
-        updatedField.props.values[id] = e.target.value;
-        setUpdatingFieldId(updatedField,editState);
-    }
-    const updateValuesId = (id,op)=>{
-        let updatedField = R.clone(updatingField[editState]);
-        op==='+'? updatedField.props.values.splice(id,0,'') : updatedField.props.values.splice(id,1);
-        setUpdatingFieldId(updatedField,editState);
-    }
-    const handleChangeUpdatingFieldPos = (e)=>{
-        let updatedField = R.clone(updatingField[editState]);
-        updatedField.props.pos = e.target.value-1;
-        setUpdatingFieldId(updatedField,editState);
-    }
 
     /**
      * Permet de créér ou modifier un champ
      * 
+     * Retourne du HTML
      */
-    const displayCustomizeField = (field) =>{
+    const displayEditField = (field=newField.props) =>{
         return(
-            <React.Fragment key={editState}>
+            <React.Fragment>
+
+                {/* Selecteur de champ */}
                 <label className="edit-card__type">Type de champ:</label>
-                <select value={field.format} onChange={handleChangeUpdatingFieldFormat}>
-                    <option value="">--Selection du type de champ à insérer--</option>
-                    {Object.keys(formats).map((key,id)=>{return <option key={id} value={key}>{formats[key]}</option>})}
+                <select data-field="type" value={field.type} onChange={handleChangeField}>
+                        <option value="">--Selection du type de champ à insérer--</option>
+                    <optgroup label="Champs de saisie simple">
+                        {Object.keys(types.simple).map((key,id)=>{return <option key={id} value={key}>{types.simple[key]}</option>})}
+                    </optgroup>
+                    <optgroup label="Champs de selection">
+                        {Object.keys(types.multiple).map((key,id)=>{return <option key={id} value={key}>{types.multiple[key]}</option>})}
+                    </optgroup>
+                    <optgroup label="Champs spéciaux">
+                        {Object.keys(types.special).map((key,id)=>{return <option key={id} value={key}>{types.special[key]}</option>})}
+                    </optgroup>
                 </select>
 
-                {field.format==='' ? null :
+
+                {field.type==='' ? null :
                     <>
-                        {field.format==='button' ? null :
-                            <>
-                                <label className="edit-card__type">Format de valeur:</label>
-                                <select value={field.type} className="" onChange={handleChangeUpdatingFieldType}>
-                                    <option value="">--Selection du format de valeur--</option>
-                                    {field.format==='input'?
-                                        Object.keys(types.input).map((key,id)=>{return <option key={id} value={key}>{types.input[key]}</option>}) :
-                                        Object.keys(types.select).map((key,id)=>{return <option key={id} value={key}>{types.select[key]}</option>}) }
-                                </select>
-                            </>
-                        }
                         <br/>
-
+                        {/* Selecteur de nom de champ (label) */}
                         <label className="edit-card__type">Saisir un nom:</label><br/>
-                        <input key={editState} value={field.label} onChange={handleChangeUpdatingFieldLabel}/>
+                        <input data-field="label" value={field.label} onChange={handleChangeField}/>
 
                         <br/>
                         <br/>
                         <br/>
-                        {field.format==='select' ?
-                            <>
-                                <p className="edit-card__type" >Valeurs possibles:</p>
-                                {field.values.map((value,id)=>{
-                                    return (
-                                    <React.Fragment key={id}>
-                                        <input onChange={(e)=>{handleChangeUpdatingFieldValuesId(e,id)}} placeholder={'Valeur '+(id+1)} id={'value'+id} value={value}/>
-                                        <button className="custom-fa" onClick={()=>{updateValuesId(id,'+')}}><FontAwesomeIcon className="custom-faplus" icon={faPlus}  /></button>
-                                        <button className="custom-fa" onClick={()=>{updateValuesId(id,'-')}}><FontAwesomeIcon className="custom-faminus" icon={faMinus}  /></button>
-                                    </React.Fragment>)
-                                })}
-                                <button onClick={()=>{updateValuesId(field.values.length,'+')}}>Valeur supplémentaire</button>
-                                <br/>
-                                <br/>
-                                <br/>
-                            </> : null
-                        }
+
+                        {field.type==='checkbox'||field.type==='radio'||field.type==='list'?
+                        <>  
+                            {/* Selecteur de valeurs pour les champs multiples (apparaît si on a un type checkbox/radio/list) */}
+                            <p className="edit-card__type" >Valeurs possibles:</p>
+                            {field.values.map((value,id)=>{
+                                return (
+                                <React.Fragment key={id}>
+                                    <input data-field='values' data-id={id} onChange={handleChangeField} placeholder={'Valeur '+(id+1)} value={value}/>
+                                    {/* Boutons d'ajout de valeurs possibles pour les champs multiples */}
+                                    <button tabIndex="-1"  className="custom-fa custom-faplus" data-field='plus' data-id={id} onClick={handleChangeField}>+</button>
+                                    <button tabIndex="-1" className="custom-fa custom-faminus" data-field='minus' data-id={id} onClick={handleChangeField}>-</button>
+                                </React.Fragment>)
+                            })}
+                            <button data-field='plus' data-id={field.values.length} onClick={handleChangeField}>Valeur supplémentaire</button>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </>: null}
+
+                        {/* Selecteur de position des champs aussein du formulaire */}
                         <label className="edit-card__type">Position du champ:</label><br/>
-                        <input value={field.pos!==-1? field.pos+1 : props.fields.length+1} type="number" onChange={handleChangeUpdatingFieldPos}/>
-                        {(field.pos!==field.getKey)&&(field.pos!==-1)? 
-                            <>
-                                <div className="info-bulle">
-                                    {(field.pos===0)||(field.pos===props.fields.length)?
-                                    <p>Le champ sera déplacé en {field.pos===0?'première':'dernière'} position</p>
+                        <input data-field="pos" value={field.pos+1} min={1} max={props.fields.length+(isNew?1:0)} type="number" onChange={handleChangeField}/>
+                        <div className="info-bulle">
+                            <p>    
+                            {isNew?
+                                (field.pos===0||field.pos===props.fields.length?
+                                    'Le champ sera placé '+(field.pos===0?'au début':'à la fin')+' du formulaire.'
                                     :
-                                    <p>Le champ sera déplacé entre le champ "{props.fields[field.pos-1].props.label}" et le champ "{props.fields[field.pos+1].props.label}".</p>
-                                    }
-                                </div>
-                            </> : null
-                        }
+                                    'Le champ sera placé entre le champ "'+props.fields[field.pos-1].props.label+'" et le champ "'+props.fields[field.pos].props.label+'".')
+                                :
+                                (field.pos===field.origin?
+                                    'Le champ ne sera pas déplacé'
+                                    :
+                                    (field.pos===0||field.pos===props.fields.length-1?
+                                        'Le champ sera déplacé '+(field.pos===0?'au début':'à la fin')+' du formulaire.'
+                                        :
+                                        'Le champ sera déplacé entre le champ "'+props.fields[field.pos-(field.pos>field.origin?0:1)].props.label+'" et le champ "'+props.fields[field.pos+(field.pos>field.origin?1:0)].props.label+'".'
+                                    )
+                                )
+                            }
+                            </p>
+                        </div>
                         <br/>
                         <br/>
                         <br/>
@@ -147,29 +134,30 @@ const Edit = props =>{
 
     return (
         <div className="form-edit">
+            {/* Fenêtre d'édition de champ (RECTANGLE DE GAUCHE) */}
             <div className="form-edit__header">
                 <h2 className="form-edit__title">Titre formulaire</h2>
             </div>
             <Accordion defaultActiveKey='0'>
                 <div className="edit-card">
-                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>setEditState('0')} eventKey="0">
+                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>{setIsNew(true); console.log(newField); console.log(editField)}} eventKey="0">
                         <span className="edit-card__title">INSERER</span>
                         <span className="edit-card__button">+</span>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
                         <div className="edit-card__body">
                             <div className="edit-card__section">
-                            {displayCustomizeField(updatingField[0].props)}
-                            {updatingField[0].props.format==='' ? null : 
+                            {displayEditField()}
+                            {newField.props.type==='' ? null : 
                                 <>   
-                                    <button onClick={()=>{props.onClickAdd(updatingField[0]);setUpdatingFieldId(initField[0],0)}}>Ajouter au formulaire</button>  
+                                    <button onClick={()=>{props.onClickAdd(newField); setField(<Field key={key+1} type='' label='' origin='' pos={props.fields.length+1} values={['','','']} />); setKey(key+1);}}>Ajouter au formulaire</button>  
                                 </>}
                             </div>
                         </div>
                     </Accordion.Collapse>
                 </div>
                 <div className="edit-card">
-                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>setEditState('1')} eventKey="1">
+                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>{setIsNew(false); console.log(newField); console.log(editField)}} eventKey="1">
                         <span className="edit-card__title">MODIFIER
                         </span>
                         <span className="edit-card__button">+</span>
@@ -179,7 +167,7 @@ const Edit = props =>{
                             <div className="edit-card__section">            
                                 <span className="edit-card__type">Champ à modifier:</span>
                                 <div className="select-field">
-                                    <select value={updatingField[1].props.getKey} onChange={handleChangeUpdatingField}>
+                                    <select data-field="update" value={editField.props.pos} onChange={handleChangeField}>
                                         <option value={-1}>--Selection du champ à modifier--</option>
                                         {props.fields.map((field,index)=>{
                                             return(
@@ -190,11 +178,11 @@ const Edit = props =>{
                                 </div>
                                 
                                 <div className="custom-field">
-                                    {updatingField[1].props.getKey===-1 ? null : 
+                                    {editField.props.pos===-1 ? null : 
                                     <>   
-                                        {displayCustomizeField(updatingField[1].props)}
-                                        <button onClick={()=>{props.onClickUpdate(updatingField[1]);setUpdatingFieldId(initField[1],1)}}>Mettre à jour</button>    
-                                        <button onClick={()=>{props.onClickDelete(updatingField[1]);setUpdatingFieldId(initField[1],1)}}>Supprimer</button>
+                                        {displayEditField(editField.props)}
+                                        <button onClick={()=>{props.onClickUpdate(editField);setField(<Field pos={-1} />);}}>Mettre à jour</button>    
+                                        <button onClick={()=>{props.onClickDelete(editField);setField(<Field pos={-1} />);}}>Supprimer</button>
                                     </>}
                                 </div>
                             </div>
