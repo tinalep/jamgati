@@ -17,6 +17,11 @@ class BoardController extends Controller
         return view('board');
     }
 
+    public function choice()
+    {
+        return view('choice');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
