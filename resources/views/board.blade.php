@@ -13,7 +13,8 @@ $user = Auth::user();
             <a class="dropdown-item"  href="{{ route('logout') }}">Déconnexion</a>
         </div>
         </div>
-</div>
+        
+            <main  name="content" role="main">
 
 <div class="dashboard">
     <div class="dashboard_header">

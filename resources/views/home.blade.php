@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<main role="main">
+<main name="content" role="main">
     <div class="section header-home">
         <div class="container">
             <div class="row main-title">
@@ -40,15 +40,15 @@
             <div class="row steps-home">
                 <div class="col-4 d-flex justify-content-around step">
                     <p class="number">1</p>
-                    <p class="w-75"><b>Choisissez le type de contenu</b> que vous souhaitez éditer</p>
+                    <p class="w-75"><strong>Choisissez le type de contenu</strong> que vous souhaitez éditer</p>
                 </div>
                 <div class="col-4 d-flex justify-content-around step">
                     <p class="number">2</p>
-                    <p class="w-75"><b>Ajoutez vos données</b> à l’aide de l’éditeur</p>
+                    <p class="w-75"><strong>Ajoutez vos données</strong> à l’aide de l’éditeur</p>
                 </div>
                 <div class="col-4 d-flex justify-content-around step">
                     <p class="number">3</p>
-                    <p class="w-75"><b>Exportez</b> votre fichier pour obtenir le code HTML/CSS</p>
+                    <p class="w-75"><strong>Exportez</strong> votre fichier pour obtenir le code HTML/CSS</p>
                 </div>
             </div>
 
