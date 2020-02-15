@@ -43,7 +43,7 @@ const Field = props =>{
                     <>
                         <label key={props.keyId} className={props.class} htmlFor={props.id}>{props.label+(props.type==='text-hidden'?' (Champ caché pour l\'utilisateur)':'')}</label>
                         <br/>
-                        <input type={props.type} placeholder={props.placeholder} onChange={props.onChange} id={props.id}/>
+                        <input readOnly onFocus={(e)=>e.target.removeAttribute('readonly')} type={props.type} placeholder={props.placeholder} onChange={props.onChange} id={props.id}/>
                     </>
             )
         }

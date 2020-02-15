@@ -1,21 +1,29 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Accordion from 'react-bootstrap/Accordion'
 import Field from './Field'
+
+const R = require('ramda');
 
 const Edit = props =>{
     
     //Variables et states
-
-    const R = require('ramda');
     
-
     const [isNew, setIsNew] = useState(true)
     const types ={simple:{'text' : 'Texte simple', 'textarea' : 'Texte multi-ligne', 'date' : 'Date', 'number' : 'Nombre' , 'tel' : 'Numéro de téléphone','email':'Addresse e-mail','url':'Lien hypertexte','password':'Mot de passe','file':'Fichier','text-hidden':'Caché'},
                 multiple:{'checkbox':'Cases à cocher', 'radio':'Boutons radios', 'list': 'Liste déroulante'},
                 special:{'button':'Boutton', 'text-hidden': 'Champ invisible'}}
-    const [newField, setNewField] = useState(<Field key={0} type='' label='' pos={0} values={['','','']} origin={-1}/>)
-    const [editField, setEditField] = useState(<Field pos={-1} origin={-1} />)
-    const [key, setKey] = useState(0);
+    const [newField, setNewField] = useState(<Field key={0} type='' label='' pos={0} values={['','','']} origin={0}/>) //Ici sera contenu le champ à créer 
+    const [editField, setEditField] = useState(<Field pos={-1} />) //Ici sera contenu le champ à modifier
+
+    /**
+     * Hook permettant l'initialisation de l'objet newField et editField
+     * 
+     * 
+     */
+    useEffect(()=>{
+        setNewField(<Field key={props.fields.length} type='' label='' pos={props.fields.length} values={['','','']} origin={props.fields.length}/>)
+        setEditField(<Field pos={-1} />)
+    },[props]);
 
     /**
      * Setteur conditionnel: en fonction de si on crée ou modifie un champs
@@ -35,12 +43,12 @@ const Edit = props =>{
             case 'type' : field.props.type = input.value; break;
             case 'label' : field.props.label = input.value; break;
             case 'pos' : field.props.pos = input.value-1; break;
-            case 'update' : field = (input.value>-1?props.fields[input.value]:field) ; field.props.origin =  parseInt(input.value); field.props.pos = parseInt(input.value);  break;
+            case 'update' : field = (input.value>-1?props.fields[input.value]:field) ; break;
             case 'values' : field.props.values[input.dataset.id]= input.value; break;
             case 'plus' : field.props.values.splice(input.dataset.id,0,'');  break;
             case 'minus' : field.props.values.splice(input.dataset.id,1); break;
 
-            default : console.log('Problem in switch')
+            default : console.log('Wrong dataset.')
         }
         setField(field)
     }
@@ -140,7 +148,7 @@ const Edit = props =>{
             </div>
             <Accordion defaultActiveKey='0'>
                 <div className="edit-card">
-                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>{setIsNew(true); console.log(newField); console.log(editField)}} eventKey="0">
+                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>{setIsNew(true);}} eventKey="0">
                         <span className="edit-card__title">INSERER</span>
                         <span className="edit-card__button">+</span>
                     </Accordion.Toggle>
@@ -150,14 +158,14 @@ const Edit = props =>{
                             {displayEditField()}
                             {newField.props.type==='' ? null : 
                                 <>   
-                                    <button onClick={()=>{props.onClickAdd(newField); setField(<Field key={key+1} type='' label='' origin='' pos={props.fields.length+1} values={['','','']} />); setKey(key+1);}}>Ajouter au formulaire</button>  
+                                    <button onClick={()=>{props.onClickAdd(newField)}}>Ajouter au formulaire</button>  
                                 </>}
                             </div>
                         </div>
                     </Accordion.Collapse>
                 </div>
                 <div className="edit-card">
-                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>{setIsNew(false); console.log(newField); console.log(editField)}} eventKey="1">
+                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>{setIsNew(false);}} eventKey="1">
                         <span className="edit-card__title">MODIFIER
                         </span>
                         <span className="edit-card__button">+</span>
@@ -181,8 +189,8 @@ const Edit = props =>{
                                     {editField.props.pos===-1 ? null : 
                                     <>   
                                         {displayEditField(editField.props)}
-                                        <button onClick={()=>{props.onClickUpdate(editField);setField(<Field pos={-1} />);}}>Mettre à jour</button>    
-                                        <button onClick={()=>{props.onClickDelete(editField);setField(<Field pos={-1} />);}}>Supprimer</button>
+                                        <button onClick={()=>{props.onClickUpdate(editField)}}>Mettre à jour</button>    
+                                        <button onClick={()=>{props.onClickDelete(editField)}}>Supprimer</button>
                                     </>}
                                 </div>
                             </div>
