@@ -23,7 +23,7 @@
             <div class="sidebar-nav">
                 <a href="{{ route('board') }}">
                 <div class="logo">
-                    <img src="assets/images/logo-sidebar.png" alt="jamgati">
+                    <img src="{{asset("assets/images/logo-sidebar.png")}}" alt="jamgati">
                 </div>
                 </a>
                 <nav class="sidebar-nav sidebar-nav-top">
@@ -41,4 +41,5 @@
             @yield('content-board')
         </main>
     </div>
+    <script src="{{asset("js/app.js")}}"></script>
 </body>
