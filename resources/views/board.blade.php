@@ -12,9 +12,8 @@ $user = Auth::user();
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item"  href="{{ route('logout') }}">Déconnexion</a>
         </div>
-        </div>
-        
-            <main  name="content" role="main">
+    </div>
+</div>
 
 <div class="dashboard">
     <div class="dashboard_header">
