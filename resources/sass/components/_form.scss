@@ -5,7 +5,7 @@
 .form-container{
     display:flex;
     flex-direction: row;
-    padding: 50px;
+    padding: 50px 50px 50px 0;
 }
 
 .form-group{
@@ -35,8 +35,8 @@
     color: #000000;
 }
 .form-show__title{
-    margin-top: 10px;
-    font-size: 48px;
+    @include font-size(rem(48));
+    font-weight: 800;
 }
 
 .form-show__body{
@@ -49,14 +49,6 @@
 
 .form-show__preview{
     padding-left: 20%;
-}
-
-.form-created__h1{
-    padding-left: 30px;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    display: block;
 }
 
 .edit-button{

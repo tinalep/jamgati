@@ -1,9 +1,15 @@
 @extends('layout-board')
 
-@section('content-board')
+@section('title')
+    Tableau de bord - Jamgati
+@endsection
+
+@section('content')
+
 <?php
 $user = Auth::user();
 ?>
+
 <div class="profil card">
     <div class="dropdown">
         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

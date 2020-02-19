@@ -1,18 +1,9 @@
-<!doctype html>
-<html>
+@extends('layout-board')
 
-    <head>
-    <title>Formulaire création</title>
-        <meta charset="utf-8">
-        <meta name="description" content="description de la page">
-        <link rel="stylesheet" href="{{asset(mix("css/app.css"))}}">
-        <link rel="icon" type="image/png" href="assets/images/img-logo-jamgati.png" />
-    </head>
+@section('title')
+    Création formulaire - Jamgati
+@endsection
 
-    <body>
-    <h1>Formulaire:</h1>
-
-    <div id="form-root" data-form={{ isset($form) ? $form->id : null}}></div>
-    </body>
-    <script type="text/javascript" src="{{asset(mix("js/app.js"))}}"></script>
-</html>
+@section('content')
+<div id="form-root" data-form={{ isset($form) ? $form->id : null}}></div>
+@endsection

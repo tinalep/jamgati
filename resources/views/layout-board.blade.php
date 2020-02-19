@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <title>Jamgati</title>
+    <title>@yield('title')</title>
     <meta charset="utf-8">
     <meta name="description" content="description de la page">
     <link rel="stylesheet" href="{{asset("css/app.css")}}">
@@ -27,18 +27,18 @@
                 </div>
                 </a>
                 <nav class="sidebar-nav sidebar-nav-top">
-                    <a class="icon-plus-circle" href="#">Nouveau</a>
-                    <a class="icon-dashboard" href="#">Tableau de bord</a>
-                    <a class="icon-search" href="#">Rechercher</a>
+                    <a class="icon-plus-circle" href="#"><span>Nouveau</span></a>
+                    <a class="icon-dashboard" href="#"><span>Tableau de bord</span></a>
+                    <a class="icon-search" href="#"><span>Rechercher</span></a>
                 </nav>
             </div>
             <nav class="sidebar-nav sidebar-nav-bottom">
-                <a class="icon-settings" href="#">Paramètres</a>
+                <a class="icon-settings" href="#"><span>Paramètres</span></a>
             </nav>
         </div>
     
         <main role="main">
-            @yield('content-board')
+            @yield('content')
         </main>
     </div>
     <script src="{{asset("js/app.js")}}"></script>
