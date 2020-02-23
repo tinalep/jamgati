@@ -1,25 +1,21 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Accordion from 'react-bootstrap/Accordion'
 import Element from './Element'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+const R = require('ramda');
 
 
 const Edit = props =>{
 
     const [isNew, setIsNew] = useState(true)
 
-    const [newElt, setNewElt] = useState(<Element key={0} name="" pos="" link=""/>)
+    const [newElt, setNewElt] = useState(<Element key={0} name="" pos="" origin="" link="" parent={-1} childs="" />)
     const [editElt, setEditElt] = useState(<Element />)
 
-    const [counter, setCounter] = useState(0);
-
-    const R = require('ramda');
-
-    const prepareNextElt = ()=>
-    {
-        setCounter(counter+1)
-        setNewElt(<Element key={counter+1} name="" pos="" link=""/>)
-    }
+    useEffect(()=>{
+        setNewElt(<Element key={props.elements.length} name="" pos="" origin="" link="" parent={-1} childs=""/>)
+    },[props]);
 
     const setElt = (elt)=>{
         if(isNew)
@@ -31,9 +27,10 @@ const Edit = props =>{
     const handleChangeElt = (e)=>{
         let field = e.target;
         let elt = R.clone(isNew?newElt:editElt);
-        switch(field.id){
-            case 'eltName' : elt.props.name = field.value; break;
-            case 'eltLink' : elt.props.link = field.value; break;
+        switch(field.dataset.elt){
+            case 'name' : elt.props.name = field.value; break;
+            case 'link' : elt.props.link = field.value; break;
+            case 'parent' : elt.props.parent = field.value; break;
             default : console.log("Problem with handleChangeElt")
         }
         setElt(elt);
@@ -53,16 +50,18 @@ const Edit = props =>{
         return (
         <>
             <label>Nom</label>
-            <input type="text" value={elt.props.name} id="eltName" onChange={handleChangeElt}/>
+            <input type="text" data-elt="name" value={elt.props.name} onChange={handleChangeElt}/>
             <br/>
             <label>Lien</label>
-            <input type="text" value={elt.props.link} id="eltLink" onChange={handleChangeElt}/>
+            <input type="text" data-elt="link" value={elt.props.link} onChange={handleChangeElt}/>
             <br/>
             <label>Parent</label>
-            <select>
-                <option value="">-- Selection du parent --</option>
+            <select data-elt="parent" value={elt.props.parent} onChange={handleChangeElt}>
+                <option value={-1}>-- Selection du parent --</option>
+                {props.elements.map((elt,id)=>{
+                    return(<option key={id} value={elt.key}>{elt.props.name}</option>)
+                })}
             </select>
-            <button onClick={()=>{props.onClickUpdate(elt); prepareNextElt()}}>Valider</button>
         </>
         )
     }
@@ -82,6 +81,7 @@ const Edit = props =>{
                         <div className="edit-card__body">
                             <div className="edit-card__section">
                                 {displayEditElement()}
+                                <button onClick={()=>{props.onClickAdd(newElt)}}>Valider</button>
                             </div>
                         </div>
                     </Accordion.Collapse>

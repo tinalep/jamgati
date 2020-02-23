@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="description" content="description de la page">
         <link rel="stylesheet" href="../css/app.css">
-        <link rel="icon" type="image/png" href="assets/images/img-logo-jamgati.png" />
+        <link rel="icon" type="image/png" href="{{asset("assets/images/img-logo-jamgati.png")}}" />
     </head>
 
     <body>
