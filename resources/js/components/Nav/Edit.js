@@ -24,6 +24,7 @@ const Edit = props =>{
             setEditElt(elt)
     }
 
+
     const handleChangeElt = (e)=>{
         let field = e.target;
         let elt = R.clone(isNew?newElt:editElt);
@@ -45,8 +46,11 @@ const Edit = props =>{
         }
         props.updateNavStyle(navStyle)
     }
+    
 
     const displayEditElement = (elt=newElt) =>{
+        let p1 = props.elements.filter(element => props.getLvlElt(element) === 1)
+        let p2 = props.elements.filter(element => props.getLvlElt(element) === 2)
         return (
         <>
             <label>Nom</label>
@@ -55,13 +59,22 @@ const Edit = props =>{
             <label>Lien</label>
             <input type="text" data-elt="link" value={elt.props.link} onChange={handleChangeElt}/>
             <br/>
-            <label>Parent</label>
-            <select data-elt="parent" value={elt.props.parent} onChange={handleChangeElt}>
-                <option value={-1}>-- Selection du parent --</option>
-                {props.elements.map((elt,id)=>{
-                    return(<option key={id} value={elt.key}>{elt.props.name}</option>)
-                })}
-            </select>
+            {props.elements.length ===0? null :
+                <>
+                    <label>Parent</label>
+                    <select data-elt="parent" value={elt.props.parent} onChange={handleChangeElt}>
+                        <option value={-1}>-- Selection du parent --</option>
+                        <optgroup label="Menu">
+                            {p1.map(elt => {return <option key={elt.key} value={elt.key}>{elt.props.name}</option>})}
+                        </optgroup>
+                        {p2.length===0? null :
+                        <optgroup label="Sous-menu">
+                            {p2.map(elt => {return <option key={elt.key} value={elt.key}>{elt.props.name} (contenu dans {(props.elements.find(element => element.key === elt.props.parent)).props.name})</option>})}
+                        </optgroup>
+                        }
+                    </select>
+                </>
+            }    
         </>
         )
     }

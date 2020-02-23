@@ -5,7 +5,7 @@ import Element from './Nav/Element'
 import { InputGroup } from "react-bootstrap";
 
 const R = require('ramda');
-
+const beauty_html = require('js-beautify').html;
 
 const Nav = props => {
 
@@ -18,12 +18,12 @@ const Nav = props => {
    
 
     const addElt = (elt)=>{
-        console.log('The following elt is supposed to be add:')
-        console.log(elt)
+        //console.log('The following elt is supposed to be add:')
+        //console.log(elt)
         let elts = R.clone(elements);
         elts= elts.concat(elt);
-        console.log('The new list is:')
-        console.log(elts)
+        //console.log('The new list is:')
+        //console.log(elts)
         setElements(elts);
     }
 
@@ -31,16 +31,32 @@ const Nav = props => {
         setNavStyle(newStyle)
     }
 
+    const getChilds = (parent)=>{
+        let childs = elements.filter(element => element.props.parent===parent.key) // Tableau avec liste des enfants du parent
+        if (childs.length > 0){ // Cherchons les enfants des enfants à condition d'avoir des enfants
+            childs = <ul >{
+                childs.map((elt,id)=>{
+                return (<li key={id}>{getChilds(elt)}</li>) // On prend la liste des enfant, et on la remplace par [[p1,e1],[p2,e2], ..., [pn,en]]
+            })}</ul>
+        }
+        return [parent,childs]
+    }
+
+    const getLvlElt = (elt, counter=1)=>{
+        if (elt.props.parent === -1){
+            return counter
+        }
+        else{
+            let parent = elements.find(element => element.key === elt.props.parent)
+            return (getLvlElt(parent, counter+1))
+        }
+    }
+
     const showNav = ()=>{
-        let nav = []
-        nav=nav.concat(elements.map((elt,id)=>{
-            if(elt.props.parent===-1){
-                let array = elements.filter(element => element.props.parent===elt.key)
-                array=array.map((element,id)=>{return(<li key={id}>{element}</li>)})
-                console.log(array)
-                return(<li key={id}>{elt}{(array.length>0?<ul>{array}</ul>:null)}</li>)
-            }
-        }))
+        let parents = elements.filter(element => element.props.parent===-1)
+        let nav = parents.map((elt,id)=>{
+            return (<li key={id}>{getChilds(elt)}</li>)
+        })
         return(
             <>
                 {nav}
@@ -48,29 +64,10 @@ const Nav = props => {
         );
     }
 
-    // <ul id="menu-deroulant">
-    //     <li><a href="#">Lien menu 1</a>
-    //         <ul>
-    //             <li><a href="#">lien sous menu 1</a></li>
-    //             <li><a href="#">lien sous menu 1</a></li>
-    //             <li><a href="#">lien sous menu 1</a></li>
-    //             <li><a href="#">lien sous menu 1</a></li>
-    //         </ul>
-    //     </li><!--
-    //     <li><a href="#">Lien menu 2</a>
-    //         <ul>
-    //             <li><a href="#">Lien sous menu 2</a></li>
-    //             <li><a href="#">Lien sous menu 2</a></li>
-    //             <li><a href="#">Lien sous menu 2</a></li>
-    //             <li><a href="#">Lien sous menu 2</a></li>
-    //         </ul>
-    //     </li>
-    // </ul>
-
     return (
         <div className="Form">
             <div className="form-container">
-                <Edit navStyle={navStyle} onClickAdd={addElt} updateNavStyle={updateNavStyle} elements={elements}/>
+                <Edit navStyle={navStyle} onClickAdd={addElt} updateNavStyle={updateNavStyle} elements={elements} getLvlElt={getLvlElt}/>
                 
                 <div className="form-show">
                     <div className="form-show__header">
