@@ -6,6 +6,22 @@
     padding: 20px 25px;
     margin-right: 60px;
     z-index: 1;
+
+    &--collapsed{
+        width: 92px;
+        margin-right: 0;
+        overflow: hidden;
+        border-right: transparent;
+
+        .sidebar-nav{
+            a{
+                & > span{
+                    display: none;
+                }
+            }
+        }
+
+    }
 }
 
 .sidebar-nav{

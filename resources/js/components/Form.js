@@ -155,9 +155,9 @@ const Form = props => {
                         <div className="form-show__header d-flex justify-content-between">
                             <h2 className="form-show__title">Edition formulaire</h2>
                             <div className="form-show__buttons">
-                                <button onClick={()=>exportPopup(true)}>Exporter</button>
+                                <button className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
                                     
-                                <button onClick={saveForm}>Sauvegarder</button>
+                                <button className="button button-bgred button-no-border" onClick={saveForm}>Sauvegarder</button>
                             </div>
                         </div>
                         <div className="form-show__body">
