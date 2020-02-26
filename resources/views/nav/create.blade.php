@@ -1,18 +1,9 @@
-<!doctype html>
-<html>
+@extends('layout-board')
 
-    <head>
-    <title>Menu création</title>
-        <meta charset="utf-8">
-        <meta name="description" content="description de la page">
-        <link rel="stylesheet" href="../css/app.css">
-        <link rel="icon" type="image/png" href="assets/images/img-logo-jamgati.png" />
-    </head>
+@section('title')
+    Création menu - Jamgati
+@endsection
 
-    <body>
-    <h1>Menu:</h1>
-
-    <div id="nav-root"></div>
-    </body>
-    <script type="text/javascript" src="../js/app.js"></script>
-</html>
+@section('content')
+<div id="nav-root"></div>
+@endsection
