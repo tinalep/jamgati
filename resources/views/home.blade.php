@@ -66,10 +66,10 @@
             <div class="row">
                 <div class="col-12 advantage">
                     <div class="d-flex align-items-center">
-                        <div class="illustration w-md-50">
+                        <div class="illustration w-lg-50">
                             <img src="assets/images/img-upload.png" alt="upload-file">
                         </div>
-                        <div class="w-md-50 offset-1">
+                        <div class="w-lg-50 offset-lg-1">
                             <div class="content">
                                 <h3>Importez vos fichiers</h3>
                                 <p>
@@ -79,19 +79,19 @@
                         </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 advantage">
-                    <div class="d-flex align-items-center">
-                        <div class="w-md-50">
-                            <div class="content">
-                                <h3>Utiliser un modèle</h3>
-                                <p>
-                                    Vous manquez d’inspiration ou vous ne savez pas comment mettre en forme vos données ? Connectez vous et un certain nombre de modèles de base vous seront présentés pour vous faire gagner du temps. Du formulaire de contact jusqu’à la liste des courses, trouvez votre bonheur dans notre liste de modèles. 
-                                </p>
+                    <div class="col-12 advantage">
+                        <div class="d-flex align-items-center">
+                            <div class="w-lg-50">
+                                <div class="content">
+                                    <h3>Utiliser un modèle</h3>
+                                    <p>
+                                        Vous manquez d’inspiration ou vous ne savez pas comment mettre en forme vos données ? Connectez vous et un certain nombre de modèles de base vous seront présentés pour vous faire gagner du temps. Du formulaire de contact jusqu’à la liste des courses, trouvez votre bonheur dans notre liste de modèles. 
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="illustration w-md-50 offset-1">
-                                <img src="assets/images/img-form.png" alt="img-form">
+                            <div class="illustration w-lg-50 offset-lg-1">
+                                    <img src="assets/images/img-form.png" alt="img-form">
+                            </div>
                         </div>
                     </div>
                 </div>

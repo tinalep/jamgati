@@ -12,19 +12,46 @@
 }
 
 .highlight-navigation{
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin-top: 50px;
     border-radius: 30px;
     background-color: $color-white;
     box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04);
-    padding: 23px 0 30px;
+    
 
     &>div {
+        position: relative;
         padding-left: 34px;
         padding-right: 34px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+
         &:not(:last-child){
-            border-right: 1px solid $color-grey;
+            &:after{
+                content: "";
+                display: block;
+                position: absolute;
+                width: 85%;
+                height: 1px;
+                background-color: lightgrey;
+                bottom: -3px;
+                left: 50%;
+                transform: translateX(-50%);
+
+                @include md-breakpoint(){
+                    display: none;
+                }
+            }
+        }
+
+        @include md-breakpoint(){
+            &:not(:last-child){
+                border-right: 1px solid $color-grey;
+            }
         }
     }
+
 
     a{
         display: block;
@@ -46,6 +73,8 @@
 
 .advantage{
     position: relative;
+    margin-top: 40px;
+
     &:first-child{
         &:before{
             left: -385px;
@@ -65,6 +94,36 @@
         background-repeat: no-repeat;
         transform: rotate(90deg);
     }
+
+    .illustration{
+        margin: 0 auto;
+    }
+
+    &:nth-child(even){
+        & > div{
+            flex-direction: column-reverse;
+        }
+    }
+
+    & > div{
+        flex-wrap: wrap;
+    }
+
+    @include lg-breakpoint(){
+        margin-top: 0;
+
+        & > div{
+            flex-wrap: nowrap;
+        }
+
+        &:nth-child(even){
+            & > div{
+                flex-direction: row;
+            }
+        }
+
+
+    }
 }
 
 .video{
@@ -79,6 +138,10 @@
         background-size: contain;
         margin: 0 auto;
         margin-top: -195px;
+    }
+
+    img{
+        max-width: 100%;
     }
 }
 
@@ -138,7 +201,14 @@
 .cards-home{
     margin-top: 80px;
     .card{
-        width: calc(50% - 27.5px);
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    @include md-breakpoint(){
+        .card{
+            width: calc(50% - 27.5px);
+        }
     }
 }
 
