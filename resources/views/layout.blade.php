@@ -56,7 +56,7 @@
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('form.create') }}">Tableau</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Formulaire</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('nav.create') }}">Menu</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Documentation</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('doc') }}">Documentation</a></li>
                     </ul>
                 </nav>
             </div>

@@ -19,6 +19,7 @@ Route::resource('/form', 'FormController');
 Route::get('/board', 'BoardController@index')->name('board');
 Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/nav/create', 'HomeController@create')->name('nav.create');
+Route::get('/doc', 'HomeController@doc')->name('doc');
 
 //Footer
 Route::get('/mentions', 'HomeController@mentions')->name('mentions');
