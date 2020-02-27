@@ -2,8 +2,10 @@
     background-image: url(../images/bg-home.svg);
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 80px;
     padding-bottom: 250px;
+    @include lg-breakpoint(){
+        padding-top: 80px;
+    }
 }
 
 .main-title{
@@ -103,6 +105,11 @@
         margin: 0 auto;
         img{
             max-width: 100%;
+        }
+        @include md-breakpoint(){
+            img{
+                max-width: none;
+            }
         }
     }
 

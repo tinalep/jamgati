@@ -1,3 +1,7 @@
+<?php
+$user = Auth::user();
+?>
+
 @extends('layout-board')
 
 @section('title')

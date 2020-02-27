@@ -10,17 +10,6 @@
 $user = Auth::user();
 ?>
 
-<div class="profil card">
-    <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <p class="m-0"><?php echo $user->name;?></p>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item"  href="{{ route('logout') }}">Déconnexion</a>
-        </div>
-    </div>
-</div>
-
 <div class="dashboard">
     <div class="dashboard_header">
         <h1>Tableau de bord</h1> 
