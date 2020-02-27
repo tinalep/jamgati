@@ -8,6 +8,10 @@ $user = Auth::user();
     Création menu - Jamgati
 @endsection
 
+@section('link')
+    <a class="link-back" href="#">Tableau de board</a>
+@endsection
+
 @section('content')
 <div id="nav-root"></div>
 @endsection

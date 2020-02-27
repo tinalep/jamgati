@@ -38,13 +38,16 @@
         </div>
     
         <main role="main">
-            <div class="profil card">
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <p class="m-0"><?php echo $user->name;?></p>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item"  href="{{ route('logout') }}">Déconnexion</a>
+            <div class="header-board">
+                @yield('link')
+                <div class="profil card">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <p class="m-0"><?php echo $user->name;?></p>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item"  href="{{ route('logout') }}">Déconnexion</a>
+                        </div>
                     </div>
                 </div>
             </div>
