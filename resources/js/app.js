@@ -26,6 +26,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import './main';
+import './search';
 import Nav from './nav';
 const n = new Nav(); 
 
