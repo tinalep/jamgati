@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Board;
 use Illuminate\Http\Request;
+use Auth;
+use App\form;
+use Illuminate\Contracts\Support\Jsonable;
 
 class BoardController extends Controller
 {
@@ -14,7 +17,9 @@ class BoardController extends Controller
      */
     public function index()
     {
-        return view('board');
+        // return view('board');
+        $forms = \App\Form::where('user_id',Auth::user()->id)->paginate(2);
+        return view('board', ['forms'=>$forms]);
     }
 
     public function choice()

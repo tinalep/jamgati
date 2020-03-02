@@ -60,6 +60,8 @@
 
     .table_dashboard{
         margin-top: 53px;
+        border-collapse: separate;
+        border-spacing: 20px;
         thead{
             th{
                 font-weight: normal;
@@ -86,9 +88,17 @@
                 cursor: pointer;
             }
             td{
-                border-radius: $border-radius;
+                // border-radius: $border-radius;
                 padding: 28px 21px;
                 background-color: $color-white;
+                &:first-of-type{
+                    border-top-left-radius: $border-radius;
+                    border-bottom-left-radius: $border-radius
+                }
+                &:last-of-type{
+                    border-top-right-radius: $border-radius;
+                    border-bottom-right-radius: $border-radius;
+                }
             }
 
         }
@@ -121,36 +131,46 @@
         }
     }
 
-    .nav_pagination{
+    .pagination{
         margin-top: 55px;
-        ul{
-            display: flex;
-            justify-content: center;
-            padding: 0;
-            margin: 0 auto;
-            list-style-type: none;
-        }
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0 auto;
+        list-style-type: none;
 
         li{
             line-height: rem(36);
+            // border: none;
+            &.active{
+                span{
+                    background: $gradient-orange;
+                    color: $color-white;
+                    // border: none;
+                }
+            }  
+            &.disabled{
+                opacity: 0.3;
+                // span{
+                //     border: none;
+                // }
+            } 
         }
 
         a{
+            color: $color-text;
+            border: none;
+        }
+
+        span{
             @include title-small-bold();
             display: inline-block;
             width: 40px;
             height: 40px;
-            line-height: rem(35);
+            line-height: initial;
             text-align: center;
             border-radius: 50%;
-            &.active{
-                background: $gradient-orange;
-                color: $color-white;
-            }  
-            &.disable{
-                opacity: 0.3;
-            } 
-
+            border: none;
         }
     }
 }
