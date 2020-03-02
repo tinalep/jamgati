@@ -32,26 +32,17 @@ $user = Auth::user();
             </tr>
         </thead>
         <tbody>
+            @foreach ($forms as $form)
             <tr>
-                <td class="table_dashboard__title">Titre tableau 1</td>
-                <td class="table_dashboard__update">20/10/2019</td>
+                <td class="table_dashboard__title"> {{ $form->name }}</td>
+                <td class="table_dashboard__update">{{date('d/m/y', strtotime($form->updated_at )) }}</td>
                 <td class="table_dashboard__action"><a href="download"><i class="fas fa-download"></i></a><a href=""><i class="fas fa-edit"></i></a><a href="delete"><i class="fas fa-trash"></i></a></td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 
-    <nav class="nav_pagination">
-        <ul>
-            <li><a class="previous previous-all disable" href=""><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i></a></li>
-            <li><a href="" class="previous-page disable"><i class="fas fa-chevron-left"></i></a></li>
-            <li><a class="active" href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="" class="next-page"><i class="fas fa-chevron-right"></i></a></li>
-            <li><a class="next next-all" href=""><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></a></li>
-
-        </ul>
-    </nav>
+    {{ $forms->links() }}
 </div>
 @endsection
 

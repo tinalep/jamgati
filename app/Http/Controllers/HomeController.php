@@ -45,4 +45,9 @@ class HomeController extends Controller
     {
         return view('data');
     }
+
+    public function doc()
+    {
+        return view('doc');
+    }
 }

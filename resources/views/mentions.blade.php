@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('content')
-<main  name="content" role="main>    <div class="section header-home">
+<main  name="content" role="main">    
+    <div class="section">
         <div class="container">
             <div class="row main-title">
                 <h1 class="heading-1">Mentions légales</h1>

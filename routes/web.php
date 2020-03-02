@@ -13,13 +13,14 @@
 
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/form/loadall', 'FormController@loadall')->name('form.loadall');
-Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
+// Route::get('/form/loadall', 'FormController@loadall')->name('form.loadall');
+// Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
 Route::resource('/form', 'FormController');
 Route::get('/board', 'BoardController@index')->name('board');
 Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/nav/create', 'HomeController@create')->name('nav.create');
+Route::get('/doc', 'HomeController@doc')->name('doc');
 
 //Footer
 Route::get('/mentions', 'HomeController@mentions')->name('mentions');

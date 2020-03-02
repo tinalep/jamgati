@@ -72,6 +72,18 @@ class FormController extends Controller
         return response()->json($forms); ;
     }
 
+        /**
+     * Display the specified resource.
+     *
+     * @param  \App\form  $form
+     * @return \Illuminate\Http\Response
+     */
+    public function loadForDashboard(\App\Form $form)
+    {
+        $forms = \App\Form::where('user_id',Auth::user()->id)->get();
+        return view('board', ['forms'=>$forms]);
+    }
+
     /**
      * Display the specified resource.
      *
