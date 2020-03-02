@@ -1,0 +1,42 @@
+.choice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+    margin-top: 20vh;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    width: 70%;
+    height: 100%;
+
+    @include md-breakpoint() {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+.choices_bloc {
+    position: relative;
+}
+
+.choice_drop {
+    z-index: 0;
+} 
+
+.choice_drop a, .choice_drop a:active{
+    color: $color-text !important;
+    background-color: transparent !important;
+    border: none;
+}
+
+.choice_drop a:hover {
+    color: $color-red;
+    background-color: transparent;
+    border: none;
+}

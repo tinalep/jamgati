@@ -9,11 +9,13 @@
 <?php
 $user = Auth::user();
 ?>
-
+        
 <div class="dashboard">
     <div class="dashboard_header">
         <h1>Tableau de bord</h1> 
-        <a href="{{route('choice')}}"class="button button-bgred button-no-border button-round">+</a>
+        <form method="get" action="{{ route('choice') }}">
+            <button class="button button-bgred button-no-border button-round">+</button>
+        </form>
     </div>
     <nav class="dashboard_nav">
         <a class="dashboard_nav__link dashboard_nav__link--active" href="#">Tableau</a>

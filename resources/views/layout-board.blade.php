@@ -1,5 +1,5 @@
 <?php
-// $user = Auth::user();
+$user = Auth::user();
 ?>
 
 <!doctype html>
