@@ -6,17 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Form extends Model
 {
-    function simput(){
-        return $this->hasMany('App\Simput');
+    function user(){
+        return $this->belongsTo('App\User');
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 }

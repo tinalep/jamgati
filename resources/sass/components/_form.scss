@@ -5,7 +5,7 @@
 .form-container{
     display:flex;
     flex-direction: row;
-    padding: 50px;
+    padding: 50px 50px 50px 0;
 }
 
 .form-group{
@@ -35,8 +35,8 @@
     color: #000000;
 }
 .form-show__title{
-    margin-top: 10px;
-    font-size: 48px;
+    @include font-size(rem(48));
+    font-weight: 800;
 }
 
 .form-show__body{
@@ -49,14 +49,6 @@
 
 .form-show__preview{
     padding-left: 20%;
-}
-
-.form-created__h1{
-    padding-left: 30px;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    display: block;
 }
 
 .edit-button{
@@ -121,4 +113,41 @@
     border: solid 1px;
     border-radius: 50%;
     background: white;
+}
+
+
+//POPUP D'EXPORT
+
+
+.form-show__popup{
+    margin: 15% auto; /* 15% from the top and centered */
+    background-color: white;
+    width: 50%;
+    padding: 50px;
+    position: relative;
+}
+
+#exportPopup{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 50; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.form-show__close{
+    position: absolute;
+    z-index: 100; /* Sit on top */
+    top:5px ;
+    right:5px;
+    background-color: red;
+}
+.show__exporttext{
+    border: solid 1px;
+    background-color: rgb(211, 209, 209);
 }

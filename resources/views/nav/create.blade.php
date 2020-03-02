@@ -1,18 +1,17 @@
-<!doctype html>
-<html>
+<?php
+$user = Auth::user();
+?>
 
-    <head>
-    <title>Menu création</title>
-        <meta charset="utf-8">
-        <meta name="description" content="description de la page">
-        <link rel="stylesheet" href="../css/app.css">
-        <link rel="icon" type="image/png" href="assets/images/img-logo-jamgati.png" />
-    </head>
+@extends('layout-board')
 
-    <body>
-    <h1>Menu:</h1>
+@section('title')
+    Création menu - Jamgati
+@endsection
 
-    <div id="nav-root"></div>
-    </body>
-    <script type="text/javascript" src="../js/app.js"></script>
-</html>
+@section('link')
+    <a class="link-back" href="#">Tableau de board</a>
+@endsection
+
+@section('content')
+<div id="nav-root"></div>
+@endsection

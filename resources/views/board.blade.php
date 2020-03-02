@@ -1,6 +1,11 @@
 @extends('layout-board')
 
-@section('content-board')
+@section('title')
+    Tableau de bord - Jamgati
+@endsection
+
+@section('content')
+
 <?php
 $user = Auth::user();
 ?>
@@ -48,11 +53,14 @@ $user = Auth::user();
 
     <nav class="nav_pagination">
         <ul>
-            <li>
-                <a class="active" href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-            </li>
+            <li><a class="previous previous-all disable" href=""><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i></a></li>
+            <li><a href="" class="previous-page disable"><i class="fas fa-chevron-left"></i></a></li>
+            <li><a class="active" href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="" class="next-page"><i class="fas fa-chevron-right"></i></a></li>
+            <li><a class="next next-all" href=""><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></a></li>
+
         </ul>
     </nav>
 </div>

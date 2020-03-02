@@ -10,19 +10,19 @@
                     rapidement différentes sortes de fonctionnalités accessibles à votre site web</p>
             </div>
             <div class="row highlight-navigation">
-                <div class="col-4">
+                <div class="col-md-4">
                     <h2 class="heading-4">Tableau</h2>
                     <p>Il est souvent utile de présenter ses idées sous forme de tableaux. Profitez de notre système de
                         création de tableaux pour publier vos idées de façon plus structurée.</p>
                     <a href="#">Commencer</a>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <h2 class="heading-4">Formulaire</h2>
                     <p>Il est souvent utile de présenter ses idées sous forme de tableaux. Profitez de notre système de
                         création de tableaux pour publier vos idées de façon plus structurée.</p>
                     <a href="#">Commencer</a>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <h2 class="heading-4">Menu</h2>
                     <p>Il est souvent utile de présenter ses idées sous forme de tableaux. Profitez de notre système de
                         création de tableaux pour publier vos idées de façon plus structurée.</p>
@@ -38,15 +38,15 @@
                 <h2 class="heading-2 heading-2--center"><span>Comment ça marche</span>Les 3 étapes</h2>
             </div>
             <div class="row steps-home">
-                <div class="col-4 d-flex justify-content-around step">
+                <div class="col-md-4 d-flex justify-content-around step">
                     <p class="number">1</p>
                     <p class="w-75"><strong>Choisissez le type de contenu</strong> que vous souhaitez éditer</p>
                 </div>
-                <div class="col-4 d-flex justify-content-around step">
+                <div class="col-md-4 d-flex justify-content-around step">
                     <p class="number">2</p>
                     <p class="w-75"><strong>Ajoutez vos données</strong> à l’aide de l’éditeur</p>
                 </div>
-                <div class="col-4 d-flex justify-content-around step">
+                <div class="col-md-4 d-flex justify-content-around step">
                     <p class="number">3</p>
                     <p class="w-75"><strong>Exportez</strong> votre fichier pour obtenir le code HTML/CSS</p>
                 </div>
@@ -66,10 +66,10 @@
             <div class="row">
                 <div class="col-12 advantage">
                     <div class="d-flex align-items-center">
-                        <div class="illustration w-50">
+                        <div class="illustration w-lg-50">
                             <img src="assets/images/img-upload.png" alt="upload-file">
                         </div>
-                        <div class="w-50 offset-1">
+                        <div class="w-lg-50 offset-lg-1">
                             <div class="content">
                                 <h3>Importez vos fichiers</h3>
                                 <p>
@@ -79,19 +79,19 @@
                         </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 advantage">
-                    <div class="d-flex align-items-center">
-                        <div class="w-50">
-                            <div class="content">
-                                <h3>Utiliser un modèle</h3>
-                                <p>
-                                    Vous manquez d’inspiration ou vous ne savez pas comment mettre en forme vos données ? Connectez vous et un certain nombre de modèles de base vous seront présentés pour vous faire gagner du temps. Du formulaire de contact jusqu’à la liste des courses, trouvez votre bonheur dans notre liste de modèles. 
-                                </p>
+                    <div class="col-12 advantage">
+                        <div class="d-flex align-items-center">
+                            <div class="w-lg-50">
+                                <div class="content">
+                                    <h3>Utiliser un modèle</h3>
+                                    <p>
+                                        Vous manquez d’inspiration ou vous ne savez pas comment mettre en forme vos données ? Connectez vous et un certain nombre de modèles de base vous seront présentés pour vous faire gagner du temps. Du formulaire de contact jusqu’à la liste des courses, trouvez votre bonheur dans notre liste de modèles. 
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="illustration w-50 offset-1">
-                                <img src="assets/images/img-form.png" alt="img-form">
+                            <div class="illustration w-lg-50 offset-lg-1">
+                                    <img src="assets/images/img-form.png" alt="img-form">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,28 +128,28 @@
                 <div class="col-12">
                     <h2 class="heading-2 heading-2--center">Pour les développeurs</h2>
                 </div>
-                <div class="col-6 tech">
+                <div class="col-md-6 tech">
                     <img src="assets/images/img-html.png" alt="html-5">
                     <div class="text">
                         <p><strong>HTML5</strong></p>
                         <p>Pour pouvoir mettre en forme votre contenu, Jamgati utilise la technologie HTML5, nécessaire pour intégrer les éléments proposés</p>
                     </div>
                 </div>
-                <div class="col-6 tech">
+                <div class="col-md-6 tech">
                     <img src="assets/images/img-css.png" alt="css-6">
                     <div class="text">
                         <p><strong>CSS 6</strong></p>
                         <p>Pour une agréable mise en forme de vos éléments. Ajouter vos couleurs, typographies ou encore taille de texte pour une personnalisation la plus complète possible.</p>
                     </div>
                 </div>
-                <div class="col-6 tech">
+                <div class="col-md-6 tech">
                     <img src="assets/images/img-bootstrap.png" alt="bootstrap">
                     <div class="text">
                         <p><strong>Bootstrap</strong></p>
                         <p>Pour permettre aux utilisateurs de votre site d’accéder au contenu quelque soit </p>
                     </div>
                 </div>
-                <div class="col-6 tech">
+                <div class="col-md-6 tech">
                     <img src="assets/images/img-js.png" alt="javascript">
                     <div class="text">
                         <p><strong>Javascript</strong></p>

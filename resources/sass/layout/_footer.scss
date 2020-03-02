@@ -3,13 +3,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
 
     @include md-breakpoint() {
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
         margin-top: 50px;
-        margin-bottom: 20px;
         padding: 0 90px;
     }
     
@@ -28,13 +28,17 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: column;
-            
-            @include md-breakpoint() {
-                flex-direction: row;
-            }
 
             li {
                 list-style-type: none;
+                margin: 0.5rem;
+            }
+
+            @include md-breakpoint() {
+                flex-direction: row;
+                li{
+                    margin: 0;
+                }
             }
         }
 

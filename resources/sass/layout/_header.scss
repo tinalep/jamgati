@@ -25,7 +25,7 @@ header {
         background-color: white;
         z-index: 2;
         
-        @include md-breakpoint() {
+        @include lg-breakpoint() {
             position: static;
             flex-direction: row;
             align-items: center;
@@ -46,7 +46,7 @@ header {
             flex-direction: column;
             align-items: center;
     
-            @include md-breakpoint() {
+            @include lg-breakpoint() {
                 flex-direction: row;
                 align-items: unset;
             }
@@ -68,7 +68,7 @@ header {
             padding: 0;
             height: 100%;
     
-            @include md-breakpoint() {
+            @include lg-breakpoint() {
                 flex-direction: row;
                 margin: 0;
             }
@@ -79,19 +79,55 @@ header {
                 padding: 10px;
                 list-style-type: none;
                 
-                @include md-breakpoint() {
+                @include lg-breakpoint() {
                     margin-right: 34px ;
                     padding: 5px 0;
                 }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    background: $gradient-red;
+                    bottom: 0;
+                    left: 0;
+                    width: 85%;
+                    height: 2px;
+                    opacity: 0;
+                    transition: 0.3s all ease-in-out;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 3px;
+                    height: 3px;
+                    border-radius: 50%;
+                    background: $gradient-red;
+                    opacity: 0;
+                    transition: 0.3s all ease-in-out;
+                }
+
+                &:hover{
+
+                    &:after{
+                        opacity: 1;
+                    }
+
+                    &:before{
+                        opacity: 1;
+                    }
+                }
             
-                .activ-link {
+                .activ-link{
                     display: none;
     
-                    @include md-breakpoint() {
+                    @include lg-breakpoint() {
                         display: block;
                     }
-    
-                    &::before {
+
+                    &:before {
                         content: '';
                         position: absolute;
                         background: $gradient-red;
@@ -99,9 +135,10 @@ header {
                         left: 0;
                         width: 85%;
                         height: 2px;
+                        opacity: 1;
                     }
     
-                    &::after {
+                    &:after {
                         content: '';
                         position: absolute;
                         bottom: 0;
@@ -110,7 +147,10 @@ header {
                         height: 3px;
                         border-radius: 50%;
                         background: $gradient-red;
+                        opacity: 1;
                     }
+                
+    
                 }
             }
     
@@ -125,42 +165,45 @@ header {
             justify-content: space-between;
             flex-direction: column;
             
-            @include md-breakpoint() {
+            @include lg-breakpoint() {
                 flex-direction: row;
             }
         }
     
         .cross {
-            @include md-breakpoint() {
-                display: none;
-            }
-    
             position: absolute;
             top: 20px;
             right: 30px;
             font-size: 20px;
             color: $color-pink;
             cursor: pointer;
+
+            @include lg-breakpoint() {
+                display: none;
+            }
         }
     
     }
 }
 
-.burger {
+#burger {
+    display: block;
     position: absolute;
     top: 10px;
     right: 20px;
     color: $color-pink;
+    font-size: rem(20);
     cursor: pointer;
+
     
-    @include md-breakpoint(){
+    @include lg-breakpoint(){
         display: none;
     }
 }
 
-.hide {
-    display: none;
-}
+// .hide {
+//     display: none;
+// }
 
 .hidden {
     visibility: hidden;
