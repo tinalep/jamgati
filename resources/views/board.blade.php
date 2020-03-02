@@ -13,13 +13,15 @@ $user = Auth::user();
             <a class="dropdown-item"  href="{{ route('logout') }}">Déconnexion</a>
         </div>
         </div>
-        
-            <main  name="content" role="main">
 
+</div>
+        
 <div class="dashboard">
     <div class="dashboard_header">
         <h1>Tableau de bord</h1> 
-        <button class="button button-bgred button-no-border button-round">+</button>
+        <form method="get" action="{{ route('choice') }}">
+            <button class="button button-bgred button-no-border button-round">+</button>
+        </form>
     </div>
     <nav class="dashboard_nav">
         <a class="dashboard_nav__link dashboard_nav__link--active" href="#">Tableau</a>
