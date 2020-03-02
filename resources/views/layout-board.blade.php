@@ -27,8 +27,8 @@ $user = Auth::user();
                 </div>
                 </a>
                 <nav class="sidebar-nav sidebar-nav-top">
-                    <a class="icon-plus-circle" href="#"><span>Nouveau</span></a>
-                    <a class="icon-dashboard" href="#"><span>Tableau de bord</span></a>
+                    <a class="icon-plus-circle" href="{{ route('choice') }}"><span>Nouveau</span></a>
+                    <a class="icon-dashboard" href="{{ route('board') }}"><span>Tableau de bord</span></a>
                     <a class="icon-search" href="#"><span>Rechercher</span></a>
                 </nav>
             </div>
