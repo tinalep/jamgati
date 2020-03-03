@@ -34,14 +34,39 @@ $user = Auth::user();
         <tbody>
             @foreach ($forms as $form)
             <tr>
-                <td class="table_dashboard__title"> {{ $form->name }}</td>
+                <td class="table_dashboard__title"> {{ $form->id }} - {{ $form->name }}</td>
                 <td class="table_dashboard__update">{{date('d/m/y', strtotime($form->updated_at )) }}</td>
-                <td class="table_dashboard__action"><a href="download"><i class="fas fa-download"></i></a><a href="{{ route('form.edit', ['form'=>$form]) }}"><i class="fas fa-edit"></i></a>
-                <form action="{{ route('form.destroy', ['form'=>$form])}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"><i class="fas fa-trash"></i></button>
-                </form>
+                <td class="table_dashboard__action">
+                    <a href="download"><i class="fas fa-download"></i></a>
+                    <a href="{{ route('form.edit', ['form'=>$form]) }}"><i class="fas fa-edit"></i></a> 
+                    <!-- Button trigger modal -->
+                    <a type="button" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fas fa-trash"></i>
+                    </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('form.destroy', ['form'=>$form])}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <p>Etes-vous sûr de vouloir supprimer ce contenu</p>
+                                    <button type="submit">Supprimer</button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        Annuler
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             @endforeach

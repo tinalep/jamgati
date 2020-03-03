@@ -13,8 +13,7 @@
 
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
-// Route::get('/form/loadall', 'FormController@loadall')->name('form.loadall');
-// Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
+Route::get('/form/loadall', 'FormController@loadall')->name('form.loadall');
 Route::resource('/form', 'FormController');
 Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
 Route::get('/board', 'BoardController@index')->name('board');
