@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('content')
-<main  name="content" role="main>    <div class="container sign">
+<main  name="content" role="main">    
+    <div class="container sign">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">

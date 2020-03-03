@@ -26,6 +26,13 @@
         }
     }
 
+    .form-control{
+        &:focus{
+            border-color: $color-orange;
+            box-shadow: none;
+        }
+    }
+
     .form-check{
         display: flex;
         align-items: center;

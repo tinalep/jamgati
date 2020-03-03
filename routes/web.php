@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@index')->name('home');
 // Route::get('/form/loadall', 'FormController@loadall')->name('form.loadall');
 // Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
 Route::resource('/form', 'FormController');
+Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
 Route::get('/board', 'BoardController@index')->name('board');
 Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/search', 'SearchController@index')->name('search');

@@ -146,20 +146,17 @@
                 span{
                     background: $gradient-orange;
                     color: $color-white;
-                    // border: none;
                 }
             }  
             &.disabled{
                 opacity: 0.3;
-                // span{
-                //     border: none;
-                // }
             } 
         }
 
         a{
             color: $color-text;
             border: none;
+            border-radius: 50%;
         }
 
         span{

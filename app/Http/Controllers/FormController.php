@@ -137,8 +137,9 @@ class FormController extends Controller
      * @param  \App\form  $form
      * @return \Illuminate\Http\Response
      */
-    public function destroy(form $form)
+    public function destroy(\App\form $form)
     {
-        //
+        $form->delete();
+        return redirect()->route('board');
     }
 }
