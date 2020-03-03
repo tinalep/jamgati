@@ -22,8 +22,12 @@
     &-bgred {
         padding: 18px 28px;
         background: $gradient-red;
-        border-color: $gradient-red;
         color: $color-white;
+        transition: 0.3s all ease-in-out;
+
+        &:hover{
+            color: $color-white;
+        }
     }
 
     &-bgorange {
@@ -31,6 +35,11 @@
         background: $gradient-orange;
         border-color: $gradient-orange;
         color: $color-white;
+        transition: 0.3s all ease-in-out;
+        &:hover{
+            background: transparent;
+            color: $color-orange;
+        }
     }
     
     &-bgnone {
@@ -38,6 +47,11 @@
         background-color: transparent;
         border: 3px solid $color-red;
         color: $color-red;
+        transition: 0.3s all ease-in-out;
+        &:hover{
+            background-color: $color-red;
+            color: $color-white;
+        }
     }
 
     &-round{

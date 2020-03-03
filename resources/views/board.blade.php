@@ -14,7 +14,7 @@ $user = Auth::user();
     <div class="dashboard_header">
         <h1>Tableau de bord</h1> 
         <form method="get" action="{{ route('choice') }}">
-            <button class="button button-bgred button-no-border button-round">+</button>
+            <button class="button button-bgorange button-no-border button-round">+</button>
         </form>
     </div>
     <nav class="dashboard_nav">
@@ -36,7 +36,13 @@ $user = Auth::user();
             <tr>
                 <td class="table_dashboard__title"> {{ $form->name }}</td>
                 <td class="table_dashboard__update">{{date('d/m/y', strtotime($form->updated_at )) }}</td>
-                <td class="table_dashboard__action"><a href="download"><i class="fas fa-download"></i></a><a href=""><i class="fas fa-edit"></i></a><a href="delete"><i class="fas fa-trash"></i></a></td>
+                <td class="table_dashboard__action"><a href="download"><i class="fas fa-download"></i></a><a href="{{ route('form.edit', ['form'=>$form]) }}"><i class="fas fa-edit"></i></a>
+                <form action="{{ route('form.destroy', ['form'=>$form])}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"><i class="fas fa-trash"></i></button>
+                </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
