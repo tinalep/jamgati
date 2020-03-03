@@ -28,7 +28,6 @@ $user = Auth::user();
             <tr>
                 <th>Titre</th>
                 <th>Dernière modification</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>

@@ -31,9 +31,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createNav()
     {
         return view('nav.create');
+    }
+
+    public function createNavGuest()
+    {
+        return view('nav.create-guest');
     }
 
     public function mentions()

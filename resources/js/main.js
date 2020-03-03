@@ -4,7 +4,7 @@ const currentLocation = JSON.stringify(window.location);
 const searchTerm = 'create';
 const haveTerm = currentLocation.indexOf(searchTerm);
 
-if(haveTerm !== -1){
+if(haveTerm !== -1 && haveTerm !== 'create-guest'){
     let dashboard = document.querySelector('.page-dashboard');
     dashboard.classList.add('page-create');
 
