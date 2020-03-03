@@ -5,7 +5,7 @@ const searchTerm = 'create';
 const searchOtherTerm = 'edit';
 const haveTerm = currentLocation.indexOf(searchTerm);
 const haveOtherTerm = currentLocation.indexOf(searchOtherTerm);
-if(haveTerm !== -1 || haveOtherTerm !== -1){
+if(haveTerm !== -1 || haveOtherTerm !== -1 && haveTerm !== 'create-guest'){
     let dashboard = document.querySelector('.page-dashboard');
     dashboard.classList.add('page-create');
 
