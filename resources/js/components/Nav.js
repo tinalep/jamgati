@@ -12,16 +12,39 @@ const Nav = props => {
     /* STATES */
 
     const [elements, setElements]=useState([]);
-    const [navStyle, setNavStyle]=useState({display:"flex"})
+    const [navStyle, setNavStyle]=useState(
+        {
+            n1:
+            {
+                ul: {display: 'flex', flexDirection: 'row'},
+                li: {border: 'none', borderRadius:'0px', borderSize:'1px', borderColor:'#000000', backgroundColor: '#000000', width: '200px', textAlign: 'center'},
+                a: {color: 'white', textTransform:'initial', textDecoration: 'initial', fontWeight: '300', fontSize: '22px', padding: '5px'}
+            },
+            n2:
+            {
+                ul: {flexDirection: 'row'},
+                li: {border: 'none', borderRadius:'0px', borderSize:'1px', borderColor:'#000000', backgroundColor: '#666666', width: '200px', textAlign: 'left'},
+                a: {color: '#000000', textTransform:'initial', textDecoration: 'initial', fontWeight: '300', fontSize: '22px', padding: '5px'}
+            }
+        })
 
 
    
 
     const addElt = (elt)=>{
+        elt.props.style= (getLvlElt(elt)===1?navStyle.n1:navStyle.n2).a
+        let elts = R.clone(elements);
+        elts= elts.concat(elt);
+        //console.log('The new list is:')
+        //console.log(elts)
+        setElements(elts);
+    }
+
+    const updateElt = (elt)=>{
         //console.log('The following elt is supposed to be add:')
         //console.log(elt)
         let elts = R.clone(elements);
-        elts= elts.concat(elt);
+        elts[elt.key] = elt
         //console.log('The new list is:')
         //console.log(elts)
         setElements(elts);
@@ -33,13 +56,15 @@ const Nav = props => {
 
     const getChilds = (parent)=>{
         let childs = elements.filter(element => element.props.parent===parent.key) // Tableau avec liste des enfants du parent
+        let link = <a target="_blank" style={getLvlStyle(parent).a} href={parent.props.link}>{parent.props.name}</a>
+        console.log(childs)
         if (childs.length > 0){ // Cherchons les enfants des enfants à condition d'avoir des enfants
-            childs = <ul >{
+            childs = <ul style={navStyle.n2.ul} className="dropdown-content">{
                 childs.map((elt,id)=>{
-                return (<li key={id}>{getChilds(elt)}</li>) // On prend la liste des enfant, et on la remplace par [[p1,e1],[p2,e2], ..., [pn,en]]
+                return (<li key={id} style={navStyle.n2.li} >{getChilds(elt)}</li>) // On prend la liste des enfant, et on la remplace par [[p1,e1],[p2,e2], ..., [pn,en]]
             })}</ul>
         }
-        return [parent,childs]
+        return [link,childs]
     }
 
     const getLvlElt = (elt, counter=1)=>{
@@ -52,10 +77,18 @@ const Nav = props => {
         }
     }
 
+    const getLvlStyle = (elt)=>{
+        if (getLvlElt(elt)===1)
+            return navStyle.n1
+        else   
+            return navStyle.n2
+    }
+
     const showNav = ()=>{
+        elements.map(elt=>elt.props.style=(getLvlElt===1?navStyle.n1:navStyle.n2).a)
         let parents = elements.filter(element => element.props.parent===-1)
         let nav = parents.map((elt,id)=>{
-            return (<li key={id}>{getChilds(elt)}</li>)
+            return (<li className="dropdown" key={id} style={navStyle.n1.li}>{getChilds(elt)}</li>)
         })
         return(
             <>
@@ -67,7 +100,7 @@ const Nav = props => {
     return (
         <div className="Form">
             <div className="form-container">
-                <Edit navStyle={navStyle} onClickAdd={addElt} updateNavStyle={updateNavStyle} elements={elements} getLvlElt={getLvlElt}/>
+                <Edit navStyle={navStyle} onClickAdd={addElt} onClickUpdate={updateElt} updateNavStyle={updateNavStyle} elements={elements} getLvlElt={getLvlElt}/>
                 
                 <div className="form-show">
                     <div className="form-show__header">
@@ -78,7 +111,7 @@ const Nav = props => {
                         </div>
                         <div className="form-show__preview">
                             <h3>Menu de navigation</h3>
-                            <nav><ul className="menu-deroulant" style={{display:navStyle.display}}>{showNav()}</ul></nav>
+                            <nav><ul style={ navStyle.n1.ul }>{showNav()}</ul></nav>
                         </div>
                         
                     </div>
