@@ -128,7 +128,7 @@ class NavController extends Controller
      * @param  \App\nav  $nav
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\App\Nav $nav)
     {
         $nav->delete();
         return redirect()->route('board');
