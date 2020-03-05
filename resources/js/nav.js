@@ -7,9 +7,9 @@ var Nav = class {
 
         
         if(this.header) {
-            // Bouton burger (ouvre la nav)
-            this.burger = document.querySelector('#burger');
-            
+        // Bouton burger (ouvre la nav)
+        this.burger = document.querySelector('#burger');
+        
         // Bouton croix (ferme la nav)
         this.cross = document.querySelector('#cross');
 
