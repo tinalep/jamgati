@@ -28,12 +28,55 @@ const Edit = props =>{
                     <Accordion.Collapse eventKey="0">
                         <div className="edit-card__body">
                             <div className="edit-card__section">
+                                <h4 className="edit-card__subtitle">NOMBRE</h4>
+                                <div className="row">
+                                    <div className="col">
+                                        <p>Lignes</p>
+                                        <input className="w-75 border rounded" type="number"/>
+                                    </div>
+                                    <div className="col">
+                                        <p>Colonnes</p>
+                                        <input className="w-75 border rounded" type="number"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="edit-card__section">
+                                <h4 className="edit-card__subtitle">INSERER</h4>
+                                <div className="row">
+                                    <div className="col">
+                                        <p>Lignes</p>
+                                        <button className="border-0 bg-transparent" type="number">
+                                            <img src="../../resources/assets/images/insert-line-bottom.svg"/>
+                                        </button>
+                                        <button className="border-0 bg-transparent" type="number">
+                                            <img src="../../resources/assets/images/insert-line-top.svg"/>
+                                        </button>
+                                    </div>
+                                    <div className="col">
+                                        <p>Colonnes</p>
+                                        <button className="border-0 bg-transparent" type="number">
+                                            <img src="../../resources/assets/images/insert-column-left.svg"/>
+                                        </button>
+                                        <button className="border-0 bg-transparent" type="number">
+                                            <img src="../../resources/assets/images/insert-column-right.svg"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="edit-card__section">
+                                <h4 className="edit-card__subtitle">FUSIONNER</h4>
+                            </div>
+                            <div className="edit-card__section">
+                                <h4 className="edit-card__subtitle">SUPPRIMER</h4>
+                            </div>
+                            <div className="edit-card__section">
+                                <h4 className="edit-card__subtitle">EN-TÊTE</h4>
                             </div>
                         </div>
                     </Accordion.Collapse>
                 </div>
                 <div className="edit-card">
-                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>setIsNew(false)} eventKey="1">
+                    <Accordion.Toggle className="edit-card__header" as="div" eventKey="1">
                         <span className="edit-card__title">Style
                         </span>
                         <span className="edit-card__button">+</span>

@@ -7,24 +7,42 @@ const beauty_html = require('js-beautify').html;
 const Table = props => {
 
     const [tableName, setTableName] = useState('Mon tableau')
+    const [table, setTable] = useState({lines: [], style: {}})
 
-    const [cell, setCells] = useState(
-        {
-            lines: [{id: 'l1', cells: [{id: 'l1c1', content: 'Coucou', style: ''}], style: '', }]
-        }
-    )
+    useEffect(()=>{
+        setTable(createTab(6,10))
+    }, []);
 
     const createTab = (l,c)=>{
-        let table = {lines: [], style:''}
-        for(let i =0; i<l; i++){
+        let table = {lines: [], style: {}}
+        for(let i =1; i<=l; i++){
             let line = {id: 'l'+i, cells: [], style: ''}
-            for(let j = 0; j<c; j++){
+            for(let j = 1; j<=c; j++){
                 let cell = {}
-                cell.id = l+'i'+c+'j'
+                cell.id = 'l'+i+'c'+j
                 cell.content = 'CELL'+i+''+j
-                
+                line.cells.push(cell)
             }
+            table.lines.push(line)
         }
+        return table;
+    }
+
+    const showTable = ()=>{
+        let tableContent =
+        table.lines.map((line,idL)=>{
+            return <tr key={idL}>{line.cells.map((cell,idC)=>{return(<td key={idC}>{cell.content}</td>)})}</tr>
+        })
+        return(
+            <table className="table">
+                <thead className="thead-light">
+                    {tableContent[0]}
+                </thead>
+                <tbody>
+                    {tableContent.filter(e=>e!==tableContent[0])}
+                </tbody>
+            </table>
+        )
     }
 
     return (
@@ -45,6 +63,7 @@ const Table = props => {
                         <div className="form-show__typography">
                         </div>
                         <div className="form-show__preview">
+                            {showTable()}
                         </div>
                         
                     </div>
