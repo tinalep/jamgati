@@ -16,3 +16,10 @@ if(haveTerm !== -1 || haveOtherTerm !== -1 && haveTerm !== 'create-guest'){
         sidebarNav.classList.add('sidebar--collapsed');
     }
 }
+
+let windowWidth = window.innerWidth;
+const sidebar = document.querySelector('.sidebar');
+
+if(windowWidth < 990){
+    sidebar.classList.add('sidebar--collapsed')
+}

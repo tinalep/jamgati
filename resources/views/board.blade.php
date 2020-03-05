@@ -14,7 +14,18 @@ $user = Auth::user();
     <div class="dashboard_header">
         <h1>Tableau de bord</h1> 
         <form method="get" action="{{ route('choice') }}">
-            <button class="button button-bgorange button-no-border button-round">+</button>
+            <div class="dropdown">
+            {{-- <button class=>+</button> --}}
+
+                <button class="button button-bgorange button-no-border button-round" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  +
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Tableau</a>
+                    <a class="dropdown-item" href="{{route('form.create')}}">Formulaire</a>
+                    <a class="dropdown-item" href="{{route('nav.create')}}">Menu</a>
+                </div>
+              </div>
         </form>
     </div>
     <nav class="dashboard_nav">
@@ -26,17 +37,18 @@ $user = Auth::user();
     <table class="table_dashboard" style="width:100%">
         <thead>
             <tr>
-                <th>Titre</th>
-                <th>Dernière modification</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Dernière modification</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($forms as $form)
             <tr>
-                <td class="table_dashboard__title">{{ $form->name }}</td>
-                <td class="table_dashboard__update">{{date('d/m/y', strtotime($form->updated_at )) }}</td>
-                <td class="table_dashboard__action">
-                    <a href="download"><i class="fas fa-download"></i></a>
+                <td scope="row" data-label="Titre" class="table_dashboard__title">{{ $form->name }}</td>
+                <td data-label="Dernière modification" class="table_dashboard__update">{{date('d/m/y', strtotime($form->updated_at )) }}</td>
+                <td  data-label="Actions" class="table_dashboard__action">
+                    <a href="#"><i class="fas fa-download"></i></a>
                     <a href="{{ route('form.edit', ['form'=>$form]) }}"><i class="fas fa-edit"></i></a> 
                     <!-- Button trigger modal -->
                     <a type="button" data-toggle="modal" data-target="{{'#exampleModal'.$form->id}}">
