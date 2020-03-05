@@ -13,22 +13,26 @@
 }
 
 .form-edit{
-    flex: 1;
-    height: 100vh;
     background: rgba(230, 92, 0, 0.05);
     border: 2px solid rgba(230, 92, 0, 0.05);
     border-radius: 50px;
+    min-height: 90vh;
+    width: 400px;
 }
 
 .form-show{
     margin-left: 40px;
-    flex:4;
-    height: 100vh;
+    width: 100%;
 }
 
 .form-edit__header{
     padding: 30px 20px;
     border-bottom: solid 2px rgba(230, 92, 0, 0.05);
+    h2{
+        display: flex;
+        align-items: center;
+        font-size: 26px;
+    }
 }
 .form-edit__title{
     font-weight: bold;
@@ -37,6 +41,7 @@
 .form-show__title{
     @include font-size(rem(48));
     font-weight: 800;
+    margin: unset;
 }
 
 .form-show__body{

@@ -10,13 +10,13 @@ const Edit = props =>{
 
     const [isNew, setIsNew] = useState(true)
     const [levelMenu, setLevelMenu] = useState('0')
-
-    const [newElt, setNewElt] = useState(<Element key={0} name="" lvl="" pos=""  origin="" link="" parent={-1} childs="" />)
-    const [editElt, setEditElt] = useState(<Element pos={-1} />)
+    const [titleEdit, setTitleEdit] = useState(false)
+    const [newElt, setNewElt] = useState(<Element key={1} name="" origin="" link="" parent={-1} />)
+    const [editElt, setEditElt] = useState(<Element key={-1} />)
 
     useEffect(()=>{
-        setNewElt(<Element key={props.elements.length} name="" lvl="" pos="" origin="" link="" parent={-1} childs=""/>)
-        setEditElt(<Element pos={-1} />)
+        setNewElt(<Element key={props.elements.length} name="" origin="" link="" parent={-1}/>)
+        setEditElt(<Element key={-1} />)
     },[props]);
 
     const setElt = (elt)=>{
@@ -80,59 +80,72 @@ const Edit = props =>{
 
         return(<>
         <h4>Style du niveau {levelMenu}</h4>
+
         <h5 className="m-2"><b>Disposition:</b></h5>
+
             <input data-style='flexDirection' type="radio" checked={getN().ul.flexDirection==='row'} value='row' onChange={handleChangeStyle} />
-            <label className="mr-2">Horizontale</label><br/>
+            <label className="mr-2">Horizontale</label>
+            <br/>
             <input data-style='flexDirection' type="radio" checked={getN().ul.flexDirection==='column'} value='column' onChange={handleChangeStyle} />
             <label className="mr-2">Verticale</label>
             
         <h5 className="m-2"><b>Typographie:</b></h5>
-            
+
             <label className="mr-2">Couleur:</label>
-            <input data-style='textColor' value={getN().a.color} onChange={handleChangeStyle} type="color"/><br/>
+            <input data-style='textColor' value={getN().a.color} onChange={handleChangeStyle} type="color"/>
+            <br/>
             <label className="mr-2">Graisse:</label>
             <select data-style='fontWeight' value={getN().a.fontWeight} onChange={handleChangeStyle}>
                 {weights}
-            </select><br/>
+            </select>
+            <br/>
             <label className="mr-2">Alignement horizontal:</label>
             <select data-style='textAlign' value={getN().li.textAlign} onChange={handleChangeStyle}>
                 <option value='left' key={1}>Gauche</option>
                 <option value='center' key={2}>Milieu</option>
                 <option value='right' key={3}>Droite</option>
-            </select><br/>
+            </select>
+            <br/>
             <label className="mr-2">Taille:</label>
-            <input data-style='fontSize' value={pxToNb(getN().a.fontSize)} onChange={handleChangeStyle} type="number"/>px<br/>
+            <input data-style='fontSize' value={pxToNb(getN().a.fontSize)} onChange={handleChangeStyle} type="number"/>px
+            <br/>
             <label className="mr-2">Casse:</label>
             <select data-style='textTransform' value={getN().a.textTransform} onChange={handleChangeStyle}>
                 <option value='initial' key={1}>Unchangée</option>
                 <option value='capitalize' key={2}>Titre</option>
                 <option value='uppercase' key={3}>Majuscule</option>
                 <option value='lowercase' key={4}>Minuscule</option>
-            </select><br/>
+            </select>
+            <br/>
             <label className="mr-2">Soulignement</label>
             <select data-style="textDecoration" value={getN().a.textDecoration} onChange={handleChangeStyle}>
                 <option value='initial' key={1}>Non</option>
                 <option value='underline' key={2}>Oui</option>
-            </select><br/>
+            </select>
+            <br/>
 
 
         <h5 className="m-2"><b>Boutons:</b></h5>
 
             <label className="mr-2">Couleur de fond:</label>
-            <input data-style="bgColor" value={getN().li.backgroundColor} onChange={handleChangeStyle} type="color"/><br/>
+            <input data-style="bgColor" value={getN().li.backgroundColor} onChange={handleChangeStyle} type="color"/>
+            <br/>
             <label className="mr-2">Bordure:</label>
             <select data-style="border" value={getN().li.border} onChange={handleChangeStyle}>
                 <option value='none' key={1}>Non</option>
                 <option value='solid' key={2}>Oui</option>
-            </select><br/>
+            </select>
+            <br/>
             <label className="mr-2">Couleur de bordure:</label>
             <input data-style="borderColor" value={getN().li.borderColor} onChange={handleChangeStyle} type="color"/>
+            <br/>
             <label className="mr-2">Taille de bordure:</label>
-            <input data-style="borderSize" value={pxToNb(getN().li.borderSize)} onChange={handleChangeStyle} type="number"/>px<br/>
+            <input data-style="borderSize" value={pxToNb(getN().li.borderSize)} onChange={handleChangeStyle} type="number"/>px
+            <br/>
             {/* <label className="mr-2">Hauteur</label>
             <input data-style="width" value={pxToNb(getN().li.height)} onChange={handleChangeStyle} type="number"/>px<br/> */}
             <label className="mr-2">Largeur:</label>
-            <input data-style="height" value={pxToNb(getN().li.width)} onChange={handleChangeStyle} type="number"/>px<br/>
+            <input data-style="height" value={pxToNb(getN().li.width)} onChange={handleChangeStyle} type="number"/>px
         </>)
     }
 
@@ -149,6 +162,7 @@ const Edit = props =>{
             case 'fontSize' : styleN.a.fontSize = target.value+'px'; break;
             case 'fontCase' : styleN.a.textTransform = target.value; break;
             case 'textDecoration' : styleN.a.textDecoration = target.value; break;
+            case 'textTransform' : styleN.a.textTransform = target.value; break;
             case 'bgColor' : styleN.li.backgroundColor = target.value; break;
             case 'border' : styleN.li.border = target.value; break;
             case 'borderColor' : styleN.li.borderColor = target.value; break;
@@ -190,7 +204,8 @@ const Edit = props =>{
     return (
         <div className="form-edit">
             <div className="form-edit__header" >
-                <h2 className="form-edit__title" >Titre menu</h2>
+                <h2 onClick={(e)=>{setTitleEdit(true); e.target.nextSibling.focus()}} className={titleEdit?'d-none':''}>{props.navName}<i className="fas fa-pen ml-auto"></i></h2>
+                <input onBlur={()=>{setTitleEdit(false)}}  id='inputToFocus' className='d-block' style={titleEdit?{}:{border: 'none', width:'0', height: '0'}}  value={props.navName} onChange={(e)=>props.setNavName(e.target.value)}/>
             </div>
             <Accordion defaultActiveKey='0'>
                 <div className="edit-card">
@@ -218,7 +233,7 @@ const Edit = props =>{
                             <div className="edit-card__section">
                                 <span className="edit-card__type">Champ à modifier:</span>
                                 <div className="select-elt">
-                                    <select data-elt="update" value={editElt.props.pos} onChange={handleChangeElt}>
+                                    <select data-elt="update" value={editElt.key} onChange={handleChangeElt}>
                                         <option value={-1}>--Selection de l'élément à modifier--</option>
                                         {props.elements.map((elt,index)=>{
                                             return(
@@ -229,7 +244,7 @@ const Edit = props =>{
                                 </div>
                                 
                                 <div className="custom-field">
-                                    {editElt.props.pos===-1 ? null : 
+                                    {editElt.key==-1 ? null : 
                                     <>   
                                         {displayEditElement(editElt)}
                                         <button onClick={()=>{props.onClickUpdate(editElt)}}>Mettre à jour</button>    

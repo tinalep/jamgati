@@ -43,7 +43,7 @@ const Form = props => {
         return json;
     }
 
-    const saveForm = ()=>{
+    const save = ()=>{
         let json = formToJson();
         if(mode==='create'){
             const url = window.location.href.replace('/create','');
@@ -115,69 +115,69 @@ const Form = props => {
     }
 
     return (
-            <div className="Form">
-                <div id='exportPopup'>
-                    <div className="form-show__popup">
-                        <button className="form-show__close btn btn-danger" onClick={()=>exportPopup(false)}>X</button>
-                        <h3 className="text-center">Quel format pour l'export?</h3>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <div className="text-center">
-                        <select value={exportMode} onChange={(e)=>(setExportMode(e.target.value))}>
-                            <option value='default' style={{fontWeight: 'bold'}}>Choisir le format d'export</option>
-                            <option value='html'>Texte HTML</option>
-                            <option value='json'>Texte JSON</option>
-                        </select>
-                        </div>
-                        <br/>
-                        <br/>
-                        <br/>
-                        {exportMode=='default'?null:<>
-                        <div className="show__exporttext">
-                            <pre>
-                                <code id="toClipboard">
-                                    {showForm(exportMode)}
-                                </code>
-                            </pre>
-                        </div>
-                            <button className="text-center" onClick={()=>copyToClipBoard(showForm(exportMode))}>Copier dans le presse-papier</button>
-                        </>}
-                        <br/>
-                        <br/>
-                        <br/>
+        <div className="Form">
+            <div id='exportPopup'>
+                <div className="form-show__popup">
+                    <button className="form-show__close btn btn-danger" onClick={()=>exportPopup(false)}>X</button>
+                    <h3 className="text-center">Quel format pour l'export?</h3>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div className="text-center">
+                    <select value={exportMode} onChange={(e)=>(setExportMode(e.target.value))}>
+                        <option value='default' style={{fontWeight: 'bold'}}>Choisir le format d'export</option>
+                        <option value='html'>Texte HTML</option>
+                        <option value='json'>Texte JSON</option>
+                    </select>
                     </div>
-                </div>
-                <div className="form-container">
-                    <Edit onClickAdd={addField} onClickUpdate={updateFields} onClickDelete={deleteField} fields={fields} />
-                    {/* Partie où est afficher le contenu créé */}
-                    <div className="form-show">
-                        <div className="form-show__header d-flex justify-content-between">
-                            <h2 className="form-show__title">Edition formulaire</h2>
-                            <div className="form-show__buttons">
-                                <button className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
-                                    
-                                <button className="button button-bgred button-no-border" onClick={saveForm}>Sauvegarder</button>
-                            </div>
-                        </div>
-                        <div className="form-show__body">
-                            <div className="form-show__typography">
-                                <h3><input style={{border: 'none', width: '100%'}} value={formName} onChange={(e)=>setFormName(e.target.value)}/></h3>
-                            </div>
-                            <div className="form-show__preview" id="formPreview">
-
-                        
-                                {updatefieldsForm()}
-
-                                
-
-                            </div>
-                            
-                        </div>
-                        
+                    <br/>
+                    <br/>
+                    <br/>
+                    {exportMode=='default'?null:<>
+                    <div className="show__exporttext">
+                        <pre>
+                            <code id="toClipboard">
+                                {showForm(exportMode)}
+                            </code>
+                        </pre>
                     </div>
+                        <button className="text-center" onClick={()=>copyToClipBoard(showForm(exportMode))}>Copier dans le presse-papier</button>
+                    </>}
+                    <br/>
+                    <br/>
+                    <br/>
                 </div>
             </div>
+            <div className="form-container">
+                <Edit onClickAdd={addField} onClickUpdate={updateFields} onClickDelete={deleteField} fields={fields} />
+                {/* Partie où est afficher le contenu créé */}
+                <div className="form-show">
+                    <div className="form-show__header d-flex justify-content-between">
+                        <h2 className="form-show__title">Edition formulaire</h2>
+                        <div className="form-show__buttons">
+                            <button className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
+                                
+                            <button className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
+                        </div>
+                    </div>
+                    <div className="form-show__body">
+                        <div className="form-show__typography">
+                            <h3><input style={{border: 'none', width: '100%'}} value={formName} onChange={(e)=>setFormName(e.target.value)}/></h3>
+                        </div>
+                        <div className="form-show__preview" id="formPreview">
+
+                    
+                            {updatefieldsForm()}
+
+                            
+
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     )
 }
 
