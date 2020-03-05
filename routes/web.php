@@ -28,6 +28,8 @@ Route::get('/board', 'BoardController@index')->name('board');
 Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/search', 'SearchController@index')->name('search');
 
+Route::get('/form/create', 'HomeController@createFormGuest')->name('form.guest');
+
 Route::get('/doc', 'HomeController@doc')->name('doc');
 
 //Dashboard

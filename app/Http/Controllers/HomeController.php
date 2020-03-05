@@ -26,9 +26,9 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function createNavGuest()
+    public function createFormGuest()
     {
-        return view('nav.create-guest');
+        return view('form.guest');
     }
 
     public function mentions()

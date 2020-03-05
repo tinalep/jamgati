@@ -1,25 +1,40 @@
 // Check if page is of type "create"
-const currentLocation = JSON.stringify(window.location);
+// window.onload
+window.onload = function() {
 
-const searchTerm = 'create';
-const searchOtherTerm = 'edit';
-const haveTerm = currentLocation.indexOf(searchTerm);
-const haveOtherTerm = currentLocation.indexOf(searchOtherTerm);
-if(haveTerm !== -1 || haveOtherTerm !== -1 && haveTerm !== 'create-guest'){
-    let dashboard = document.querySelector('.page-dashboard');
-    dashboard.classList.add('page-create');
+    const currentLocation = JSON.stringify(window.location);
 
-    //Collapse sidebarNav
-    let sidebarNav = document.querySelector('.sidebar');
-    console.log(sidebarNav);
-    if(sidebarNav){
-        sidebarNav.classList.add('sidebar--collapsed');
+    const searchTerm = 'create';
+    const searchOtherTerm = 'edit';
+    const haveTerm = currentLocation.indexOf(searchTerm);
+    const haveOtherTerm = currentLocation.indexOf(searchOtherTerm);
+    if(haveTerm !== -1 || haveOtherTerm !== -1 && haveTerm !== 'create-guest'){
+        let dashboard = document.querySelector('.page-dashboard');
+        dashboard.classList.add('page-create');
+
+        //Collapse sidebarNav
+        let sidebarNav = document.querySelector('.sidebar');
+        console.log(sidebarNav);
+        if(sidebarNav){
+            sidebarNav.classList.add('sidebar--collapsed');
+        }
     }
-}
 
-let windowWidth = window.innerWidth;
-const sidebar = document.querySelector('.sidebar');
 
-if(windowWidth < 990){
-    sidebar.classList.add('sidebar--collapsed')
-}
+    window.onresize = function(event) {
+        changeSidebar();
+    };
+
+    function changeSidebar(){
+        let windowWidth = window.innerWidth;
+        const sidebar = document.querySelector('.sidebar');
+        
+        if(windowWidth < 990){
+            sidebar.classList.add('sidebar--collapsed');
+        }
+        else{
+            sidebar.classList.remove('sidebar--collapsed');
+        }
+    }
+
+};

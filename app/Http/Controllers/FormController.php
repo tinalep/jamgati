@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\form;
+use App\Form;
 use App\Http\Requests\StoreFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
