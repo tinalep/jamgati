@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Board;
 use Illuminate\Http\Request;
-use Auth;
-use App\form;
-use Illuminate\Contracts\Support\Jsonable;
 
-class BoardController extends Controller
+class TableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +13,7 @@ class BoardController extends Controller
      */
     public function index()
     {
-        // return view('board');
-        $forms = \App\Form::where('user_id',Auth::user()->id)->paginate(2);
-        $navs = \App\Nav::where('user_id',Auth::user()->id)->paginate(2);
-
-
-        return view('board', ['forms'=>$forms, 'navs'=>$navs]);
-    }
-
-    public function choice()
-    {
-        return view('choice');
+        //
     }
 
     /**
@@ -37,7 +23,7 @@ class BoardController extends Controller
      */
     public function create()
     {
-        //
+        return view('table.app');
     }
 
     /**
@@ -54,10 +40,10 @@ class BoardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Board  $board
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Board $board)
+    public function show($id)
     {
         //
     }
@@ -65,10 +51,10 @@ class BoardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Board  $board
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Board $board)
+    public function edit($id)
     {
         //
     }
@@ -77,10 +63,10 @@ class BoardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Board  $board
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Board $board)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -88,10 +74,10 @@ class BoardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Board  $board
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Board $board)
+    public function destroy($id)
     {
         //
     }

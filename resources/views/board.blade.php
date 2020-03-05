@@ -138,10 +138,10 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
             
             @break
         @case('form')
-            {{ $forms->links() }}
+            {{ $forms->appends(['content' => 'form'])->links() }}
             @break
         @case('nav')
-            {{ $navs->links() }}
+            {{ $navs->appends(['content' => 'nav'])->links() }}
             @break
         @default
     @endswitch

@@ -106,10 +106,9 @@ class NavController extends Controller
      * @param  \App\nav  $nav
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, nav $nav)
     {
         $data = $request->input();
-        $nav = new \App\Nav();
         $nav->elements = json_encode($data['elements']);
         $nav->style = json_encode($data['style']);
         $nav->name = $data['name'];

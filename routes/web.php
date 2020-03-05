@@ -14,6 +14,9 @@
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
 
+// Table
+Route::resource('/table', 'TableController');
+
 // Form
 Route::get('/form/loadall', 'FormController@loadall')->name('form.loadall');
 Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
@@ -28,7 +31,6 @@ Route::get('/board', 'BoardController@index')->name('board');
 Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/search', 'SearchController@index')->name('search');
 
-Route::get('/form/create', 'HomeController@createFormGuest')->name('form.guest');
 
 Route::get('/doc', 'HomeController@doc')->name('doc');
 

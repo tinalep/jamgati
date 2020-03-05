@@ -54,7 +54,7 @@
                     <ul role="menubar" aria-label="string">
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="{{ route('home') }}">Accueil</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Tableau</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('form.guest') }}">Formulaire</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="#">Formulaire</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('nav.create') }}">Menu</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('doc') }}">Documentation</a></li>
                     </ul>

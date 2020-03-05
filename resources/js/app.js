@@ -32,3 +32,4 @@ const n = new Nav();
 
 require('./components/Form');
 require('./components/Nav');
+require('./components/Table');
