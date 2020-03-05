@@ -13,14 +13,21 @@
 
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
+
+// Form
 Route::get('/form/loadall', 'FormController@loadall')->name('form.loadall');
-Route::resource('/form', 'FormController');
 Route::get('/form/{form}/load', 'FormController@load')->name('form.load');
+Route::resource('/form', 'FormController');
+
+// Nav
+Route::get('/nav/loadall', 'NavController@loadall')->name('nav.loadall');
+Route::get('/nav/{nav}/load', 'NavController@load')->name('nav.load');
+Route::resource('/nav', 'NavController');
+
 Route::get('/board', 'BoardController@index')->name('board');
 Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/search', 'SearchController@index')->name('search');
-Route::get('/nav/create', 'HomeController@createNav')->name('nav.create');
-Route::get('/nav/create-guest', 'HomeController@createNavGuest')->name('nav.createGuest');
+
 Route::get('/doc', 'HomeController@doc')->name('doc');
 
 //Dashboard

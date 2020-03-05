@@ -7,12 +7,12 @@ const Field = props =>{
         switch(props.type){
             case 'checkbox' : case 'radio' : return (
                                 <>
-                                    <p key={'p'+props.keyId} className={props.class}>{props.label}</p> 
+                                    <p key={'p'+props.pos} className={props.class}>{props.label}</p> 
                                     {props.values.map((value,index)=>{
                                         return(
-                                            <div key={'div'+props.keyId+index}>
-                                                <input key={'input'+props.keyId+index} name={props.label+props.keyId} type={props.type} id={'value'+index}/>
-                                                <label key={'label'.keyId} htmlFor={'value'+index}>{value}</label>
+                                            <div key={'div'+props.pos+index}>
+                                                <input key={'input'+props.pos+index} name={props.label+props.pos} type={props.type} id={'value'+index}/>
+                                                <label key={'label'.pos} htmlFor={'value'+index}>{value}</label>
                                             </div>
                                         )
                                     })}
@@ -20,8 +20,8 @@ const Field = props =>{
             );
             case 'select' : return (
                 <>
-                    <label htmlFor={'select'+props.keyId}>{props.label}</label><br/>
-                    <select id={'select'+props.keyId} key={'select'+props.keyId} className={props.class}>
+                    <label htmlFor={'select'+props.pos}>{props.label}</label><br/>
+                    <select id={'select'+props.pos} key={'select'+props.pos} className={props.class}>
                     {props.values.map((value,index)=>{
                         return(
                         <option key={index}>{value}</option>
@@ -37,11 +37,11 @@ const Field = props =>{
                         <textarea placeholder={props.placeholder} id={props.id}></textarea>
                     </>
             )
-            case 'button' : return (<button key={props.keyId} type="submit">{props.label}</button>)
+            case 'button' : return (<button key={props.pos} type="submit">{props.label}</button>)
             
             default : return (
                     <>
-                        <label key={props.keyId} className={props.class} htmlFor={props.id}>{props.label+(props.type==='text-hidden'?' (Champ caché pour l\'utilisateur)':'')}</label>
+                        <label key={props.pos} className={props.class} htmlFor={props.id}>{props.label+(props.type==='text-hidden'?' (Champ caché pour l\'utilisateur)':'')}</label>
                         <br/>
                         <input readOnly onFocus={(e)=>e.target.removeAttribute('readonly')} type={props.type} placeholder={props.placeholder} onChange={props.onChange} id={props.id}/>
                     </>
@@ -50,7 +50,7 @@ const Field = props =>{
     }
 
     return(
-        <div key={props.keyId} className={props.className ? props.className : 'form-group'}>
+        <div key={props.pos} className={props.className ? props.className : 'form-group'}>
             {displayField()}
         </div>)
 }
