@@ -61,7 +61,7 @@ $user = Auth::user();
                         <div class="modal-content">
                             <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <i class="fas fa-times"></i>
                             </button>
                             </div>
                             <div class="modal-body">
@@ -69,8 +69,8 @@ $user = Auth::user();
                                     @csrf
                                     @method('DELETE')
                                     <p>Etes-vous sûr de vouloir supprimer ce contenu</p>
-                                    <button type="submit">Supprimer</button>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="submit" class="button button-bgred button-no-border">Supprimer</button>
+                                    <button type="button" class="cancel" data-dismiss="modal" aria-label="Close">
                                         Annuler
                                     </button>
                                 </form>

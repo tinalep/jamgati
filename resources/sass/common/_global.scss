@@ -8,6 +8,12 @@ body{
     margin: 0 auto;
     overflow-x: hidden;
     height: 100%;
+
+    &.page-create{
+        .modal-backdrop{
+            display: none;
+        }
+    }
 }
 
 
