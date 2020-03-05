@@ -9,7 +9,7 @@ $user = Auth::user();
 @endsection
 
 @section('link')
-    <a class="link-back" href="#">Tableau de board</a>
+    <a class="link-back" href="{{route('board')}}">Tableau de board</a>
 @endsection
 
 @section('content')
