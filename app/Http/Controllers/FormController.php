@@ -27,7 +27,11 @@ class FormController extends Controller
      */
     public function create()
     {
-        return view('form.app');
+        if (Auth::check()) {
+            return view('form.app');
+        } else {
+            return view('form.guest');
+        }
     }
 
     /**

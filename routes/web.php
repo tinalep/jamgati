@@ -31,6 +31,10 @@ Route::get('/board', 'BoardController@index')->name('board');
 Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/search', 'SearchController@index')->name('search');
 
+// Guest routes
+Route::get('/nav/create', 'NavController@create')->name('nav.create');
+Route::get('/tab/create', 'TabController@create')->name('tab.create');
+Route::get('/form/create', 'FormController@create')->name('form.create');
 
 Route::get('/doc', 'HomeController@doc')->name('doc');
 

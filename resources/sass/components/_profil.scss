@@ -8,4 +8,16 @@
     &.card{
         padding: 0;
     }
+
+    .dropdown{
+        .dropdown-menu{
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            &.show{
+                top: -25px!important;
+                left: 0!important;
+                right: 0;
+            }
+        }
+    }
 }

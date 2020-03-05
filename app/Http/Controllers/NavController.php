@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\nav;
 use App\Http\Requests\StoreFormRequest;
 use Illuminate\Http\Request;
@@ -27,7 +27,11 @@ class NavController extends Controller
      */
     public function create()
     {
-        return view('nav.app');
+        if (Auth::check()) {
+            return view('nav.app');
+        } else {
+            return view('nav.guest');
+        }
     }
 
     /**

@@ -57,6 +57,10 @@ const Form = props => {
                 console.log(response.data)
             })
         }
+
+        setTimeout(function(){ 
+            $('.modal.save').modal('hide')
+         }, 5000);
     }
 
     const loadForm = (form)=>{
@@ -157,7 +161,7 @@ const Form = props => {
                         <div className="form-show__buttons">
                             <button className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
                                 
-                            <button className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
+                            <button data-toggle="modal" data-target="#saveModal" className="btn-save button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
                         </div>
                     </div>
                     <div className="form-show__body">
