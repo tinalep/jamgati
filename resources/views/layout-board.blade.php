@@ -29,11 +29,11 @@ $user = Auth::user();
                 <nav class="sidebar-nav sidebar-nav-top">
                 <a class="icon-plus-circle" href="{{ route('choice')}}"><span>Nouveau</span></a>
                 <a class="icon-dashboard" href="{{ route('board')}}"><span>Tableau de bord</span></a>
-                <a class="icon-search" href="#"><span>Rechercher</span></a>
+                <a class="icon-search" href="{{ route('search')}}"><span>Rechercher</span></a>
                 </nav>
             </div>
             <nav class="sidebar-nav sidebar-nav-bottom">
-                <a class="icon-settings" href="#"><span>Paramètres</span></a>
+                <a class="icon-settings" href="{{ route('settings')}}"><span>Paramètres</span></a>
             </nav>
         </div>
     
