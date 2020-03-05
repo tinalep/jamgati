@@ -9,7 +9,7 @@ $user = Auth::user();
     <div class="choices">
         <div class="choices_bloc">
             <h3>Créer un tableau</h3>
-              <div class="choices_bloc_item"><a href="{{route("form.create")}}">Vierge</a></div>         
+              <div class="choices_bloc_item"><a href="#">Vierge</a></div>         
               <div class="dropdown choice_drop">
                 <a class="btn btn-  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   A partir d'un modèle
@@ -37,7 +37,7 @@ $user = Auth::user();
               </div>        </div>
         <div class="choices_bloc">
             <h3>Créer un formulaire</h3>
-            <div class="choices_bloc_item"><a href="#">Vierge</a></div>
+            <div class="choices_bloc_item"><a href="{{route("form.create")}}">Vierge</a></div>
             <div class="dropdown choice_drop">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   A partir d'un modèle
