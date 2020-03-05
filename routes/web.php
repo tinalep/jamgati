@@ -23,9 +23,13 @@ Route::get('/nav/create', 'HomeController@createNav')->name('nav.create');
 Route::get('/nav/create-guest', 'HomeController@createNavGuest')->name('nav.createGuest');
 Route::get('/doc', 'HomeController@doc')->name('doc');
 
+//Dashboard
+Route::get('/settings', 'HomeController@settings')->name('settings');
+
 //Footer
 Route::get('/mentions', 'HomeController@mentions')->name('mentions');
 Route::get('/data', 'HomeController@data')->name('data');
+
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

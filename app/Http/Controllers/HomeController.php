@@ -55,4 +55,10 @@ class HomeController extends Controller
     {
         return view('doc');
     }
+
+    public function settings()
+    {
+        return view('settings');
+    }
 }
+
