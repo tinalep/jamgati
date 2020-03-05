@@ -26,9 +26,19 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function createFormGuest()
+    {
+        return view('form.guest');
+    }
+
+    public function createTabGuest()
+    {
+        return view('tab.guest');
+    }
+
     public function createNavGuest()
     {
-        return view('nav.create-guest');
+        return view('nav.guest');
     }
 
     public function mentions()

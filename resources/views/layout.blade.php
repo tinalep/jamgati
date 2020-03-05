@@ -49,12 +49,12 @@
     <header class="header header__fixed">
         <div class="header__noauth">
             <div class="header-nav" role="navigation" aria-label="Main Navigation">
-                <a class="header-logo" href=""><img src="{{asset("assets/images/img-logo-jamgati.png")}}" alt="Jamgati"> </a>
+                <a class="header-logo" href="{{ route('home') }}"><img src="{{asset("assets/images/img-logo-jamgati.png")}}" alt="Jamgati"> </a>
                 <nav>
                     <ul role="menubar" aria-label="string">
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="{{ route('home') }}">Accueil</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('form.create') }}">Tableau</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Formulaire</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Tableau</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('form.create') }}">Formulaire</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('nav.create') }}">Menu</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('doc') }}">Documentation</a></li>
                     </ul>
