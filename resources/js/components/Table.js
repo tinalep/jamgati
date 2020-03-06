@@ -66,7 +66,7 @@ const Table = props => {
                 if(c>0)
                 {
                     let cell = {id: line.id+'c'+(line.cells.length+1), content: 'E'+(id+1)+''+(line.cells.length+1), style:{}}
-                    line.cells.splice((pos==-1?line.cells.length:selected.column.pos),0,cell)
+                    line.cells.splice((pos==-1?line.cells.length:selected.column+pos),0,cell)
                 }
                 else
                     line.cells.splice(line.cells.length-1,1)
