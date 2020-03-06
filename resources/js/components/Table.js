@@ -141,6 +141,9 @@ const Table = props => {
             case 'cellDelete' :
                 updTable.lines[selected.line].cells[selected.column].content=''
                 break;
+            case 'cell' :
+                updTable.lines[selected.line].cells[selected.column].content=val
+                break;
         }
         updTable=updateSelectedStyle(updTable)
         setTable(updTable)
@@ -149,7 +152,7 @@ const Table = props => {
     const showTable = ()=>{
         let tableContent =
         table.lines.map((line,idL)=>{
-            return <tr key={idL}>{line.cells.map((cell,idC)=>{return(<td style={cell.style} onClick={()=>handleSelected(idL,idC)} key={idC}><input type="text" value={cell.content} /></td>)})}</tr>
+            return <tr key={idL}>{line.cells.map((cell,idC)=>{return(<td style={cell.style} onClick={()=>handleSelected(idL,idC)} key={idC}><input type="text" data-table="cell" onChange={tableHandler} value={cell.content} /></td>)})}</tr>
         })
         return(
             <table className="table">
