@@ -10,7 +10,7 @@ const Table = props => {
     const [table, setTable] = useState({lines: [], parameters: {nbLines: 5, nbColumns: 5, style: {}}})
 
     useEffect(()=>{
-        if(table.lines.length==0)
+        if(table.lines.length== 0)
             setTable(createTab())
     }, []);
 
@@ -32,18 +32,62 @@ const Table = props => {
         return newTable;
     }
 
+    const updLines = (tab)=>{
+        let t = tab
+        let l = t.parameters.nbLines-t.lines.length
+        let c = t.parameters.nbColumns 
+        for(let i = 1; i<=Math.abs(l); i++){ 
+            if(l>0)
+            {
+                let line = {id: 'l'+t.lines.length, cells: [], style: ''}
+                for(let j = 1; j<=c; j++){
+                    let cell = {}
+                    cell.id = line.id+'c'+j
+                    cell.content = 'CELL'+(t.lines.length+1)+''+j
+                    line.cells.push(cell)
+                }
+                t.lines.splice(tab.lines.length,0,line)
+            }
+            else
+            t.lines.splice(tab.lines.length-1,1)
+            
+        }
+        return t
+    }
+
+    const updColumns = (tab)=>{
+        let t = tab
+        let c = t.parameters.nbColumns-t.lines[0].cells.length
+        t.lines.forEach((line,id)=>{
+            if(c>0)
+            {
+                let cell = {}
+                cell.id = line.id+'c'+(line.cells.length+1)
+                cell.content = 'CELL'+(id+1)+''+(line.cells.length+1)
+                line.cells.splice(line.cells.length,0,cell)
+            }
+            else
+                line.cells.splice(line.cells.length-1,1)
+        })
+        return t
+    }
+
     const tableHandler = (e)=>{
         let target = e.target
         let updTable = R.clone(table)
+        let val = target.value
         switch(target.dataset.table){
-            case 'nbLines': updTable.parameters.nbLines = target.value; break;
+            case 'nbLines':
+                updTable.parameters.nbLines = val;
+                updTable = updLines(updTable);
+            break;
+            case 'nbColumns':
+                updTable.parameters.nbColumns = val;
+                updTable = updColumns(updTable);
+            break;
         }
         setTable(updTable)
     }
-
-
-
-
 
     const showTable = ()=>{
         let tableContent =
