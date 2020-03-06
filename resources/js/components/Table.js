@@ -8,7 +8,7 @@ const Table = props => {
 
     const [tableName, setTableName] = useState('Mon tableau')
     const [table, setTable] = useState({lines: [], parameters: {nbLines: 5, nbColumns: 5, style: {}}})
-    const [selected, setSelected] = useState({line: 0, column: 0, cell: {x:0,y:0}})
+    const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {x:0,y:0}})
 
     useEffect(()=>{
         if(table.lines.length== 0)
@@ -41,6 +41,7 @@ const Table = props => {
         let t = tab
         let l = t.parameters.nbLines-t.lines.length
         let c = t.parameters.nbColumns
+        console.log([t,l,c])
         for(let i = 1; i<=Math.abs(l); i++){ 
             if(l>0)
             {
@@ -85,7 +86,7 @@ const Table = props => {
                     :
                     (idC===selected.cell.y?'#f3ae6a':'unset')
                 ) //1: #F1A214 2: #EC840C 3: #EB7808
-                cell.style.backgroundColor = bg
+                cell.style.backgroundColor = (selected.empty&&false?'unset':bg) // Enlever le false pour ajouter la deselection
             })
         })
         return(t)
@@ -98,11 +99,11 @@ const Table = props => {
         let val = target.value
         switch(target.dataset.table){
             case 'nbLines':
-                updTable.parameters.nbLines = val;
+                updTable.parameters.nbLines = parseInt(val);
                 updTable = updLines(updTable);
             break;
             case 'nbColumns':
-                updTable.parameters.nbColumns = val;
+                updTable.parameters.nbColumns = parseInt(val);
                 updTable = updColumns(updTable);
             break;
             case 'lineBefore' : case 'lineAfter' :
@@ -148,7 +149,7 @@ const Table = props => {
     const showTable = ()=>{
         let tableContent =
         table.lines.map((line,idL)=>{
-            return <tr key={idL}>{line.cells.map((cell,idC)=>{return(<td style={cell.style} onClick={()=>setSelected({line:idL, column:idC, cell:{x:idL,y:idC}})} key={idC}>{cell.content}</td>)})}</tr>
+            return <tr key={idL}>{line.cells.map((cell,idC)=>{return(<td style={cell.style} onClick={()=>handleSelected(idL,idC)} key={idC}><input type="text" value={cell.content} /></td>)})}</tr>
         })
         return(
             <table className="table">
@@ -160,6 +161,11 @@ const Table = props => {
                 </tbody>
             </table>
         )
+    }
+
+    const handleSelected =(l,c) =>{
+        let sel = {empty:selected.cell.x===l&&selected.cell.y===c, line: l, column: c, cell:{x:l,y:c}} 
+        setSelected(sel)
     }
 
     return (
@@ -182,9 +188,9 @@ const Table = props => {
                         <div className="form-show__preview">
                             {showTable()}
                         </div>
-                        <h4>Ligne selectionnée: {selected.line+1}</h4>
+                        {/* <h4>Ligne selectionnée: {selected.line+1}</h4>
                         <h4>Colonne selectionnée: {selected.column+1}</h4>
-                        <h4>Cellule selectionnée: {(selected.cell.x+1)+'-'+(selected.cell.y+1)}</h4>
+                        <h4>Cellule selectionnée: {(selected.cell.x+1)+'-'+(selected.cell.y+1)}</h4> */}
                     </div>
                     
                 </div>
