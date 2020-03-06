@@ -32,11 +32,11 @@ const Edit = props =>{
                                 <div className="row">
                                     <div className="col">
                                         <p>Lignes</p>
-                                        <input className="w-75 border rounded" type="number"/>
+                                        <input data-table='nbLines' className="w-75 border rounded text-center" onChange={props.tableHandler} value={props.table.parameters.nbLines} type="number"/>
                                     </div>
                                     <div className="col">
                                         <p>Colonnes</p>
-                                        <input className="w-75 border rounded" type="number"/>
+                                        <input data-table='nbColumns' className="w-75 border rounded text-center" onChange={props.tableHandler} value={props.table.parameters.nbColumns} type="number"/>
                                     </div>
                                 </div>
                             </div>
@@ -65,12 +65,40 @@ const Edit = props =>{
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">FUSIONNER</h4>
+                                <p>Fusion de cellules</p>
+                                <button className="border-0 bg-transparent" type="number">
+                                    <img src="../../resources/assets/images/fusion-button.svg"/>
+                                </button>
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">SUPPRIMER</h4>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <p>Ligne</p>
+                                        <button className="border-0 bg-transparent" type="number">
+                                            <img src="../../resources/assets/images/delete-line.svg"/>
+                                        </button>
+                                    </div>
+                                    <div className="col-6">
+                                        <p>Colonne</p>
+                                        <button className="border-0 bg-transparent" type="number">
+                                            <img src="../../resources/assets/images/delete-column.svg"/>
+                                        </button>
+                                    </div>
+                                    <div className="col-6">
+                                        <p>Cellule</p>
+                                        <button className="border-0 bg-transparent" type="number">
+                                            <img src="../../resources/assets/images/delete-cell.svg"/>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">EN-TÊTE</h4>
+                                <p>Activer ligne d'en tête</p>
+                                <button className="border-0 bg-transparent" type="number">
+                                    <img src="../../resources/assets/images/header-button.svg"/>
+                                </button>
                             </div>
                         </div>
                     </Accordion.Collapse>
