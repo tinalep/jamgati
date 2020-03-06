@@ -52,7 +52,7 @@ const Table = props => {
                 t.lines.splice((pos==-1?t.lines.length:selected.line+pos),0,line)
             }
             else
-            t.lines.splice(t.lines.length-1,1)
+            t.lines.splice((pos==-1?t.lines.length-1:selected.line),1)
             
         }
         return t
@@ -69,7 +69,7 @@ const Table = props => {
                     line.cells.splice((pos==-1?line.cells.length:selected.column+pos),0,cell)
                 }
                 else
-                    line.cells.splice(line.cells.length-1,1)
+                    line.cells.splice((pos==-1?line.cells.length-1:selected.column),1)
             })
         }
         return t
@@ -129,6 +129,17 @@ const Table = props => {
                 updTable.parameters.nbColumns += 1;
                 updTable = updColumns(updTable, pos);
             break;
+            case 'lineDelete' :
+                updTable.parameters.nbLines -= 1;
+                updTable = updLines(updTable, pos);
+                break;
+            case 'columnDelete' :
+                updTable.parameters.nbColumns -= 1;
+                updTable = updColumns(updTable, pos);
+                break;
+            case 'cellDelete' :
+                updTable.lines[selected.line].cells[selected.column].content=''
+                break;
         }
         updTable=updateSelectedStyle(updTable)
         setTable(updTable)

@@ -67,21 +67,15 @@ const Edit = props =>{
                                 <div className="row">
                                     <div className="col-6">
                                         <p>Ligne</p>
-                                        <button className="border-0 bg-transparent" type="number">
-                                            <img src="../../resources/assets/images/delete-line.svg"/>
-                                        </button>
+                                        <input data-table='lineDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/delete-line.svg"/>
                                     </div>
                                     <div className="col-6">
                                         <p>Colonne</p>
-                                        <button className="border-0 bg-transparent" type="number">
-                                            <img src="../../resources/assets/images/delete-column.svg"/>
-                                        </button>
+                                        <input data-table='columnDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/delete-column.svg"/>
                                     </div>
                                     <div className="col-6">
                                         <p>Cellule</p>
-                                        <button className="border-0 bg-transparent" type="number">
-                                            <img src="../../resources/assets/images/delete-cell.svg"/>
-                                        </button>
+                                        <input data-table='cellDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/delete-cell.svg"/>
                                     </div>
                                 </div>
                             </div>
