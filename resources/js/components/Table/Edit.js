@@ -44,22 +44,14 @@ const Edit = props =>{
                                 <h4 className="edit-card__subtitle">INSERER</h4>
                                 <div className="row">
                                     <div className="col">
-                                        <p>Lignes</p>
-                                        <button className="border-0 bg-transparent" type="number">
-                                            <img src="../../resources/assets/images/insert-line-bottom.svg"/>
-                                        </button>
-                                        <button className="border-0 bg-transparent" type="number">
-                                            <img src="../../resources/assets/images/insert-line-top.svg"/>
-                                        </button>
+                                        <p>Ligne</p>
+                                        <input data-table='lineBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-line-bottom.svg"/>
+                                        <input data-table='lineAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-line-top.svg"/>
                                     </div>
                                     <div className="col">
-                                        <p>Colonnes</p>
-                                        <button className="border-0 bg-transparent" type="number">
-                                            <img src="../../resources/assets/images/insert-column-left.svg"/>
-                                        </button>
-                                        <button className="border-0 bg-transparent" type="number">
-                                            <img src="../../resources/assets/images/insert-column-right.svg"/>
-                                        </button>
+                                        <p>Colonne</p>
+                                        <input data-table='columnBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-column-right.svg" />
+                                        <input data-table='columnAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-column-left.svg"/>
                                     </div>
                                 </div>
                             </div>
