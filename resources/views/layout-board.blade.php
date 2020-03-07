@@ -52,6 +52,15 @@ $user = Auth::user();
                 </div>
             </div>
             @yield('content')
+            <div class="modal save" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                        <i class="far fa-save"></i> Sauvegarde réussie !
+                    </div>
+                  </div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="{{asset("js/app.js")}}"></script>

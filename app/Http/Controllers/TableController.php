@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\nav;
+use App\table;
 use App\Http\Requests\StoreFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class NavController extends Controller
+class TableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,9 +28,9 @@ class NavController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            return view('nav.app');
+            return view('table.app');
         } else {
-            return view('nav.guest');
+            return view('table.guest');
         }
     }
 
@@ -43,48 +43,47 @@ class NavController extends Controller
     public function store(Request $request)
     {
         $data = $request->input();
-        $nav = new \App\Nav();
-        $nav->elements = json_encode($data['elements']);
-        $nav->style = json_encode($data['style']);
-        $nav->name = $data['name'];
-        $nav->user_id = Auth::user()->id;
-        $nav->save();
-        return ['redirect'=> route('nav.edit', ['nav'=>$nav])];
+        $table = new \App\Table();
+        $table->table = json_encode($data['table']);
+        $table->name = $data['name'];
+        $table->user_id = Auth::user()->id;
+        $table->save();
+        return ['redirect'=> route('table.edit', ['table'=>$table])];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\nav  $nav
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return response()->json($nav);
+        return response()->json($table);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\nav  $nav
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
     public function loadall()
     {
-        $navs = \App\Nav::where('user_id',Auth::user()->id)->get();
-        return response()->json($navs); ;
+        $tables = \App\Table::where('user_id',Auth::user()->id)->get();
+        return response()->json($tables); ;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\nav  $nav
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function load(\App\Nav $nav)
+    public function load(\App\Table $table)
     {
-        if($nav->user_id == Auth::user()->id)
-            return response()->json($nav);
+        if($table->user_id == Auth::user()->id)
+            return response()->json($table);
         else
             return response()->json('forgiven');
     }
@@ -92,13 +91,13 @@ class NavController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\nav  $nav
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function edit(\App\Nav $nav)
+    public function edit(\App\Table $table)
     {
         if(auth()->check())
-            return view('nav.app', ['nav'=>$nav]);
+            return view('table.app', ['table'=>$table]);
         else
             return redirect()->route('login');
     }
@@ -107,30 +106,29 @@ class NavController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\nav  $nav
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, nav $nav)
+    public function update(Request $request, table $table)
     {
         $data = $request->input();
-        $nav->elements = json_encode($data['elements']);
-        $nav->style = json_encode($data['style']);
-        $nav->name = $data['name'];
-        $nav->user_id = Auth::user()->id;
-        $nav->save();
+        $table->table = json_encode($data['table']);
+        $table->name = $data['name'];
+        $table->user_id = Auth::user()->id;
+        $table->save();
         return response()
-        ->json($nav);
+        ->json($table);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\nav  $nav
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function destroy(\App\Nav $nav)
+    public function destroy(\App\Table $table)
     {
-        $nav->delete();
+        $table->delete();
         return redirect()->route('board');
     }
 }

@@ -18,7 +18,6 @@
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     min-height: 90vh;
-    height: 100%;
     width: 400px;
 }
 
@@ -55,7 +54,7 @@
 }
 
 .form-show__preview{
-    padding-left: 20%;
+    margin: auto;
 }
 
 .edit-button{
@@ -78,14 +77,18 @@
 
 .edit-card__header{
     padding: 20px;
-    color: #464646;
     position: relative;
 }
 .edit-card__title{
-    text-transform: uppercase;
     font-weight: bold;
     font-size: 18px;
-    
+}
+
+.edit-card__subtitle{
+    font-weight: bold;
+    color: #464646;
+    font-size: 18px;
+
 }
 .edit-card__button{
     position: absolute;
@@ -100,6 +103,9 @@
 
 .edit-card__section{
     padding: 10px 20px;
+    &:not(:last-child){
+        border-bottom: solid 2px rgba(230, 92, 0, 0.05);
+    }
 }
 
 .edit-card__type{
@@ -157,4 +163,11 @@
 .show__exporttext{
     border: solid 1px;
     background-color: rgb(211, 209, 209);
+}
+
+#table-root table input{
+    background-color: rgba(0,0,0,0);
+    border:none;
+    width: 100%;
+    height: 100%;
 }

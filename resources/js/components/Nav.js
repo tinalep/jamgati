@@ -44,6 +44,7 @@ const Nav = props => {
 
     useEffect(()=>{
         if(document.getElementById('nav-root').dataset.nav){
+            console.log(document.getElementById('nav-root').dataset.nav)
             setMode('edit')
             let url = window.location.href.replace('/edit','/load')
             axios.get(url).then(response=>{
@@ -87,6 +88,8 @@ const Nav = props => {
             loadedNav=loadedNav.concat(<Element key={element.key} name={element.name} link={element.link} origin="" parent={element.parent} />)
         })
         setElements(loadedNav)
+        console.log(loadedNav)
+        console.log(nav.name)
     }
    
 
