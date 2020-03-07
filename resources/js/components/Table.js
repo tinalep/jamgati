@@ -11,8 +11,15 @@ const Table = props => {
     const [table, setTable] = useState({lines: [], parameters: {nbLines: 5, nbColumns: 5, style: {}}, mode:'edit'})
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
-
+    const [temp, setTemp] = useState([])
+    const [typo, setTypo] = useState({font:'Lato', size:10, align: 'Left'})
+    const tempSize = 15
     const initCell = {content: 'Nouvelle cellule', style:{}, size:{lon: 1, type: 'cell'}}
+    const fonts = ['Arial', 'Courier New', 'Lato', 'Roboto', 'Times', 'Times New Roman']
+    const fontsSize =[]
+    const svgUrl = (window.location.href.includes('edit')?'../':'')
+    for(let i =0; i<=50; i++) fontsSize.push(i)
+
 
     useEffect(()=>{
         if(document.getElementById('table-root').dataset.table&&mode==='create'){
@@ -165,6 +172,11 @@ const Table = props => {
         let target = e.target
         let updTable = R.clone(table)
         let val = target.value
+        let save = R.clone(temp)
+        save.push(table)
+        if(save.length>tempSize)  save.splice(0,save.length-tempSize)
+        setTemp(save)
+        console.log(save)
         switch(target.dataset.table){
             case 'nbLines':
                 updTable.parameters.nbLines = parseInt(val);
@@ -226,6 +238,18 @@ const Table = props => {
         }
         updTable=updateSelectedStyle(updTable)
         setTable(updTable)
+    }
+
+    const typoHandler = (e)=>{
+        let t = R.clone(typo)
+        let target = e.target
+        switch(target.dataset.typo){
+            case 'font' : t.font = target.value; break;
+            case 'size' : t.size = target.value; break;
+            case 'alignLeft' : case 'alignRight' : case 'alignCenter' : t.align = target.dataset.typo; break;
+            default : console.log("Problem in typoHandler")
+        }
+        setTypo(t)
     }
 
     const setCellSize=(cell)=>{
@@ -304,11 +328,21 @@ const Table = props => {
                     </div>
                     <div className="form-show__body">
                         <div className="form-show__typography">
+                            <select data-typo='font' value={typo.font} onChange={typoHandler}>
+                                {fonts.map((f,i)=>{return(<option style={{fontFamily: f}} key={i} value={f}>{f}</option>)})}
+                            </select>
+                            <select data-typo='size' value={typo.size} onChange={typoHandler}>
+                                {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s}</option>)})}
+                            </select>
+                            <input className={typo.align==='alignLeft'?'active':''} data-typo='alignLeft' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
+                            <input className={typo.align==='alignCenter'?'active':''} data-typo='alignCenter' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
+                            <input className={typo.align==='alignRight'?'active':''} data-typo='alignRight' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>  
                         </div>
                         <div className="form-show__preview">
                             {showTable()}
                         </div>
                         <h4 className="app-show__helper">{helper}</h4>
+                        <h4 className="app-show__helper">Danse le temp: {temp.length}</h4>
                         <h4 className="app-show__helper">{selected.cell.l}-{selected.cell.c}</h4>
                     </div>
                     
