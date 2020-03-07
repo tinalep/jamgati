@@ -15,16 +15,16 @@ $user = Auth::user();
         <h1>Rechercher un projet</h1> 
     </div>
     <div>
-        <input type="text" name="search" id="search" placeholder="Rechercher" class="search_form">
+        <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Rechercher un projet" value="">
     </div>
+    @csrf
+       <button type="button" name="search" id="search" class="btn btn-success">Search</button>
 
     <div class="search__data">
         <table class="table_dashboard" style="width:100%">
             <thead>
                 <tr>
-                    <th>Titre</th>
-                    <th>Dernière modification</th>
-                    <th>Action</th>
+                    <th>Name</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +37,6 @@ $user = Auth::user();
         </table>
     
     </div>
+    
         @endsection
-
 
