@@ -12,6 +12,7 @@ const Edit = props =>{
     // useEffect(()=>{
     // },[]);
 
+    const svgUrl = (window.location.href.includes('edit')?'../':'')
     
     return (
         <div className="form-edit">
@@ -45,35 +46,35 @@ const Edit = props =>{
                                 <div className="row">
                                     <div className="col">
                                         <p>Ligne</p>
-                                        <input data-table='lineBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-line-bottom.svg"/>
-                                        <input data-table='lineAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-line-top.svg"/>
+                                        <input data-table='lineBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/insert-line-bottom.svg'}/>
+                                        <input data-table='lineAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/insert-line-top.svg'}/>
                                     </div>
                                     <div className="col">
                                         <p>Colonne</p>
-                                        <input data-table='columnBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-column-right.svg" />
-                                        <input data-table='columnAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" src="../../resources/assets/images/insert-column-left.svg"/>
+                                        <input data-table='columnBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/insert-column-right.svg'} />
+                                        <input data-table='columnAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/insert-column-left.svg'}/>
                                     </div>
                                 </div>
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">FUSIONNER</h4>
                                 <p>Fusion de cellules</p>
-                                <input data-table='fusion' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/fusion-button.svg"/>
+                                <input data-table='fusion' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/fusion-button.svg'}/>
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">SUPPRIMER</h4>
                                 <div className="row">
                                     <div className="col-6">
                                         <p>Ligne</p>
-                                        <input data-table='lineDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/delete-line.svg"/>
+                                        <input data-table='lineDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/delete-line.svg'}/>
                                     </div>
                                     <div className="col-6">
                                         <p>Colonne</p>
-                                        <input data-table='columnDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/delete-column.svg"/>
+                                        <input data-table='columnDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/delete-column.svg'}/>
                                     </div>
                                     <div className="col-6">
                                         <p>Cellule</p>
-                                        <input data-table='cellDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/delete-cell.svg"/>
+                                        <input data-table='cellDelete' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/delete-cell.svg'}/>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +82,7 @@ const Edit = props =>{
                                 <h4 className="edit-card__subtitle">EN-TÊTE</h4>
                                 <p>Activer ligne d'en tête</p>
                                 <button className="border-0 bg-transparent" type="number">
-                                    <img src="../../resources/assets/images/header-button.svg"/>
+                                    <img src={svgUrl+'../../resources/assets/images/header-button.svg'}/>
                                 </button>
                             </div>
                         </div>

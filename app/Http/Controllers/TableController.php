@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use App\table;
+use App\Http\Requests\StoreFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TableController extends Controller
 {
@@ -23,7 +27,11 @@ class TableController extends Controller
      */
     public function create()
     {
-        return view('table.app');
+        if (Auth::check()) {
+            return view('table.app');
+        } else {
+            return view('table.guest');
+        }
     }
 
     /**
@@ -34,51 +42,93 @@ class TableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        $table = new \App\Table();
+        $table->table = json_encode($data['table']);
+        $table->name = $data['name'];
+        $table->user_id = Auth::user()->id;
+        $table->save();
+        return ['redirect'=> route('table.edit', ['table'=>$table])];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        return response()->json($table);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\table  $table
+     * @return \Illuminate\Http\Response
+     */
+    public function loadall()
+    {
+        $tables = \App\Table::where('user_id',Auth::user()->id)->get();
+        return response()->json($tables); ;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\table  $table
+     * @return \Illuminate\Http\Response
+     */
+    public function load(\App\Table $table)
+    {
+        if($table->user_id == Auth::user()->id)
+            return response()->json($table);
+        else
+            return response()->json('forgiven');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(\App\Table $table)
     {
-        //
+        if(auth()->check())
+            return view('table.app', ['table'=>$table]);
+        else
+            return redirect()->route('login');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, table $table)
     {
-        //
+        $data = $request->input();
+        $table->table = json_encode($data['table']);
+        $table->name = $data['name'];
+        $table->user_id = Auth::user()->id;
+        $table->save();
+        return response()
+        ->json($table);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(\App\Table $table)
     {
-        //
+        $table->delete();
+        return redirect()->route('board');
     }
 }

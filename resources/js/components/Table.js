@@ -7,6 +7,7 @@ const beauty_html = require('js-beautify').html;
 const Table = props => {
 
     const [tableName, setTableName] = useState('Mon tableau')
+    const [mode, setMode] = useState('create')
     const [table, setTable] = useState({lines: [], parameters: {nbLines: 5, nbColumns: 5, style: {}}, mode:'edit'})
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
@@ -14,16 +15,52 @@ const Table = props => {
     const initCell = {content: 'Nouvelle cellule', style:{}, size:{lon: 1, type: 'cell'}}
 
     useEffect(()=>{
-        if(table.lines.length== 0)
-            setTable(createTab())
-        else{
-            setTable(updateSelectedStyle(R.clone(table)))
+        if(document.getElementById('table-root').dataset.table&&mode==='create'){
+            setMode('edit')
+            let url = window.location.href.replace('/edit','/load')
+            axios.get(url).then(response=>{
+                if(response.data=='forgiven')
+                    console.log('Pas le droit de charger ce formulaire')
+                else
+                    loadTable(response.data)})
         }
+        else if(table.lines.length===0&&mode==='create')
+            setTable(createTab())
+        else
+            setTable(updateSelectedStyle(R.clone(table)))
     }, [selected]);
 
     const tableToJson = ()=>{
         let json ={name: tableName, table: table}
         return json
+    }
+
+    const save = ()=>{
+        let json = tableToJson();
+        if(mode==='create'){
+            const url = window.location.href.replace('/create','');
+            axios.post(url,json).then(response=>{
+                window.location = response.data.redirect;
+            })
+        }
+        else if(mode==='edit'){
+            const url = window.location.href.replace('/edit','');
+            axios.put(url,json).then(response=>{
+                console.log(response.data)
+            })
+        }
+
+        setTimeout(function(){ 
+            $('.modal.save').modal('hide')
+         }, 5000);
+    }
+
+    const loadTable = (table)=>{
+        setTableName(table.name);
+        let t = R.clone(table);
+        t=JSON.parse(table.table)
+        console.log(t)
+        setTable(t)
     }
 
     const createTab = ()=>{
@@ -262,7 +299,7 @@ const Table = props => {
                         <div className="form-show__buttons">
                             <button className="button button-bgnone" >Exporter</button>
                                 
-                            <button className="button button-bgred button-no-border" >Sauvegarder</button>
+                            <button data-toggle="modal" data-target="#saveModal" className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
                         </div>
                     </div>
                     <div className="form-show__body">
