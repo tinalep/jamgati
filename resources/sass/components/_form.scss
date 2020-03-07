@@ -29,10 +29,14 @@
 .form-edit__header{
     padding: 30px 20px;
     border-bottom: solid 2px rgba(230, 92, 0, 0.05);
-    h2{
-        display: flex;
-        align-items: center;
-        font-size: 26px;
+    font-size: 26px;
+        textarea{
+        font-weight: bold;
+        background-color: rgba(0,0,0,0);
+        border: none;
+        color: #212529;
+        overflow: hidden;
+        resize: none;
     }
 }
 .form-edit__title{
@@ -188,7 +192,11 @@
         margin: 0 5px;
         padding: 5px;
     }
-    select:not(:first-child){
-        margin: 0 20px;
+    select{
+        border: none;
+        border-bottom: solid 1px black;
+        &:not(:first-child){
+            margin: 0 20px;
+        }
     }
 }

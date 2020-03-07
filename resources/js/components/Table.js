@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import ReactDOM from 'react-dom';
 import Edit from './Table/Edit'
+import {isDescendant} from '../functions.js'
+
 const R = require('ramda');
 const beauty_html = require('js-beautify').html;
 
@@ -12,7 +14,7 @@ const Table = props => {
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
     const [temp, setTemp] = useState([])
-    const [typo, setTypo] = useState({font:'Lato', size:10, align: 'Left'})
+    const [typo, setTypo] = useState({font:'Lato', size:10, align: 'alignLeft'})
     const tempSize = 15
     const initCell = {content: 'Nouvelle cellule', style:{}, size:{lon: 1, type: 'cell'}}
     const fonts = ['Arial', 'Courier New', 'Lato', 'Roboto', 'Times', 'Times New Roman']
@@ -290,9 +292,9 @@ const Table = props => {
         )
     }
 
-    const handleSelected =(l,c) =>{
+    const handleSelected =(l=-1,c=-1) =>{
         if(table.mode==='fusion') handleFusion(l,c)
-        let sel = {empty:selected.cell.l===l&&selected.cell.c===c, line: l, column: c, cell:{l:l,c:c}}
+        let sel = {empty:false, line: l, column: c, cell:{l:l,c:c}}
         if(!(selected.cell.l===l&&selected.cell.c===c)){
             setSelected(sel)
         }
@@ -338,7 +340,7 @@ const Table = props => {
                             <input className={typo.align==='alignCenter'?'active':''} data-typo='alignCenter' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
                             <input className={typo.align==='alignRight'?'active':''} data-typo='alignRight' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>  
                         </div>
-                        <div className="form-show__preview">
+                        <div className="form-show__preview" id="tablePreview">
                             {showTable()}
                         </div>
                         <h4 className="app-show__helper">{helper}</h4>
