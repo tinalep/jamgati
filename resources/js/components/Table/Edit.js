@@ -58,9 +58,7 @@ const Edit = props =>{
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">FUSIONNER</h4>
                                 <p>Fusion de cellules</p>
-                                <button className="border-0 bg-transparent" type="number">
-                                    <img src="../../resources/assets/images/fusion-button.svg"/>
-                                </button>
+                                <input data-table='fusion' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src="../../resources/assets/images/fusion-button.svg"/>
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">SUPPRIMER</h4>
