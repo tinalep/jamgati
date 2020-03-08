@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import ReactDOM from 'react-dom';
 import Edit from './Table/Edit'
 import {process, copyToClipBoard} from '../functions.js'
-
+import ReactDOMServer from 'react-dom/server';
 
 const R = require('ramda');
 const beauty_html = require('js-beautify').html;
@@ -416,7 +416,26 @@ const Table = props => {
     }
 
     const showHtmlTable = (mode)=>{
-        return(beauty_html(process(document.querySelector('#tablePreview').outerHTML)).replace(/ readonly=""/g,''))
+        let tableContent =
+        table.lines.map((line,idL)=>{
+            return(<tr key={idL}>
+                {line.cells.map((cell,idC)=>{
+                    return(cell.size.type==='null'?null:
+                        <td colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{fontSize: cell.style.fontsSize, fontFamily: cell.style.fontFamily, textAlign: cell.style.textAlign}} key={idC}>{cell.content}</td>)
+                    })}
+                </tr>)
+        })
+        var el = document.createElement('div');
+        let tableDom =
+            <table className="table table-bordered table-striped">
+                <thead className="thead-light">
+                    {tableContent[0]}
+                </thead>
+                <tbody>
+                    {tableContent.filter(e=>e!==tableContent[0])}
+                </tbody>
+            </table>
+        return beauty_html(ReactDOMServer.renderToStaticMarkup(tableDom))
     }
 
     document.onkeydown = KeyPress;

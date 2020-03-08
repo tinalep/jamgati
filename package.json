@@ -33,6 +33,7 @@
         "@fortawesome/react-fontawesome": "^0.1.8",
         "gsap": "^3.0.2",
         "js-beautify": "^1.10.3",
+        "jsx-to-string": "^1.4.0",
         "ramda": "^0.26.1",
         "react-bootstrap": "^1.0.0-beta.16",
         "rfs": "^9.0.2"
