@@ -45,7 +45,7 @@ const Edit = props =>{
                                 <div className="row">
                                     <div className="col">
                                         <p>Ligne</p>
-                                        <input data-table='lineBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/insert-line-bottom.svg'}/>
+                                        <input disabled={props.selected.empty} data-table='lineBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/insert-line-bottom.svg'}/>
                                         <input data-table='lineAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/insert-line-top.svg'}/>
                                     </div>
                                     <div className="col">

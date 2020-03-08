@@ -13,7 +13,7 @@ const Table = props => {
     const [table, setTable] = useState({lines: [], parameters: {nbLines: 5, nbColumns: 5, style: {}}, mode:'edit'})
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
-    const [temp, setTemp] = useState([])
+    const [temp, setTemp] = useState({lvl: 1, tab: []})
     const [typo, setTypo] = useState({font:'Lato', size:10, align: 'alignLeft'})
     const tempSize = 15
     const initCell = {content: 'Nouvelle cellule', style:{}, size:{lon: 1, type: 'cell'}}
@@ -38,6 +38,10 @@ const Table = props => {
         else
             setTable(updateSelectedStyle(R.clone(table)))
     }, [selected]);
+
+    useEffect(()=>{
+        console.log(table)
+    }, [table])
 
     const tableToJson = ()=>{
         let json ={name: tableName, table: table}
@@ -70,6 +74,9 @@ const Table = props => {
         t=JSON.parse(table.table)
         console.log(t)
         setTable(t)
+        let save=R.clone(temp)
+        save.tab.push({table:t, selected:selected})
+        setTemp(save)
     }
 
     const createTab = ()=>{
@@ -86,6 +93,9 @@ const Table = props => {
             newTable.lines.push(line)
         }
         newTable=updateSelectedStyle(newTable)
+        let save=R.clone(temp)
+        save.tab.push({table:newTable, selected:selected})
+        setTemp(save)
         return newTable;
     }
 
@@ -169,16 +179,27 @@ const Table = props => {
         return obj
     }
 
+    const KeyPress = (e)=>{
+        var evtobj = window.event? event : e
+        if (evtobj.keyCode == 90 && evtobj.ctrlKey)
+        {
+            e.preventDefault();
+            if(temp.lvl!==1) cancel('undo');
+        }
+        if (evtobj.keyCode == 89 && evtobj.ctrlKey)
+        {
+            e.preventDefault();
+            if(temp.lvl!==temp.tab.length) cancel('redo');
+        }
+    }
+    
+    document.onkeydown = KeyPress;
+
     const tableHandler = (e)=>{
         let pos = 0
         let target = e.target
         let updTable = R.clone(table)
         let val = target.value
-        let save = R.clone(temp)
-        save.push(table)
-        if(save.length>tempSize)  save.splice(0,save.length-tempSize)
-        setTemp(save)
-        console.log(save)
         switch(target.dataset.table){
             case 'nbLines':
                 updTable.parameters.nbLines = parseInt(val);
@@ -238,6 +259,17 @@ const Table = props => {
                 break;
             default : console.log('Problem with the tableHandler')
         }
+        let save = R.clone(temp)
+        if(save.length>=tempSize) save.tab.splice(0,save.length+1-tempSize)
+        else
+        {
+            save.tab.splice(save.lvl, tempSize-save.lvl)
+            save.lvl = save.tab.length+1
+
+        }
+        save.tab.push({table:updTable, selected:selected})
+        if(target.dataset.table!=='fusion') setTemp(save)
+        console.log(save)
         updTable=updateSelectedStyle(updTable)
         setTable(updTable)
     }
@@ -314,12 +346,27 @@ const Table = props => {
         setTable(t)
     }
 
+    const unselect = (e)=>{
+        console.log($.contains($(e.target).get(0),$('#tablePreview').get(0)))
+    }
+
+    const cancel = (type)=>{
+        let i = type==='undo'? -1 : 1
+        let t = R.clone(temp)
+        t.lvl += i
+        console.log(t.lvl)
+        setTable((temp.tab[t.lvl-1].table))
+        setSelected((temp.tab[t.lvl-1].selected))
+        console.log(temp.tab[t.lvl-1].table)
+        setTemp(t)
+    }
+
     return (
         <div className="Form">
             <div className="form-container">
-                <Edit tableName={tableName} setTableName={setTableName} table={table} tableHandler={tableHandler}/>
+                <Edit tableName={tableName} setTableName={setTableName} table={table} tableHandler={tableHandler} selected={selected}/>
                 {/* Partie où est afficher le contenu créé */}
-                <div className="form-show">  
+                <div className="form-show" onClick={unselect}>  
                     <div className="form-show__header d-flex justify-content-between">
                         <h2 className="form-show__title">Edition tableau</h2>
                         <div className="form-show__buttons">
@@ -338,13 +385,15 @@ const Table = props => {
                             </select>
                             <input className={typo.align==='alignLeft'?'active':''} data-typo='alignLeft' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
                             <input className={typo.align==='alignCenter'?'active':''} data-typo='alignCenter' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
-                            <input className={typo.align==='alignRight'?'active':''} data-typo='alignRight' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>  
+                            <input className={typo.align==='alignRight'?'active':''} data-typo='alignRight' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>
+                            <button disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
+                            <button disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
                         </div>
+                        <h4 className="app-show__helper">{helper}</h4>
                         <div className="form-show__preview" id="tablePreview">
                             {showTable()}
                         </div>
-                        <h4 className="app-show__helper">{helper}</h4>
-                        <h4 className="app-show__helper">Danse le temp: {temp.length}</h4>
+                        <h4 className="app-show__helper">Temp: size-{temp.tab.length} lvl-{temp.lvl}</h4>
                         <h4 className="app-show__helper">{selected.cell.l}-{selected.cell.c}</h4>
                     </div>
                     

@@ -53,9 +53,6 @@
     height: auto;
 }
 
-.form-show__typography{
-    height: 100px;
-}
 
 .form-show__preview{
     margin: auto;
@@ -199,4 +196,19 @@
             margin: 0 20px;
         }
     }
+    button{
+        margin: 0 5px;
+        border: none;
+        background-color: unset;
+        &:focus{
+            outline: none;
+            border: solid 2px #EB7808;
+            border-radius: 5px;
+        }
+    }
+}
+
+.app-show__helper{
+    min-height: 1.5rem;
+    margin: 30px 0;
 }
