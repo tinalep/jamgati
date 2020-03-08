@@ -38,7 +38,9 @@ header {
         .header-logo {
             width: 40px;
             height: 64px;
-            margin-right: 45px;
+            @include lg-breakpoint(){
+                margin-right: 45px;
+            }
         }
         
         .header-nav {
@@ -159,17 +161,6 @@ header {
             }
         }
     
-        &-id {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-direction: column;
-            
-            @include lg-breakpoint() {
-                flex-direction: row;
-            }
-        }
-    
         .cross {
             position: absolute;
             top: 20px;
@@ -183,6 +174,17 @@ header {
             }
         }
     
+    }
+
+    &-id {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        
+        @include lg-breakpoint() {
+            flex-direction: row;
+        }
     }
 }
 

@@ -3,6 +3,7 @@
 window.onload = function() {
     
     checkUrl();
+    changeSidebar();
 
     window.onresize = function() {
         changeSidebar();
@@ -33,12 +34,15 @@ window.onload = function() {
 
             let windowWidth = window.innerWidth;
             const sidebar = document.querySelector('.sidebar');
-            
-            if(windowWidth < 990){
-                sidebar.classList.add('sidebar--collapsed');
-            }
-            else{
-                sidebar.classList.remove('sidebar--collapsed');
+            const create = document.querySelector('.page-create');
+
+            if(!create){
+                if(windowWidth < 990){
+                    sidebar.classList.add('sidebar--collapsed');
+                }
+                else{
+                    sidebar.classList.remove('sidebar--collapsed');
+                }
             }
     }
 

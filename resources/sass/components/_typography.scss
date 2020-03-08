@@ -1,16 +1,24 @@
 @mixin heading-1(){
-    @include font-size(rem(72));
+    @include font-size(rem(34));
     font-weight: bold;
     font-style: normal;
-    line-height: rem(86);
+    line-height: auto;
     text-align: justify;
+
+    @include md-breakpoint(){
+        @include font-size(rem(60));
+    }
+    @include lg-breakpoint(){
+        @include font-size(rem(72));
+        line-height: rem(86);
+    }
 }
 
 @mixin heading-2(){
-    @include font-size(rem(48));
+    @include font-size(rem(24));
     font-style: normal;
     font-weight: bold;
-    line-height: rem(58);
+    line-height: auto;
     margin: 0 auto;
     span{
         display: block;
@@ -25,13 +33,30 @@
     &--center{
         text-align: center;
     }
+
+    @include md-breakpoint(){
+        @include font-size(rem(30));
+    }
+    @include lg-breakpoint(){
+        @include font-size(rem(48));
+        line-height: rem(58);
+    }
 }
 
 @mixin heading-3(){
-    @include font-size(rem(24));
+    @include font-size(rem(18));
     font-style: normal;
     font-weight: bold;
     line-height: rem(29);
+
+    @include md-breakpoint(){
+        @include font-size(rem(20));
+    }
+    @include lg-breakpoint(){
+        @include font-size(rem(24));
+        line-height: rem(29);
+    }
+    
 }
 
 @mixin heading-4 {

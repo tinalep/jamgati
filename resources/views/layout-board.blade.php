@@ -19,7 +19,8 @@ $user = Auth::user();
 </head>
 <body>
     <div class="page-dashboard d-flex">
-        <div class="sidebar d-flex flex-column justify-content-between">
+        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+        <div class="sidebar">
             <div class="sidebar-nav">
                 <a href="{{ route('board') }}">
                 <div class="logo">
