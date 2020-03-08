@@ -3,9 +3,11 @@
 window.onload = function() {
     
     checkUrl();
+    // changeSidebar();
+    openSidebar();
 
     window.onresize = function() {
-        changeSidebar();
+        // changeSidebar();
     };
 
     function checkUrl(){
@@ -29,17 +31,27 @@ window.onload = function() {
         }
     }
 
-    function changeSidebar(){
+    function openSidebar(){
+        let dashboard = document.querySelector('.page-dashboard');
+        let sidebar = document.querySelector('.sidebar');
+        let burger = document.querySelector('#burger');
+        let close = document.querySelector('.close-sidebar')
 
-            let windowWidth = window.innerWidth;
-            const sidebar = document.querySelector('.sidebar');
-            
-            if(windowWidth < 990){
-                sidebar.classList.add('sidebar--collapsed');
-            }
-            else{
-                sidebar.classList.remove('sidebar--collapsed');
-            }
+        if(dashboard){
+            burger.addEventListener('click', function(){
+                if(sidebar.classList.contains('sidebar--open')){
+                    sidebar.classList.remove('sidebar--open');  
+                }
+                else{
+                    sidebar.classList.add('sidebar--open');
+                }
+            })
+            close.addEventListener('click', function(){
+                if(sidebar.classList.contains('sidebar--open')){
+                    sidebar.classList.remove('sidebar--open');  
+                }
+            })
+        }
     }
 
 };

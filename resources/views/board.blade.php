@@ -22,7 +22,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                   +
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Tableau</a>
+                    <a class="dropdown-item" href="{{route('tab.create')}}">Tableau</a>
                     <a class="dropdown-item" href="{{route('form.create')}}">Formulaire</a>
                     <a class="dropdown-item" href="{{route('nav.create')}}">Menu</a>
                 </div>
