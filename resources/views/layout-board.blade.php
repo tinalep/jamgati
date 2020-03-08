@@ -22,6 +22,7 @@ $user = Auth::user();
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
         <div class="sidebar">
             <div class="sidebar-nav">
+                <div class="close-sidebar"><i class="fas fa-times"></i></div>
                 <a href="{{ route('board') }}">
                 <div class="logo">
                     <img src="{{asset("assets/images/logo-sidebar.png")}}" alt="jamgati">
