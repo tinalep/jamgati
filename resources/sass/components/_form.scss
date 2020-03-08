@@ -24,6 +24,7 @@
 .form-show{
     margin-left: 40px;
     width: 100%;
+    
 }
 
 .form-edit__header{
@@ -176,6 +177,7 @@
 #table-root .form-show__typography{
     display: flex;
     align-items: center;
+    margin: 30px 0;
     input{
         &.active{
             border: solid 2px #EB7808;
@@ -198,12 +200,25 @@
     }
     button{
         margin: 0 5px;
-        border: none;
+        border: solid 2px rgba(0,0,0,0);
         background-color: unset;
         &:focus{
             outline: none;
             border: solid 2px #EB7808;
             border-radius: 5px;
+        }
+    }
+    .apply{
+        width: unset;
+        background-color: rgb(255, 154, 53);
+        border-radius: 5px;
+        &-buttons{
+            padding: 5px;
+            button:hover{
+                outline: none;
+                border: solid 2px #EB7808;
+                border-radius: 5px;
+            }
         }
     }
 }

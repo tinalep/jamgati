@@ -14,13 +14,13 @@ const Table = props => {
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
     const [temp, setTemp] = useState({lvl: 1, tab: []})
-    const [typo, setTypo] = useState({font:'Lato', size:10, align: 'alignLeft'})
+    const [typo, setTypo] = useState({font:'Lato', size:14, align: 'left'})
     const tempSize = 15
-    const initCell = {content: 'Nouvelle cellule', style:{}, size:{lon: 1, type: 'cell'}}
+    const initCell = {content: 'Nouvelle cellule', style:{fontFamily: 'Lato', textAlign: 'center', fontSize: '16px'}, size:{lon: 1, type: 'cell'}}
     const fonts = ['Arial', 'Courier New', 'Lato', 'Roboto', 'Times', 'Times New Roman']
     const fontsSize =[]
     const svgUrl = (window.location.href.includes('edit')?'../':'')
-    for(let i =0; i<=50; i++) fontsSize.push(i)
+    for(let i =10; i<=30; i+=2) fontsSize.push(i)
 
 
     useEffect(()=>{
@@ -38,10 +38,6 @@ const Table = props => {
         else
             setTable(updateSelectedStyle(R.clone(table)))
     }, [selected]);
-
-    useEffect(()=>{
-        console.log(table)
-    }, [table])
 
     const tableToJson = ()=>{
         let json ={name: tableName, table: table}
@@ -280,10 +276,53 @@ const Table = props => {
         switch(target.dataset.typo){
             case 'font' : t.font = target.value; break;
             case 'size' : t.size = target.value; break;
-            case 'alignLeft' : case 'alignRight' : case 'alignCenter' : t.align = target.dataset.typo; break;
+            case 'left' : case 'right' : case 'center' : t.align = target.dataset.typo; break;
             default : console.log("Problem in typoHandler")
         }
+        console.log(t)
         setTypo(t)
+    }
+
+    const applyTypo = (e)=>{
+        let t = R.clone(table)
+        let type = e.target.dataset.typo
+        console.log(type)
+        switch(type){
+            case 'applyAll' :
+                t.lines.forEach((line)=>{
+                    line.cells.forEach((cell)=>{
+                        cell.style.fontSize = typo.size+'px'
+                        cell.style.fontFamily = typo.font
+                        cell.style.textAlign = typo.align
+                    })
+                });
+                break;
+            case 'applyLine' :
+                t.lines[selected.cell.l].cells.forEach((cell)=>{
+                        cell.style.fontSize = typo.size+'px'
+                        cell.style.fontFamily = typo.font
+                        cell.style.textAlign = typo.align
+                    })
+                break;
+            case 'applyCol' :
+                t.lines.forEach((line)=>{
+                    let cell = line.cells[selected.cell.c]
+                    cell.style.fontSize = typo.size+'px'
+                    cell.style.fontFamily = typo.font
+                    cell.style.textAlign = typo.align
+                    line.cells[selected.cell.c] = cell
+                });
+                break;
+            case 'applyCell' :
+                let cell = t.lines[selected.cell.l].cells[selected.cell.c]
+                cell.style.fontSize = typo.size+'px'
+                cell.style.fontFamily = typo.font
+                cell.style.textAlign = typo.align
+                t.lines[selected.cell.l].cells[selected.cell.c] = cell
+                break;
+            default : console.log("Problem in typoHandler")
+        }
+        setTable(t)
     }
 
     const setCellSize=(cell)=>{
@@ -306,8 +345,8 @@ const Table = props => {
             return(<tr key={idL}>
                 {line.cells.map((cell,idC)=>{
                     return(
-                        <td className={cell.size.type==='null'?'d-none':''} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={cell.style} onClick={()=>handleSelected(idL,idC)} key={idC}>
-                            <input onFocus={()=>handleSelected(idL,idC)} type="text" data-table="cell" onChange={tableHandler} value={cell.content} />
+                        <td className={cell.size.type==='null'?'d-none':''} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
+                            <input onFocus={()=>handleSelected(idL,idC)} type="text" data-table="cell" style={{fontFamily: cell.style.fontFamily, fontSize: cell.style.fontSize,textAlign: cell.style.textAlign}} onChange={tableHandler} value={cell.content} />
                         </td>)
                     })}
                 </tr>)
@@ -376,6 +415,7 @@ const Table = props => {
                         </div>
                     </div>
                     <div className="form-show__body">
+                        <h4 className="app-show__helper">{helper}</h4>
                         <div className="form-show__typography">
                             <select data-typo='font' value={typo.font} onChange={typoHandler}>
                                 {fonts.map((f,i)=>{return(<option style={{fontFamily: f}} key={i} value={f}>{f}</option>)})}
@@ -383,13 +423,25 @@ const Table = props => {
                             <select data-typo='size' value={typo.size} onChange={typoHandler}>
                                 {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s}</option>)})}
                             </select>
-                            <input className={typo.align==='alignLeft'?'active':''} data-typo='alignLeft' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
-                            <input className={typo.align==='alignCenter'?'active':''} data-typo='alignCenter' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
-                            <input className={typo.align==='alignRight'?'active':''} data-typo='alignRight' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>
-                            <button disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
-                            <button disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
+                            <input className={typo.align==='left'?'active':''} data-typo='left' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
+                            <input className={typo.align==='center'?'active':''} data-typo='center' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
+                            <input className={typo.align==='right'?'active':''} data-typo='right' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>
+
+                            <div className="dropdown apply mr-auto p-1">
+                                <button className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Appliquer ...
+                                </button>
+                                <div className="dropdown-menu text-align-left apply-buttons" aria-labelledby="dropdownMenuButton">
+                                    <button data-typo='applyAll' className="dropdown-item" onClick={applyTypo} >Pour le tableau entier</button>
+                                    <button data-typo='applyLine' className="dropdown-item" onClick={applyTypo} >Pour la ligne selectionnée</button>
+                                    <button data-typo='applyCol' className="dropdown-item" onClick={applyTypo} >Pour la colonne selectionnée</button>
+                                    <button data-typo='applyCell' className="dropdown-item" onClick={applyTypo} >Pour la cellule selectionnée</button>
+                                </div>
+                            </div>
+
+                            <button className="ml-auto" disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt fa-2x "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
+                            <button disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt fa-2x "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
                         </div>
-                        <h4 className="app-show__helper">{helper}</h4>
                         <div className="form-show__preview" id="tablePreview">
                             {showTable()}
                         </div>
