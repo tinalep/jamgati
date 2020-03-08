@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
 import ReactDOM from 'react-dom';
 import Edit from './Table/Edit'
-import {isDescendant} from '../functions.js'
+import {process, copyToClipBoard} from '../functions.js'
+
 
 const R = require('ramda');
 const beauty_html = require('js-beautify').html;
@@ -14,11 +15,12 @@ const Table = props => {
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
     const [temp, setTemp] = useState({lvl: 1, tab: []})
-    const [typo, setTypo] = useState({font:'Lato', size:14, align: 'left'})
+    const [typo, setTypo] = useState({font:'0', size:0, align: '0'})
+    const [exportMode, setExportMode] = useState('default')
     const tempSize = 15
     const initCell = {content: 'Nouvelle cellule', style:{fontFamily: 'Lato', textAlign: 'center', fontSize: '16px'}, size:{lon: 1, type: 'cell'}}
-    const fonts = ['Arial', 'Courier New', 'Lato', 'Roboto', 'Times', 'Times New Roman']
-    const fontsSize =[]
+    const fonts = ['0','Arial', 'Courier New', 'Lato', 'Roboto', 'Times', 'Times New Roman']
+    const fontsSize =[0]
     const svgUrl = (window.location.href.includes('edit')?'../':'')
     for(let i =10; i<=30; i+=2) fontsSize.push(i)
 
@@ -38,6 +40,11 @@ const Table = props => {
         else
             setTable(updateSelectedStyle(R.clone(table)))
     }, [selected]);
+
+    const exportPopup = (on)=>{
+        document.querySelector('#exportPopup').style.display = (on?'block':'none');
+        setExportMode('default')
+    }
 
     const tableToJson = ()=>{
         let json ={name: tableName, table: table}
@@ -94,7 +101,6 @@ const Table = props => {
         setTemp(save)
         return newTable;
     }
-
 
     const updLines = (tab, pos=-1)=>{
         let t = tab
@@ -188,8 +194,6 @@ const Table = props => {
             if(temp.lvl!==temp.tab.length) cancel('redo');
         }
     }
-    
-    document.onkeydown = KeyPress;
 
     const tableHandler = (e)=>{
         let pos = 0
@@ -276,7 +280,7 @@ const Table = props => {
         switch(target.dataset.typo){
             case 'font' : t.font = target.value; break;
             case 'size' : t.size = target.value; break;
-            case 'left' : case 'right' : case 'center' : t.align = target.dataset.typo; break;
+            case 'left' : case 'right' : case 'center' : t.align = target.dataset.typo===t.align? '0':target.dataset.typo; break;
             default : console.log("Problem in typoHandler")
         }
         console.log(t)
@@ -285,43 +289,54 @@ const Table = props => {
 
     const applyTypo = (e)=>{
         let t = R.clone(table)
+        let save = R.clone(temp)
         let type = e.target.dataset.typo
         console.log(type)
         switch(type){
             case 'applyAll' :
                 t.lines.forEach((line)=>{
                     line.cells.forEach((cell)=>{
-                        cell.style.fontSize = typo.size+'px'
-                        cell.style.fontFamily = typo.font
-                        cell.style.textAlign = typo.align
+                        cell.style.fontSize = typo.size==0?cell.style.fontSize:typo.size+'px'
+                        cell.style.fontFamily = typo.font=='0'?cell.style.fontFamily:typo.font
+                        cell.style.textAlign = typo.align=='0'?cell.style.textAlign:typo.align
                     })
                 });
                 break;
             case 'applyLine' :
                 t.lines[selected.cell.l].cells.forEach((cell)=>{
-                        cell.style.fontSize = typo.size+'px'
-                        cell.style.fontFamily = typo.font
-                        cell.style.textAlign = typo.align
+                        cell.style.fontSize = typo.size==0?cell.style.fontSize:typo.size+'px'
+                        cell.style.fontFamily = typo.font=='0'?cell.style.fontFamily:typo.font
+                        cell.style.textAlign = typo.align=='0'?cell.style.textAlign:typo.align
                     })
                 break;
             case 'applyCol' :
                 t.lines.forEach((line)=>{
                     let cell = line.cells[selected.cell.c]
-                    cell.style.fontSize = typo.size+'px'
-                    cell.style.fontFamily = typo.font
-                    cell.style.textAlign = typo.align
+                    cell.style.fontSize = typo.size==0?cell.style.fontSize:typo.size+'px'
+                    cell.style.fontFamily = typo.font=='0'?cell.style.fontFamily:typo.font
+                    cell.style.textAlign = typo.align=='0'?cell.style.textAlign:typo.align
                     line.cells[selected.cell.c] = cell
                 });
                 break;
             case 'applyCell' :
                 let cell = t.lines[selected.cell.l].cells[selected.cell.c]
-                cell.style.fontSize = typo.size+'px'
-                cell.style.fontFamily = typo.font
-                cell.style.textAlign = typo.align
+                cell.style.fontSize = typo.size==0?cell.style.fontSize:typo.size+'px'
+                cell.style.fontFamily = typo.font=='0'?cell.style.fontFamily:typo.font
+                cell.style.textAlign = typo.align=='0'?cell.style.textAlign:typo.align
                 t.lines[selected.cell.l].cells[selected.cell.c] = cell
                 break;
             default : console.log("Problem in typoHandler")
         }
+        if(save.length>=tempSize) save.tab.splice(0,save.length+1-tempSize)
+        else
+        {
+            save.tab.splice(save.lvl, tempSize-save.lvl)
+            save.lvl = save.tab.length+1
+
+        }
+        save.tab.push({table:t, selected:selected})
+        if(table!==t) setTemp(save)
+        setTypo({font:'0', size:0, align: '0'})
         setTable(t)
     }
 
@@ -400,8 +415,46 @@ const Table = props => {
         setTemp(t)
     }
 
+    const showHtmlTable = (mode)=>{
+        return(beauty_html(process(document.querySelector('#tablePreview').outerHTML)).replace(/ readonly=""/g,''))
+    }
+
+    document.onkeydown = KeyPress;
+
     return (
         <div className="Form">
+            <div id='exportPopup'>
+                <div className="form-show__popup">
+                    <button className="form-show__close btn btn-danger" onClick={()=>exportPopup(false)}>X</button>
+                    <h3 className="text-center">Quel format pour l'export?</h3>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div className="text-center">
+                    <select value={exportMode} onChange={(e)=>(setExportMode(e.target.value))}>
+                        <option value='default' style={{fontWeight: 'bold'}}>Choisir le format d'export</option>
+                        <option value='html'>Texte HTML</option>
+                        <option value='json'>Texte JSON</option>
+                    </select>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    {exportMode=='default'?null:<>
+                    <div className="show__exporttext">
+                        <pre>
+                            <code id="toClipboard">
+                                {showHtmlTable(exportMode)}
+                            </code>
+                        </pre>
+                    </div>
+                        <button className="text-center" onClick={()=>copyToClipBoard(showHtmlTable(exportMode))}>Copier dans le presse-papier</button>
+                    </>}
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
             <div className="form-container">
                 <Edit tableName={tableName} setTableName={setTableName} table={table} tableHandler={tableHandler} selected={selected}/>
                 {/* Partie où est afficher le contenu créé */}
@@ -409,7 +462,7 @@ const Table = props => {
                     <div className="form-show__header d-flex justify-content-between">
                         <h2 className="form-show__title">Edition tableau</h2>
                         <div className="form-show__buttons">
-                            <button className="button button-bgnone" >Exporter</button>
+                            <button className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
                                 
                             <button data-toggle="modal" data-target="#saveModal" className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
                         </div>
@@ -418,10 +471,10 @@ const Table = props => {
                         <h4 className="app-show__helper">{helper}</h4>
                         <div className="form-show__typography">
                             <select data-typo='font' value={typo.font} onChange={typoHandler}>
-                                {fonts.map((f,i)=>{return(<option style={{fontFamily: f}} key={i} value={f}>{f}</option>)})}
+                                {fonts.map((f,i)=>{return(<option style={{fontFamily: f}} key={i} value={f}>{f=='0'?'Choisir une police':f}</option>)})}
                             </select>
                             <select data-typo='size' value={typo.size} onChange={typoHandler}>
-                                {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s}</option>)})}
+                                {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s==0?'Taille':s+' px'}</option>)})}
                             </select>
                             <input className={typo.align==='left'?'active':''} data-typo='left' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
                             <input className={typo.align==='center'?'active':''} data-typo='center' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>

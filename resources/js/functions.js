@@ -47,15 +47,4 @@ function copyToClipBoard(str){
     alert("Le code HTML du formulaire a été copié dans le presse-papier");
 }
 
-function isDescendant(parent, child) {
-    var node = child.parentNode;
-    while (node != null) {
-        if (node == parent) {
-            return true;
-        }
-        node = node.parentNode;
-    }
-    return false;
-}
-
-export { format, process, copyToClipBoard , isDescendant};
+export { format, process, copyToClipBoard };
