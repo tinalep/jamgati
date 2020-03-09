@@ -57,8 +57,16 @@ const Edit = props =>{
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">FUSIONNER</h4>
-                                <p>Fusion de cellules</p>
-                                <input data-table='fusion' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" alt="fusion button" src={svgUrl+'../../resources/assets/images/fusion-button.svg'}/>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <p>Fusionner</p>
+                                        <input data-table='fusion' onClick={props.tableHandler} className="border-0 bg-transparent" alt="fusion" type="image" src={svgUrl+'../../resources/assets/images/fusion-button.svg'}/>
+                                    </div>
+                                    <div className="col-6">
+                                        <p>Annuler la fusion</p>
+                                        <input data-table='unfusion' onClick={props.tableHandler} className="border-0 bg-transparent" alt="unfusion" type="image" src={svgUrl+'../../resources/assets/images/unfusion-button.svg'}/>
+                                    </div>
+                                </div>
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">SUPPRIMER</h4>
@@ -79,10 +87,16 @@ const Edit = props =>{
                             </div>
                             <div className="edit-card__section">
                                 <h4 className="edit-card__subtitle">EN-TÊTE</h4>
-                                <p>Activer ligne d'en tête</p>
-                                <button aria-label="Activer l'entête" className="border-0 bg-transparent" type="number">
-                                    <img  alt="Activer l'entête" src={svgUrl+'../../resources/assets/images/header-button.svg'}/>
-                                </button>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <p>Ligne d'en-tête</p>
+                                        <input data-table='rowHeader' onClick={props.tableHandler} className="border-0 bg-transparent" alt="row-header-button" type="image" src={svgUrl+'../../resources/assets/images/row-header-button.svg'}/>
+                                    </div>
+                                    <div className="col-6">
+                                        <p>Colonne d'en-tête</p>
+                                        <input data-table='colHeader' onClick={props.tableHandler} className="border-0 bg-transparent" alt="row-header-button" type="image" src={svgUrl+'../../resources/assets/images/col-header-button.svg'}/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Accordion.Collapse>
