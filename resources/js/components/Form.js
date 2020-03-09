@@ -122,7 +122,7 @@ const Form = props => {
         <div className="Form">
             <div id='exportPopup'>
                 <div className="form-show__popup">
-                    <button className="form-show__close btn btn-danger" onClick={()=>exportPopup(false)}>X</button>
+                    <button aria-label="Close" className="form-show__close btn btn-danger" onClick={()=>exportPopup(false)}>X</button>
                     <h3 className="text-center">Quel format pour l'export?</h3>
                     <br/>
                     <br/>
@@ -145,7 +145,7 @@ const Form = props => {
                             </code>
                         </pre>
                     </div>
-                        <button className="text-center" onClick={()=>copyToClipBoard(showForm(exportMode))}>Copier dans le presse-papier</button>
+                        <button aria-label="Copier" className="text-center" onClick={()=>copyToClipBoard(showForm(exportMode))}>Copier dans le presse-papier</button>
                     </>}
                     <br/>
                     <br/>
@@ -159,9 +159,9 @@ const Form = props => {
                     <div className="form-show__header d-flex justify-content-between">
                         <h2 className="form-show__title">Edition formulaire</h2>
                         <div className="form-show__buttons">
-                            <button className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
+                            <button aria-label="Export" title="Exporter votre élément" tabindex="0" className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
                                 
-                            <button data-toggle="modal" data-target="#saveModal" className="btn-save button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
+                            <button aria-label="Save" title="Sauvegarder dans votre tableau de bord" tabindex="0" data-toggle="modal" data-target="#saveModal" className="btn-save button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
                         </div>
                     </div>
                     <div className="form-show__body">

@@ -444,7 +444,7 @@ const Table = props => {
         <div className="Form">
             <div id='exportPopup'>
                 <div className="form-show__popup">
-                    <button className="form-show__close btn btn-danger" onClick={()=>exportPopup(false)}>X</button>
+                    <button aria-label="Close" className="form-show__close btn btn-danger" onClick={()=>exportPopup(false)}>X</button>
                     <h3 className="text-center">Quel format pour l'export?</h3>
                     <br/>
                     <br/>
@@ -467,7 +467,7 @@ const Table = props => {
                             </code>
                         </pre>
                     </div>
-                        <button className="text-center" onClick={()=>copyToClipBoard(showHtmlTable(exportMode))}>Copier dans le presse-papier</button>
+                        <button aria-label="Copy" className="text-center" onClick={()=>copyToClipBoard(showHtmlTable(exportMode))}>Copier dans le presse-papier</button>
                     </>}
                     <br/>
                     <br/>
@@ -481,9 +481,9 @@ const Table = props => {
                     <div className="form-show__header d-flex justify-content-between">
                         <h2 className="form-show__title">Edition tableau</h2>
                         <div className="form-show__buttons">
-                            <button className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
+                            <button aria-label="Export" className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
                                 
-                            <button data-toggle="modal" data-target="#saveModal" className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
+                            <button aria-label="Save" data-toggle="modal" data-target="#saveModal" className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
                         </div>
                     </div>
                     <div className="form-show__body">
@@ -495,24 +495,24 @@ const Table = props => {
                             <select data-typo='size' value={typo.size} onChange={typoHandler}>
                                 {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s==0?'Taille':s+' px'}</option>)})}
                             </select>
-                            <input className={typo.align==='left'?'active':''} data-typo='left' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
-                            <input className={typo.align==='center'?'active':''} data-typo='center' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
-                            <input className={typo.align==='right'?'active':''} data-typo='right' onClick={typoHandler} type="image" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>
+                            <input className={typo.align==='left'?'active':''} data-typo='left' onClick={typoHandler} type="image" alt="align left" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
+                            <input className={typo.align==='center'?'active':''} data-typo='center' onClick={typoHandler} type="image" alt="align center" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
+                            <input className={typo.align==='right'?'active':''} data-typo='right' onClick={typoHandler} type="image" alt="align right" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>
 
                             <div className="dropdown apply mr-auto p-1">
-                                <button className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button aria-label="Apply" className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Appliquer ...
                                 </button>
                                 <div className="dropdown-menu text-align-left apply-buttons" aria-labelledby="dropdownMenuButton">
-                                    <button data-typo='applyAll' className="dropdown-item" onClick={applyTypo} >Pour le tableau entier</button>
-                                    <button data-typo='applyLine' className="dropdown-item" onClick={applyTypo} >Pour la ligne selectionnée</button>
-                                    <button data-typo='applyCol' className="dropdown-item" onClick={applyTypo} >Pour la colonne selectionnée</button>
-                                    <button data-typo='applyCell' className="dropdown-item" onClick={applyTypo} >Pour la cellule selectionnée</button>
+                                    <button aria-label="ApplyAll" data-typo='applyAll' className="dropdown-item" onClick={applyTypo} >Pour le tableau entier</button>
+                                    <button aria-label="AppliLine" data-typo='applyLine' className="dropdown-item" onClick={applyTypo} >Pour la ligne selectionnée</button>
+                                    <button aria-label="ApplyCol" data-typo='applyCol' className="dropdown-item" onClick={applyTypo} >Pour la colonne selectionnée</button>
+                                    <button aria-label="AppliCell" data-typo='applyCell' className="dropdown-item" onClick={applyTypo} >Pour la cellule selectionnée</button>
                                 </div>
                             </div>
 
-                            <button className="ml-auto" disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt fa-2x "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
-                            <button disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt fa-2x "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
+                            <button aria-label="Undo" className="ml-auto" disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt fa-2x "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
+                            <button aria-label="Redo" disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt fa-2x "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
                         </div>
                         <div className="form-show__preview" id="tablePreview">
                             {showTable()}

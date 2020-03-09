@@ -31,7 +31,7 @@ $user = Auth::user();
                 <tr>
                     <td class="table_dashboard__title">Titre tableau 1</td>
                     <td class="table_dashboard__update">20/10/2019</td>
-                    <td class="table_dashboard__action"><a href="download"><i class="fas fa-download"></i></a><a href=""><i class="fas fa-edit"></i></a><a href="delete"><i class="fas fa-trash"></i></a></td>
+                    <td class="table_dashboard__action"><a href="download"><em class="fas fa-download"></em></a><a href=""><em class="fas fa-edit"></em></a><a href="delete"><em class="fas fa-trash"></em></a></td>
                 </tr>
             </tbody>
         </table>

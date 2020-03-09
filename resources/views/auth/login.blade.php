@@ -54,7 +54,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-12">
-                                    <button type="submit" class="button button-no-border button-bgred" style="margin: 0;">
+                                    <button aria-label="Submit" type="submit" class="button button-no-border button-bgred" style="margin: 0;">
                                         {{ __('Se connecter') }}
                                     </button>
 

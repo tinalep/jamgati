@@ -174,9 +174,9 @@ const Nav = props => {
                     <div className="form-show__header d-flex justify-content-between">
                         <h2 className="form-show__title">Edition menus</h2>
                         <div className="form-show__buttons">
-                            <button className="button button-bgnone" >Exporter</button>
+                            <button aria-label="Export" className="button button-bgnone" >Exporter</button>
                                 
-                            <button className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
+                            <button aria-label="Save" className="button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
                         </div>
                     </div>
                     <div className="form-show__body">
