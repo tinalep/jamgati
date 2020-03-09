@@ -90,11 +90,11 @@ const Edit = props =>{
                                 <div className="row">
                                     <div className="col-6">
                                         <p>Ligne d'en-tête</p>
-                                        <input data-table='rowHeader' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/row-header-button.svg'}/>
+                                        <input data-table='rowHeader' onClick={props.tableHandler} className={"p-2 bg-transparent "+(props.table.headers.row?'active':'')} type="image" src={svgUrl+'../../resources/assets/images/row-header-button.svg'}/>
                                     </div>
                                     <div className="col-6">
                                         <p>Colonne d'en-tête</p>
-                                        <input data-table='colHeader' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" src={svgUrl+'../../resources/assets/images/col-header-button.svg'}/>
+                                        <input data-table='colHeader' onClick={props.tableHandler} className={"p-2 bg-transparent "+(props.table.headers.col?'active':'')} type="image" src={svgUrl+'../../resources/assets/images/col-header-button.svg'}/>
                                     </div>
                                 </div>
                             </div>
@@ -110,6 +110,15 @@ const Edit = props =>{
                     <Accordion.Collapse eventKey="1">
                         <div className="edit-card__body">
                             <div className="edit-card__section">
+                                <h4 className="edit-card__subtitle">Tableau</h4>
+                                <p>Bordures</p>
+                                <p>Couleur de fond</p>
+                            </div>
+                            <div className="edit-card__section">
+                                <h4 className="edit-card__subtitle">EN-TÊTE</h4>
+                            </div>
+                            <div className="edit-card__section">
+
                             </div>
                         </div>
                     </Accordion.Collapse>

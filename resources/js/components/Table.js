@@ -12,11 +12,11 @@ const Table = props => {
 
     const [tableName, setTableName] = useState('Mon tableau')
     const [mode, setMode] = useState('create')
-    const [table, setTable] = useState({lines: [], parameters: {nbLines: 5, nbColumns: 5, style: {}}, mode:'edit'})
+    const [table, setTable] = useState({lines: [], parameters: {nbLines: 5, nbColumns: 5, style: {}}, mode:'edit', headers:{row: true, col: true}})
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
     const [temp, setTemp] = useState({lvl: 1, tab: []})
-    const [typo, setTypo] = useState({font:'0', size:0, align: '0'})
+    const [typo, setTypo] = useState({font:'0', size:0, align: '0', fontWeight: '0', color: '0', })
     const [exportMode, setExportMode] = useState('default')
     const tempSize = 15
     const initCell = {content: 'Nouvelle cellule', style:{fontFamily: 'Lato', textAlign: 'center', fontSize: '16px'}, size:{lon: 1, type: 'cell'}}
@@ -177,19 +177,19 @@ const Table = props => {
         }
         if(selected.cell.c===c){
             obj.type='row'
-            obj.bool=(Math.abs(selected.cell.l-l)===1)&&(l>1)
+            obj.bool=(Math.abs(selected.cell.l-l)===1)&&(selected.cell.l*l>0)
         }
         return obj
     }
 
     const KeyPress = (e)=>{
         var evtobj = window.event? event : e
-        if (evtobj.keyCode == 90 && evtobj.ctrlKey)
+        if (evtobj.keyCode == 90 && evtobj.ctrlKey) //ctrlz
         {
             e.preventDefault();
             if(temp.lvl!==1) cancel('undo');
         }
-        if (evtobj.keyCode == 89 && evtobj.ctrlKey)
+        if (evtobj.keyCode == 89 && evtobj.ctrlKey) //ctrly
         {
             e.preventDefault();
             if(temp.lvl!==temp.tab.length) cancel('redo');
@@ -248,6 +248,8 @@ const Table = props => {
             case 'cell' :
                 updTable.lines[selected.line].cells[selected.column].content=val
                 break;
+            case 'rowHeader' : updTable.headers.row= !updTable.headers.row; break;
+            case 'colHeader' : updTable.headers.col= !updTable.headers.col; break;
             case 'fusion' :
                 if(updTable.mode==='fusion'){
                     updTable.mode='edit'
@@ -261,7 +263,7 @@ const Table = props => {
             default : console.log('Problem with the tableHandler')
         }
         let save = R.clone(temp)
-        if(save.length>=tempSize) save.tab.splice(0,save.length+1-tempSize)
+        if(save.tab.length>=tempSize) save.tab.splice(0,save.tab.length+1-tempSize)
         else
         {
             save.tab.splice(save.lvl, tempSize-save.lvl)
@@ -270,7 +272,6 @@ const Table = props => {
         }
         save.tab.push({table:updTable, selected:selected})
         if(target.dataset.table!=='fusion') setTemp(save)
-        console.log(save)
         updTable=updateSelectedStyle(updTable)
         setTable(updTable)
     }
@@ -328,7 +329,7 @@ const Table = props => {
                 break;
             default : console.log("Problem in typoHandler")
         }
-        if(save.length>=tempSize) save.tab.splice(0,save.length+1-tempSize)
+        if(save.tab.length>=tempSize) save.tab.splice(0,save.tab.length+1-tempSize)
         else
         {
             save.tab.splice(save.lvl, tempSize-save.lvl)
@@ -360,20 +361,34 @@ const Table = props => {
         table.lines.map((line,idL)=>{
             return(<tr key={idL}>
                 {line.cells.map((cell,idC)=>{
+                    if(idL===0&&table.headers.row||idC===0&&table.headers.col)
+                    {
+                    return(
+                        <th className={cell.size.type==='null'?'d-none':''} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
+                            <textarea className="autoExpand" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} type="text" data-table="cell" style={{fontFamily: cell.style.fontFamily, fontSize: cell.style.fontSize,textAlign: cell.style.textAlign}} onChange={tableHandler} value={cell.content} />
+                        </th>)
+                    }
+                    else
+                    {
                     return(
                         <td className={cell.size.type==='null'?'d-none':''} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
-                            <input onFocus={()=>handleSelected(idL,idC)} type="text" data-table="cell" style={{fontFamily: cell.style.fontFamily, fontSize: cell.style.fontSize,textAlign: cell.style.textAlign}} onChange={tableHandler} value={cell.content} />
+                            <textarea className="autoExpand" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} type="text" data-table="cell" style={{fontFamily: cell.style.fontFamily, fontSize: cell.style.fontSize,textAlign: cell.style.textAlign}} onChange={tableHandler} value={cell.content} />
                         </td>)
+                    }
                     })}
+                    
                 </tr>)
         })
+        let thead = tableContent[0]
+        let tbody = tableContent.filter(e=>e!==tableContent[0])
         return(
             <table className="table table-bordered table-striped">
                 <thead className="thead-light">
-                    {tableContent[0]}
+                    {table.headers.row?thead:null}
                 </thead>
                 <tbody>
-                    {tableContent.filter(e=>e!==tableContent[0])}
+                    {table.headers.row?null:thead}
+                    {tbody}
                 </tbody>
             </table>
         )
@@ -396,7 +411,7 @@ const Table = props => {
             t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.lon++
             t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.type=adj.type
             t.lines[Math.max(selected.cell.l,l)].cells[Math.max(selected.cell.c,c)].size.type='null'
-            if(save.length>=tempSize) save.tab.splice(0,save.length+1-tempSize)
+            if(save.tab.length>=tempSize) save.tab.splice(0,save.tab.length+1-tempSize)
             else
             {
                 save.tab.splice(save.lvl, tempSize-save.lvl)

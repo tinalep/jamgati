@@ -108,6 +108,10 @@
     &:not(:last-child){
         border-bottom: solid 2px rgba(230, 92, 0, 0.05);
     }
+    .active{
+        border: solid 2px #EB7808;
+        border-radius: 5px;
+    }
 }
 
 .edit-card__type{
@@ -167,11 +171,12 @@
     background-color: rgb(211, 209, 209);
 }
 
-#table-root table input{
+#table-root table textarea{
     background-color: rgba(0,0,0,0);
     border:none;
     width: 100%;
     height: 100%;
+    resize: none;
 }
 
 #table-root .form-show__typography{
