@@ -5,16 +5,16 @@
         <title>Jamgati</title>
         <meta charset="utf-8">
         <meta name="description" content="description de la page">
-        <link rel="stylesheet" href="{{asset("css/app.css")}}">
+        <link rel="stylesheet" href="{{asset("css/app.css")}}" async>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet" async>
         
         {{-- Script qui permet de charger FONTAWESOME plus rapidement --}}
-        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+        <script type="text/javascript" async> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
         <link rel="icon" type="image/png" href="{{asset("assets/images/logo-jamgati.png")}}" />
         
-        <script type="text/javascript" src="../tarteaucitron/tarteaucitron.js"></script>
+        <script  src="../tarteaucitron/tarteaucitron.js" async></script>
 
         <script type="text/javascript">
         tarteaucitron.init({
@@ -49,11 +49,11 @@
     <header class="header header__fixed">
         <div class="header__noauth">
             <div class="header-nav" role="navigation" aria-label="Main Navigation">
-                <a class="header-logo" href="{{ route('home') }}"><img src="{{asset("assets/images/img-logo-jamgati.png")}}" alt="Jamgati"> </a>
+                <a class="header-logo" href="{{ route('home') }}"><img src="{{asset("assets/images/img-logo-jamgati.png")}}" loading="lazy" alt="Logo Jamgati"> </a>
                 <nav>
                     <ul role="menubar" aria-label="string">
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="{{ route('home') }}">Accueil</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="">Tableau</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('tab.create') }}">Tableau</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('form.create') }}">Formulaire</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('nav.create') }}">Menu</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('doc') }}">Documentation</a></li>
@@ -64,9 +64,9 @@
                 <a class="button button-bgnone" href="{{ route('login') }}">Connexion</a>
                 <a class="button button-bgred" href="{{ route('register') }}">Inscription</a>
             </div>
-            <div class="cross" id="cross"><i class="fas fa-times"></i></div>
+            <div class="cross" id="cross"><em class="fas fa-times"></em></div>
         </div>
-        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+        <div class="burger" id="burger"><em class="fas fa-bars"></em></div>
     </header>
     @endguest
     
@@ -89,7 +89,7 @@
                 <li>
                     <a href="#" class="help">
                         <div class="icon">
-                            <img src="{{asset("assets/images/icon-help.svg")}}" alt="Page d'aide">
+                            <img src="{{asset("assets/images/icon-help.svg")}}" loading="lazy" alt="Page d'aide">
                         </div>
                         Aide
                     </a>
@@ -97,7 +97,7 @@
                 <li>
                     <a href="https://github.com/tinalep/jamgati">
                         <div class="icon">
-                            <img src="{{asset("assets/images/icon-github.svg")}}" alt="Git Hub">
+                            <img src="{{asset("assets/images/icon-github.svg")}}" loading="lazy" alt="Git Hub">
                         </div>
                     </a>
                 </li>
@@ -107,7 +107,7 @@
             © Jamgati - 2019
         </div>
     </footer>
-<script src="{{asset("js/app.js")}}"></script>
+<script src="{{asset("js/app.js")}}" async></script>
 <script type="text/javascript">
     tarteaucitron.user.gtagUa = 'UA-130290147-2';
     tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };

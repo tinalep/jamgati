@@ -14,6 +14,9 @@
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
 
+// Download file
+Route::post('/dl/test', 'BoardController@dl')->name('dl');
+
 // Table
 Route::get('/table/loadall', 'TableController@loadall')->name('table.loadall');
 Route::get('/table/{table}/load', 'TableController@load')->name('table.load');
@@ -49,9 +52,6 @@ Route::get('/data', 'HomeController@data')->name('data');
 
 
 Auth::routes();
-// Route::get('password/email', function(){
-//     Mail::to('tinalepeltier1@gmail.com')->send(new Send());
-// });
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.reset');

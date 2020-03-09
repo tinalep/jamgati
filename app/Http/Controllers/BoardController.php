@@ -95,4 +95,17 @@ class BoardController extends Controller
     {
         //
     }
+
+    /**
+     * Downloading
+     * 
+     * @return void \Illuminate\Http\Response
+     */
+    public function dl(Request $request){
+        $html = $request->input()['html'];
+        $name = $request->input()['filename'];
+        return response()->streamDownload(function () use ($html) {
+            echo $html;
+        }, $name);
+    }
 }

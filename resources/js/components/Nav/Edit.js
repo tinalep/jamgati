@@ -217,7 +217,7 @@ const Edit = props =>{
                         <div className="edit-card__body">
                             <div className="edit-card__section">
                                 {displayEditElement()}
-                                <button onClick={()=>{props.onClickAdd(newElt)}}>Valider</button>
+                                <button aria-label="Valider" onClick={()=>{props.onClickAdd(newElt)}}>Valider</button>
                             </div>
                         </div>
                     </Accordion.Collapse>
@@ -247,7 +247,7 @@ const Edit = props =>{
                                     {editElt.key==-1 ? null : 
                                     <>   
                                         {displayEditElement(editElt)}
-                                        <button onClick={()=>{props.onClickUpdate(editElt)}}>Mettre à jour</button>    
+                                        <button aria-label="MAJ" onClick={()=>{props.onClickUpdate(editElt)}}>Mettre à jour</button>    
                                         {/* <button onClick={()=>{props.onClickDelete(editElt)}}>Supprimer</button> */}
                                     </>}
                                 </div>

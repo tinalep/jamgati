@@ -19,7 +19,7 @@
                         {{ __('Si vous n\'avez pas reçu de mail') }},
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class=" button button-no-border button-bgred btn btn-link p-0 m-0 align-baseline">{{ __('Recevoir un mail') }}</button>.
+                            <button aria-label="Submit" type="submit" class=" button button-no-border button-bgred btn btn-link p-0 m-0 align-baseline">{{ __('Recevoir un mail') }}</button>.
                         </form>
                     </div>
                 </div>

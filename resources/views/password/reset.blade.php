@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmer le mot de passe') }}</label>
 
                                 <div class="col-12">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -52,7 +52,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-12">
-                                    <button type="submit" class="button button-no-border button-bgred btn btn-primary">
+                                    <button aria-label="Submit" type="submit" class="button button-no-border button-bgred btn btn-primary">
                                         {{ __('Réinitialiser le mot de passe') }}
                                     </button>
                                 </div>

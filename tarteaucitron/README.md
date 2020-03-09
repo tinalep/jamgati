@@ -27,7 +27,7 @@ Bonus:
 # How to use
 
 ```html
-<script type="text/javascript" src="/tarteaucitron/tarteaucitron.js"></script>
+<script  src="/tarteaucitron/tarteaucitron.js"></script>
 
 <script type="text/javascript">
 tarteaucitron.init({
