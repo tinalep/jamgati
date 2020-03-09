@@ -58,7 +58,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                             <a href="{{ route('form.edit', ['form'=>$form]) }}"><em class="fas fa-edit"></em></a> 
                             <!-- Button trigger modal -->
                             <a type="button" data-toggle="modal" data-target="{{'#exampleModal'.$form->id}}">
-                                <em class="fas fa-trash"></i>
+                                <em class="fas fa-trash"></em>
                             </a>
         
                             <!-- Modal -->
