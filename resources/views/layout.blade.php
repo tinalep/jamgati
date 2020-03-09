@@ -52,13 +52,15 @@
                 <a class="header-logo" href="{{ route('home') }}"><img src="{{asset("assets/images/img-logo-jamgati.png")}}" loading="lazy" alt="Logo Jamgati"> </a>
                 <nav>
                     <ul role="menubar" aria-label="string">
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link activ-link" href="{{ route('home') }}">Accueil</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('tab.create') }}">Tableau</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('form.create') }}">Formulaire</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('nav.create') }}">Menu</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="nav-link" href="{{ route('doc') }}">Documentation</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('home') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('home') }}">Accueil</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('tab.create') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('tab.create') }}">Tableau</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('form.create') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('form.create') }}">Formulaire</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('nav.create') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('nav.create') }}">Menu</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('doc') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('doc') }}">Documentation</a></li>
                     </ul>
                 </nav>
+
+                {{-- class="nav-link activ-link" --}}
             </div>
             <div class="header-id">
                 <a class="button button-bgnone" href="{{ route('login') }}">Connexion</a>
