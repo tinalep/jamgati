@@ -49,9 +49,6 @@ Route::get('/data', 'HomeController@data')->name('data');
 
 
 Auth::routes();
-// Route::get('password/email', function(){
-//     Mail::to('tinalepeltier1@gmail.com')->send(new Send());
-// });
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.reset');
