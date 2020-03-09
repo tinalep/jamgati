@@ -13,7 +13,7 @@
     background: $color-white;
     transition: 0.3s all ease-in-out;
 
-    @include lg-breakpoint(){
+    @include md-breakpoint(){
         position: initial;
         display: flex;
         flex-direction: column;

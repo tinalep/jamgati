@@ -172,7 +172,7 @@ const Nav = props => {
                 {/* Partie où est afficher le contenu créé */}
                 <div className="form-show">  
                     <div className="form-show__header d-flex justify-content-between">
-                        <h2 className="form-show__title">Edition menus</h2>
+                        <h2 className="form-show__title">Edition menu</h2>
                         <div className="form-show__buttons">
                             <button className="button button-bgnone" >Exporter</button>
                                 
