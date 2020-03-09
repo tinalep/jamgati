@@ -14,6 +14,9 @@
 // Accueil  
 Route::get('/', 'HomeController@index')->name('home');
 
+// Download file
+Route::get('/dl/test', 'BoardController@dl')->name('dl');
+
 // Table
 Route::get('/table/loadall', 'TableController@loadall')->name('table.loadall');
 Route::get('/table/{table}/load', 'TableController@load')->name('table.load');

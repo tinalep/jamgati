@@ -95,4 +95,16 @@ class BoardController extends Controller
     {
         //
     }
+
+    /**
+     * Downloading
+     * 
+     * @return void \Illuminate\Http\Response
+     */
+    public function dl(Request $request){
+        $content = $request->input();
+        return response()->streamDownload(function ($content) {
+            echo $content;
+        }, 'jamgati.html');
+    }
 }
