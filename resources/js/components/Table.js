@@ -177,7 +177,7 @@ const Table = props => {
         }
         if(selected.cell.c===c){
             obj.type='row'
-            obj.bool=(Math.abs(selected.cell.l-l)===1)
+            obj.bool=(Math.abs(selected.cell.l-l)===1)&&(l>1)
         }
         return obj
     }
@@ -390,11 +390,21 @@ const Table = props => {
     const handleFusion = (l,c)=>{
         let t = R.clone(table)
         let adj = isAdj(l,c)
+        let save = R.clone(temp)
         if(adj.bool)
         {
             t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.lon++
             t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.type=adj.type
             t.lines[Math.max(selected.cell.l,l)].cells[Math.max(selected.cell.c,c)].size.type='null'
+            if(save.length>=tempSize) save.tab.splice(0,save.length+1-tempSize)
+            else
+            {
+                save.tab.splice(save.lvl, tempSize-save.lvl)
+                save.lvl = save.tab.length+1
+
+            }
+            save.tab.push({table:t, selected:selected})
+            if(table!==t) setTemp(save)
         }
         t.mode='edit'
         setHelper('')
