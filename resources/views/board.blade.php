@@ -34,7 +34,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
         <a class="dashboard_nav__link {{$content=='form'?'dashboard_nav__link--active':''}}" href="?content=form">Formulaire</a>
         <a class="dashboard_nav__link {{$content=='nav'?'dashboard_nav__link--active':''}}" href="?content=nav">Menu</a>
     </nav>
-
+    
     <table class="table_dashboard" style="width:100%">
         <thead>
             <tr>

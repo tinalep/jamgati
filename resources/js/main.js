@@ -3,12 +3,32 @@
 window.onload = function() {
     
     checkUrl();
-    // changeSidebar();
     openSidebar();
+    changeSidebar();
 
     window.onresize = function() {
-        // changeSidebar();
+        openSidebar();
+        changeSidebar();
     };
+
+    //Sort table
+    const table = document.querySelector('table');
+    if(table){
+        const compare = (ids, asc) => (row1, row2) => {
+            const tdValue = (row, ids) => row.children[ids].textContent;
+            const tri = (v1, v2) => v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2);
+            return tri(tdValue(asc ? row1 : row2, ids), tdValue(asc ? row2 : row1, ids));
+        };
+        
+        const tbody = document.querySelector('tbody');
+        const thx = document.querySelectorAll('th');
+        const trxb = tbody.querySelectorAll('tr');
+        thx.forEach(th => th.addEventListener('click', () => {
+            let classe = Array.from(trxb).sort(compare(Array.from(thx).indexOf(th), this.asc = !this.asc));
+            classe.forEach(tr => tbody.appendChild(tr));
+        }));
+    }
+
 
     function checkUrl(){
         const currentLocation = JSON.stringify(window.location);
@@ -53,5 +73,22 @@ window.onload = function() {
             })
         }
     }
+
+    function changeSidebar(){
+
+        let windowWidth = window.innerWidth;
+        const sidebar = document.querySelector('.sidebar');
+        const create = document.querySelector('.page-create');
+
+        if(!create){
+            if(windowWidth < 991 && windowWidth > 768){
+                sidebar.classList.add('sidebar--collapsed');
+            }
+            else{
+                sidebar.classList.remove('sidebar--collapsed');
+            }
+        }
+}
+
 
 };

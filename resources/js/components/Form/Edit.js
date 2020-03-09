@@ -87,8 +87,6 @@ const Edit = props =>{
                         <input data-field="label" value={field.label} onChange={handleChangeField}/>
 
                         <br/>
-                        <br/>
-                        <br/>
 
                         {field.type==='checkbox'||field.type==='radio'||field.type==='list'?
                         <>  
