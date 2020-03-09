@@ -14,5 +14,10 @@ $icons: ("icon-plus-circle", "icon-dashboard", "icon-search", "icon-settings");
             vertical-align: middle;
             margin-right: 25px;
         }
+        &.activ-link{
+            &:before{
+                background-image: url("../images/#{$icon-name}-red.svg");
+            }
+        }
     }
 }
