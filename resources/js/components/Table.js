@@ -6,6 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 
 const R = require('ramda');
 const beauty_html = require('js-beautify').html;
+const FileDownload = require('js-file-download');
 
 const Table = props => {
 
@@ -404,6 +405,12 @@ const Table = props => {
         console.log($.contains($(e.target).get(0),$('#tablePreview').get(0)))
     }
 
+    const dl = ()=>{
+        let mode = exportMode
+        if (mode==='html') FileDownload(showHtmlTable(), tableName+".html")
+        if (mode==='csv') FileDownload(showCsvTable(), tableName+".csv")
+    }
+
     const cancel = (type)=>{
         let i = type==='undo'? -1 : 1
         let t = R.clone(temp)
@@ -415,18 +422,21 @@ const Table = props => {
         setTemp(t)
     }
 
-    const showHtmlTable = (mode)=>{
+    const showHtmlTable = ()=>{
+        let style =''
         let tableContent =
         table.lines.map((line,idL)=>{
             return(<tr key={idL}>
                 {line.cells.map((cell,idC)=>{
+                    style+= '.cell'+idL+'-'+idC+' { font-size: '+cell.style.fontSize+'; font-family: '+cell.style.fontFamily+'; text-align: '+cell.style.textAlign+';}'
                     return(cell.size.type==='null'?null:
-                        <td colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{fontSize: cell.style.fontsSize, fontFamily: cell.style.fontFamily, textAlign: cell.style.textAlign}} key={idC}>{cell.content}</td>)
+                        <td className={"cell"+idL+'-'+idC} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} key={idC}>{cell.content}</td>)
                     })}
                 </tr>)
         })
-        var el = document.createElement('div');
         let tableDom =
+        <>
+            <style dangerouslySetInnerHTML={{__html: style}} />
             <table className="table table-bordered table-striped">
                 <thead className="thead-light">
                     {tableContent[0]}
@@ -435,7 +445,20 @@ const Table = props => {
                     {tableContent.filter(e=>e!==tableContent[0])}
                 </tbody>
             </table>
+        </>
         return beauty_html(ReactDOMServer.renderToStaticMarkup(tableDom))
+    }
+
+    const showCsvTable = ()=>{
+        let csv = ''
+        table.lines.forEach((line,idL)=>{
+                line.cells.forEach((cell,idC)=>{
+                    csv+=(cell.size.type==="null"?'':cell.content)
+                    csv+=(idC===line.cells.length-1?'':';')
+                })
+                csv+='\n'
+        })
+        return csv
     }
 
     document.onkeydown = KeyPress;
@@ -450,10 +473,10 @@ const Table = props => {
                     <br/>
                     <br/>
                     <div className="text-center">
-                    <select value={exportMode} onChange={(e)=>(setExportMode(e.target.value))}>
+                    <select value={exportMode} onChange={(e)=>{(setExportMode(e.target.value)); console.log(e.target.value)}}>
                         <option value='default' style={{fontWeight: 'bold'}}>Choisir le format d'export</option>
-                        <option value='html'>Texte HTML</option>
-                        <option value='json'>Texte JSON</option>
+                        <option value='html'>HTML</option>
+                        <option value='csv'>CSV</option>
                     </select>
                     </div>
                     <br/>
@@ -461,13 +484,14 @@ const Table = props => {
                     <br/>
                     {exportMode=='default'?null:<>
                     <div className="show__exporttext">
-                        <pre>
+                        <pre className="app-pre">
                             <code id="toClipboard">
-                                {showHtmlTable(exportMode)}
+                                {(exportMode==='html'?showHtmlTable():showCsvTable())}
                             </code>
                         </pre>
                     </div>
                         <button className="text-center" onClick={()=>copyToClipBoard(showHtmlTable(exportMode))}>Copier dans le presse-papier</button>
+                        <button className="text-center" onClick={dl}>Télécharger</button>
                     </>}
                     <br/>
                     <br/>

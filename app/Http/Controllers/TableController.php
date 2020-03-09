@@ -57,7 +57,7 @@ class TableController extends Controller
      * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(\App\Table $table)
     {
         return response()->json($table);
     }
