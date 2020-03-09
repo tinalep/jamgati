@@ -45,7 +45,7 @@ var Nav = class {
     // Fonction qui calcule la taille du document
     isMobile() { 
         // w = width du document
-        const w = window.screen.width;
+        const w = window.innerWidth;
         if (w <= 768) {
 
             // Si version mobile (w) => retourne true
