@@ -24,7 +24,7 @@
     .dashboard{
         margin-left: 15px;
 
-        @include md-breakpoint(){
+        @include lg-breakpoint(){
             margin-left: 0;
         }
     }
@@ -33,7 +33,7 @@
         display: flex;
         align-items: center;
         margin-left: 15px;
-        @include md-breakpoint(){
+        @include lg-breakpoint(){
             margin-left: 0;
         }
 
@@ -56,7 +56,7 @@
     .dashboard_nav{
         margin-top: 19px;
         margin-left: 15px;
-        @include md-breakpoint(){
+        @include lg-breakpoint(){
             margin-left: 0;
         }
         &__link{
@@ -165,10 +165,14 @@
                     color: $color-dark-grey;
                 }
                 &[data-label="Actions"]{
-                    width: 45%;
+                    @include md-breakpoint(){
+                        width: 45%;
+                    }
                 }
                 &[data-label="Titre"]{
-                    width: 35%;
+                    @include md-breakpoint(){
+                        width: 35%;
+                    }
                 }
                 @include md-breakpoint(){
                     display: table-cell;

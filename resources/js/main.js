@@ -37,16 +37,19 @@ window.onload = function() {
         const searchOtherTerm = 'edit';
         const haveTerm = currentLocation.indexOf(searchTerm);
         const haveOtherTerm = currentLocation.indexOf(searchOtherTerm);
-        if(haveTerm !== -1 || haveOtherTerm !== -1 && haveTerm !== 'create-guest'){
+        if(haveTerm !== -1 || haveOtherTerm !== -1){
             let dashboard = document.querySelector('.page-dashboard');
+            let windowWidth = window.innerWidth;
             dashboard.classList.add('page-create');
             document.body.classList.add('page-create');
 
             //Collapse sidebarNav
-            let sidebarNav = document.querySelector('.sidebar');
-            console.log(sidebarNav);
-            if(sidebarNav){
-                sidebarNav.classList.add('sidebar--collapsed');
+            if(windowWidth > 991){
+                let sidebarNav = document.querySelector('.sidebar');
+                console.log(sidebarNav);
+                if(sidebarNav){
+                    sidebarNav.classList.add('sidebar--collapsed');
+                }
             }
         }
     }
