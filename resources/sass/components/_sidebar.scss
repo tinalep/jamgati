@@ -7,13 +7,13 @@
     height: 100vh;
     width: 240px;
     border-right: 1px solid $color-grey;
-    padding: 20px 25px;
+    // padding: 20px 25px;
     margin-right: 60px;
     z-index: 6;
     background: $color-white;
     transition: 0.3s all ease-in-out;
 
-    @include lg-breakpoint(){
+    @include md-breakpoint(){
         position: initial;
         display: flex;
         flex-direction: column;
@@ -35,15 +35,29 @@
                 & > span{
                     display: none;
                 }
+                
             }
         }
 
+    }
+    
+    nav{
+        a{
+            &:hover,
+            &.activ-link{
+                background:$color-orange-transparent;
+                border-left: 5px solid $color-red;
+                color: $color-red;
+            }
+        }
     }
 }
 
 .sidebar-nav{
     position: relative;
     .close-sidebar{
+        padding-right:20px;
+        padding-top: 10px;
         float: right;
         color: $color-pink;
         font-size: rem(20);
@@ -52,12 +66,11 @@
             display: none;
         }
     }
-    .logo{
-        margin-bottom: 40px;
-    }
     a{
         display: block;
         color: $color-dark-grey;
-        margin-bottom: 35px;
+        margin-bottom: 20px;
+        padding: 15px 25px;
+        transition: 0.3s all ease-in-out;
     }
 }

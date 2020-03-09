@@ -87,8 +87,6 @@ const Edit = props =>{
                         <input data-field="label" value={field.label} onChange={handleChangeField}/>
 
                         <br/>
-                        <br/>
-                        <br/>
 
                         {field.type==='checkbox'||field.type==='radio'||field.type==='list'?
                         <>  
@@ -99,11 +97,11 @@ const Edit = props =>{
                                 <React.Fragment key={id}>
                                     <input data-field='values' data-id={id} onChange={handleChangeField} placeholder={'Valeur '+(id+1)} value={value}/>
                                     {/* Boutons d'ajout de valeurs possibles pour les champs multiples */}
-                                    <button tabIndex="-1"  className="custom-fa custom-faplus" data-field='plus' data-id={id} onClick={handleChangeField}>+</button>
-                                    <button tabIndex="-1" className="custom-fa custom-faminus" data-field='minus' data-id={id} onClick={handleChangeField}>-</button>
+                                    <button aria-label="Plus" tabIndex="-1"  className="custom-fa custom-faplus" data-field='plus' data-id={id} onClick={handleChangeField}>+</button>
+                                    <button aria-label="Moins" tabIndex="-1" className="custom-fa custom-faminus" data-field='minus' data-id={id} onClick={handleChangeField}>-</button>
                                 </React.Fragment>)
                             })}
-                            <button data-field='plus' data-id={field.values.length} onClick={handleChangeField}>Valeur supplémentaire</button>
+                            <button aria-label="ValeurSupp" data-field='plus' data-id={field.values.length} onClick={handleChangeField}>Valeur supplémentaire</button>
                             <br/>
                             <br/>
                             <br/>
@@ -158,7 +156,7 @@ const Edit = props =>{
                             {displayEditField()}
                             {newField.props.type==='' ? null : 
                                 <>   
-                                    <button onClick={()=>{props.onClickAdd(newField)}}>Ajouter au formulaire</button>  
+                                    <button aria-label="AddToForm" onClick={()=>{props.onClickAdd(newField)}}>Ajouter au formulaire</button>  
                                 </>}
                             </div>
                         </div>
@@ -189,8 +187,8 @@ const Edit = props =>{
                                     {editField.props.pos===-1 ? null : 
                                     <>   
                                         {displayEditField(editField.props)}
-                                        <button onClick={()=>{props.onClickUpdate(editField)}}>Mettre à jour</button>    
-                                        <button onClick={()=>{props.onClickDelete(editField)}}>Supprimer</button>
+                                        <button aria-label="MAJ" onClick={()=>{props.onClickUpdate(editField)}}>Mettre à jour</button>    
+                                        <button aria-label="Supp" onClick={()=>{props.onClickDelete(editField)}}>Supprimer</button>
                                     </>}
                                 </div>
                             </div>

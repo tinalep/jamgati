@@ -6,10 +6,10 @@
 
 //Common 
 @import "common/reset";
+@import 'common/mixins';
 @import 'common/global';
 @import 'common/variables';
 @import 'common/functions';
-@import 'common/mixins';
 
 //Components
 @import 'components/typography';

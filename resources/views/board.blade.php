@@ -18,7 +18,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
             <div class="dropdown">
             {{-- <button class=>+</button> --}}
 
-                <button class="button button-bgorange button-no-border button-round" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button aria-label="New" class="button button-bgorange button-no-border button-round" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   +
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -34,7 +34,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
         <a class="dashboard_nav__link {{$content=='form'?'dashboard_nav__link--active':''}}" href="?content=form">Formulaire</a>
         <a class="dashboard_nav__link {{$content=='nav'?'dashboard_nav__link--active':''}}" href="?content=nav">Menu</a>
     </nav>
-
+    
     <table class="table_dashboard" style="width:100%">
         <thead>
             <tr>
@@ -54,11 +54,11 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                         <td scope="row" data-label="Titre" class="table_dashboard__title">{{ $form->name }}</td>
                         <td data-label="Dernière modification" class="table_dashboard__update">{{date('d/m/y', strtotime($form->updated_at )) }}</td>
                         <td  data-label="Actions" class="table_dashboard__action">
-                            <a href="#"><i class="fas fa-download"></i></a>
-                            <a href="{{ route('form.edit', ['form'=>$form]) }}"><i class="fas fa-edit"></i></a> 
+                            <a href="#"><em class="fas fa-download"></em></a>
+                            <a href="{{ route('form.edit', ['form'=>$form]) }}"><em class="fas fa-edit"></em></a> 
                             <!-- Button trigger modal -->
                             <a type="button" data-toggle="modal" data-target="{{'#exampleModal'.$form->id}}">
-                                <i class="fas fa-trash"></i>
+                                <em class="fas fa-trash"></em>
                             </a>
         
                             <!-- Modal -->
@@ -66,8 +66,8 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <i class="fas fa-times"></i>
+                                    <button aria-label="Close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <em class="fas fa-times"></em>
                                     </button>
                                     </div>
                                     <div class="modal-body">
@@ -75,7 +75,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                                             @csrf
                                             @method('DELETE')
                                             <p>Etes-vous sûr de vouloir supprimer ce contenu</p>
-                                            <button type="submit" class="button button-bgred button-no-border">Supprimer</button>
+                                            <button aria-label="Submit" type="submit" class="button button-bgred button-no-border">Supprimer</button>
                                             <button type="button" class="cancel" data-dismiss="modal" aria-label="Close">
                                                 Annuler
                                             </button>
@@ -94,11 +94,11 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                         <td scope="row" data-label="Titre" class="table_dashboard__title">{{ $nav->name }}</td>
                         <td data-label="Dernière modification" class="table_dashboard__update">{{date('d/m/y', strtotime($nav->updated_at )) }}</td>
                         <td  data-label="Actions" class="table_dashboard__action">
-                            <a href="#"><i class="fas fa-download"></i></a>
-                            <a href="{{ route('nav.edit', ['nav'=>$nav]) }}"><i class="fas fa-edit"></i></a> 
+                            <a href="#"><em class="fas fa-download"></em></a>
+                            <a href="{{ route('nav.edit', ['nav'=>$nav]) }}"><em class="fas fa-edit"></em></a> 
                             <!-- Button trigger modal -->
                             <a type="button" data-toggle="modal" data-target="{{'#exampleModal'.$nav->id}}">
-                                <i class="fas fa-trash"></i>
+                                <em class="fas fa-trash"></em>
                             </a>
         
                             <!-- Modal -->
@@ -107,7 +107,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                                 <div class="modal-content">
                                     <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <i class="fas fa-times"></i>
+                                        <em class="fas fa-times"></em>
                                     </button>
                                     </div>
                                     <div class="modal-body">
@@ -115,7 +115,7 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
                                             @csrf
                                             @method('DELETE')
                                             <p>Etes-vous sûr de vouloir supprimer ce contenu</p>
-                                            <button type="submit" class="button button-bgred button-no-border">Supprimer</button>
+                                            <button aria-label="Delete" type="submit" class="button button-bgred button-no-border">Supprimer</button>
                                             <button type="button" class="cancel" data-dismiss="modal" aria-label="Close">
                                                 Annuler
                                             </button>

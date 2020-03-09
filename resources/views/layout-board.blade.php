@@ -19,23 +19,23 @@ $user = Auth::user();
 </head>
 <body>
     <div class="page-dashboard d-flex">
-        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+        <div class="burger" id="burger"><em class="fas fa-bars"></em></div>
         <div class="sidebar">
             <div class="sidebar-nav">
-                <div class="close-sidebar"><i class="fas fa-times"></i></div>
+                <div class="close-sidebar"><em class="fas fa-times"></em></div>
                 <a href="{{ route('board') }}">
                 <div class="logo">
-                    <img src="{{asset("assets/images/logo-sidebar.png")}}" alt="jamgati">
+                    <img src="{{asset("assets/images/logo-sidebar.png")}}" loading="lazy" alt="Logo de Jamgati">
                 </div>
                 </a>
                 <nav class="sidebar-nav sidebar-nav-top">
-                <a class="icon-plus-circle" href="{{ route('choice')}}"><span>Nouveau</span></a>
-                <a class="icon-dashboard" href="{{ route('board')}}"><span>Tableau de bord</span></a>
-                <a class="icon-search" href="{{ route('search')}}"><span>Rechercher</span></a>
+                <a class="icon-plus-circle {{request()->routeIs('choice') ? 'activ-link' : '' }}" href="{{ route('choice')}}"><span>Nouveau</span></a>
+                <a class="icon-dashboard {{request()->routeIs('board') ? 'activ-link' : '' }}"href="{{ route('board')}}"><span>Tableau de bord</span></a>
+                <a class="icon-search {{request()->routeIs('search') ? 'activ-link' : '' }}" href="{{ route('search')}}"><span>Rechercher</span></a>
                 </nav>
             </div>
             <nav class="sidebar-nav sidebar-nav-bottom">
-                <a class="icon-settings" href="{{ route('settings')}}"><span>Paramètres</span></a>
+                <a class="icon-settings {{request()->routeIs('settings') ? 'activ-link' : '' }}" href="{{ route('settings')}}"><span>Paramètres</span></a>
             </nav>
         </div>
     
@@ -44,7 +44,7 @@ $user = Auth::user();
                 @yield('link')
                 <div class="profil card">
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button aria-label="User" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <p class="m-0"><?php echo $user->name;?></p>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -58,12 +58,13 @@ $user = Auth::user();
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-body">
-                        <i class="far fa-save"></i> Sauvegarde réussie !
+                        <em class="far fa-save"></em> Sauvegarde réussie !
                     </div>
                   </div>
                 </div>
             </div>
         </main>
+        <a class="doc" href="{{route('doc')}}">?</a>
     </div>
     <script src="{{asset("js/app.js")}}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

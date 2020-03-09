@@ -53,7 +53,7 @@
             </div>
 
             <div class="video">
-                <img class="d-block m-auto" src="{{asset("assets/images/img-video.png")}}" alt="video">
+                <img class="d-block m-auto" src="{{asset("assets/images/img-video.png")}}" loading="lazy" alt="video">
             </div>
     
     </div>
@@ -67,12 +67,12 @@
                 <div class="col-12 advantage">
                     <div class="d-flex align-items-center">
                         <div class="illustration w-lg-50">
-                            <img src="assets/images/img-upload.png" alt="upload-file">
+                            <img src="assets/images/img-upload.png" loading="lazy" alt="Importez vos fichiers" longdesc="#introductionIMG">
                         </div>
                         <div class="w-lg-50 offset-lg-1">
                             <div class="content">
                                 <h3>Importez vos fichiers</h3>
-                                <p>
+                                <p id="introductionIMG">
                                     L’application Jamgati vous permet de créer l’élément que vous souhaitez à partir d’un fichier existant. Que ce soit à partir d’un fichier texte pour la création d’un tableau ou encore suite à un fichier de type Json, Jamgati vous offre un large panel de choix de conception. Cette fonctionnalité n’est néanmoins disponible qu’après vous être inscrit et identifié.                                
                                 </p>
                             </div>
@@ -84,13 +84,13 @@
                             <div class="w-lg-50">
                                 <div class="content">
                                     <h3>Utiliser un modèle</h3>
-                                    <p>
+                                    <p id="modelIMG">
                                         Vous manquez d’inspiration ou vous ne savez pas comment mettre en forme vos données ? Connectez vous et un certain nombre de modèles de base vous seront présentés pour vous faire gagner du temps. Du formulaire de contact jusqu’à la liste des courses, trouvez votre bonheur dans notre liste de modèles. 
                                     </p>
                                 </div>
                             </div>
                             <div class="illustration w-lg-50 offset-lg-1">
-                                    <img src="assets/images/img-form.png" alt="img-form">
+                                    <img src="assets/images/img-form.png" loading="lazy" alt="Formulaires" longdesc="#modelIMG">
                             </div>
                         </div>
                     </div>
@@ -129,29 +129,29 @@
                     <h2 class="heading-2 heading-2--center">Pour les développeurs</h2>
                 </div>
                 <div class="col-md-6 tech">
-                    <img src="assets/images/img-html.png" alt="html-5">
-                    <div class="text">
+                    <img src="assets/images/img-html.png" loading="lazy" alt="Logo HTML5" longdesc="#htmlIMG">
+                    <div class="text" id="htmlIMG">
                         <p><strong>HTML5</strong></p>
                         <p>Pour pouvoir mettre en forme votre contenu, Jamgati utilise la technologie HTML5, nécessaire pour intégrer les éléments proposés</p>
                     </div>
                 </div>
                 <div class="col-md-6 tech">
-                    <img src="assets/images/img-css.png" alt="css-6">
-                    <div class="text">
+                    <img src="assets/images/img-css.png" loading="lazy" alt="Logo CSS6" longdesc="#cssIMG">
+                    <div class="text" id="cssIMG">
                         <p><strong>CSS 6</strong></p>
                         <p>Pour une agréable mise en forme de vos éléments. Ajouter vos couleurs, typographies ou encore taille de texte pour une personnalisation la plus complète possible.</p>
                     </div>
                 </div>
                 <div class="col-md-6 tech">
-                    <img src="assets/images/img-bootstrap.png" alt="bootstrap">
-                    <div class="text">
+                    <img src="assets/images/img-bootstrap.png" loading="lazy" alt="Logo Bootstrap" longdesc="#bootIMG">
+                    <div class="text" id="bootIMG">
                         <p><strong>Bootstrap</strong></p>
                         <p>Pour permettre aux utilisateurs de votre site d’accéder au contenu quelque soit </p>
                     </div>
                 </div>
                 <div class="col-md-6 tech">
-                    <img src="assets/images/img-js.png" alt="javascript">
-                    <div class="text">
+                    <img src="assets/images/img-js.png" loading="lazy" alt="Logo Javascript" longdesc="#jsIMG">
+                    <div class="text"  id="jsIMG">
                         <p><strong>Javascript</strong></p>
                         <p>Principalement utilisé pour les menus, le langage javascript permet de créer des animations simples telles que celle utilisé pour l’ouverture du menu burger.</p>
                     </div>

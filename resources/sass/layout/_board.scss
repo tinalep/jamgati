@@ -94,7 +94,7 @@
         border-collapse: separate;
         border-spacing: 20px;
         @include md-breakpoint(){
-            margin-top: 53px;
+            margin-top: 30px;
         }
         thead{
             border: none;
@@ -105,7 +105,7 @@
             padding: 0;
             position: absolute;
             width: 1px;
-            @include lg-breakpoint(){
+            @include md-breakpoint(){
                 // Desktop
                 height: auto;
                 margin: auto;
@@ -121,7 +121,8 @@
                 font-size: rem(16);
                 text-transform: uppercase;
                 color: $color-dark-grey;
-                padding: 0 21px 19px;
+                padding: 0 21px;
+                cursor: pointer;
                 &:not(:last-child){
                     &:after{
                         content: "\f0dc";
@@ -142,7 +143,7 @@
                 cursor: pointer;
                 padding: 30px;
                 margin-bottom: 20px;
-                @include lg-breakpoint(){
+                @include md-breakpoint(){
                     display: table-row;
                     padding: 0;
                     margin-bottom: 0;
@@ -163,9 +164,19 @@
                     text-transform: uppercase;
                     color: $color-dark-grey;
                 }
-                @include lg-breakpoint(){
+                &[data-label="Actions"]{
+                    @include md-breakpoint(){
+                        width: 45%;
+                    }
+                }
+                &[data-label="Titre"]{
+                    @include md-breakpoint(){
+                        width: 35%;
+                    }
+                }
+                @include md-breakpoint(){
                     display: table-cell;
-                    padding: 28px 21px;
+                    padding: 28px 0 28px 21px;
                     background-color: $color-white;
                     &:first-of-type{
                         border-top-left-radius: $border-radius;
@@ -193,7 +204,7 @@
         &__action{
             a{
                 display: inline-block;
-                margin-right: 15px;
+                margin-right: 5px;
                 color: $color-white;
                 padding: 13px 19px;
                 border-radius: 30px;
@@ -249,5 +260,19 @@
             border-radius: 50%;
             border: none;
         }
+    }
+
+    .doc{
+        position: fixed;
+        right: 15px;
+        bottom: 15px;
+        background: $gradient-red;
+        color: $color-white;
+        width: 40px;
+        height: 40px;
+        font-weight: bold;
+        line-height: 2.3;
+        text-align: center;
+        border-radius: 50%;
     }
 }

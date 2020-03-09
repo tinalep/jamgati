@@ -52,7 +52,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-12">
-                                    <button type="submit" class="button button-no-border button-bgred btn btn-primary">
+                                    <button aria-label="Submit" type="submit" class="button button-no-border button-bgred btn btn-primary">
                                         {{ __('Réinitialiser le mot de passe') }}
                                     </button>
                                 </div>

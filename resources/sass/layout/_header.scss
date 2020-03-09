@@ -89,8 +89,8 @@ header {
                 &:before {
                     content: '';
                     position: absolute;
-                    background: $gradient-red;
-                    bottom: 0;
+                    background: $gradient-orange;
+                    bottom: -5px;
                     left: 0;
                     width: 85%;
                     height: 2px;
@@ -101,12 +101,12 @@ header {
                 &:after {
                     content: '';
                     position: absolute;
-                    bottom: 0;
+                    bottom: -5px;
                     right: 0;
                     width: 3px;
                     height: 3px;
                     border-radius: 50%;
-                    background: $gradient-red;
+                    background: $gradient-orange;
                     opacity: 0;
                     transition: 0.3s all ease-in-out;
                 }
@@ -132,23 +132,23 @@ header {
                     &:before {
                         content: '';
                         position: absolute;
-                        background: $gradient-red;
-                        bottom: 0;
+                        background: $gradient-orange;
+                        bottom: -5px;
                         left: 0;
                         width: 85%;
-                        height: 2px;
+                        height: 3px;
                         opacity: 1;
                     }
     
                     &:after {
                         content: '';
                         position: absolute;
-                        bottom: 0;
+                        bottom: -5px;
                         right: 0;
                         width: 3px;
                         height: 3px;
                         border-radius: 50%;
-                        background: $gradient-red;
+                        background: $gradient-orange;
                         opacity: 1;
                     }
                 

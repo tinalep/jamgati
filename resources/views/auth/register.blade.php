@@ -64,7 +64,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-12">
-                                    <button type="submit" class="button button-no-border button-bgred">
+                                    <button aria-label="Submit" type="submit" class="button button-no-border button-bgred">
                                         {{ __('Valider') }}
                                     </button>
                                 </div>
