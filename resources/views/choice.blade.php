@@ -1,5 +1,9 @@
 @extends('layout-board')
 
+@section('title')
+    Tableau de bord - Contenu - Jamgati
+@endsection
+
 <?php
 $user = Auth::user();
 ?>
