@@ -12,7 +12,7 @@ window.onload = function() {
     };
 
     //Sort table
-    const table = document.querySelector('#table_dashboard');
+    const table = document.querySelector('.table_dashboard');
     if(table){
         const compare = (ids, asc) => (row1, row2) => {
             const tdValue = (row, ids) => row.children[ids].textContent;
