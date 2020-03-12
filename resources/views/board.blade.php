@@ -34,15 +34,47 @@ $content = (isset($_GET['content'])?$_GET['content']:'form');
         <a class="dashboard_nav__link {{$content=='form'?'dashboard_nav__link--active':''}}" href="?content=form">Formulaire</a>
         <a class="dashboard_nav__link {{$content=='nav'?'dashboard_nav__link--active':''}}" href="?content=nav">Menu</a>
     </nav>
-    
+
     <table class="table_dashboard" style="width:100%">
-        <thead>
-            <tr>
-                <th scope="col">Titre</th>
-                <th scope="col">Dernière modification</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
+        @switch($content)
+            @case('nav')
+                @if ($navs->items())
+                <thead>
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Dernière modification</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                @else
+                <div class="dashboard_empty">
+                    <p>Vous n'avez pas encore créé de menu. <a href="{{route('nav.create')}}">Commencez</a></p>
+                </div>
+                @endif
+
+                @break
+            @case('form')
+                @if ($forms->items())
+                <thead>
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Dernière modification</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                @else
+                <div class="dashboard_empty">
+                    <p>Vous n'avez pas encore créé de formulaire. <a href="{{route('form.create')}}">Commencez</a></p>
+                </div>
+                @endif
+                
+                @break
+            @default
+            <div class="dashboard_empty">
+                <p>Vous n'avez pas encore créé de contenu</p>
+            </div>
+        @endswitch
+
         <tbody>
             @switch($content)
                 @case(1)

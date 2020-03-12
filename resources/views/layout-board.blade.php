@@ -31,11 +31,11 @@ $user = Auth::user();
                 <nav class="sidebar-nav sidebar-nav-top">
                 <a class="icon-plus-circle {{request()->routeIs('choice') ? 'activ-link' : '' }}" href="{{ route('choice')}}"><span>Nouveau</span></a>
                 <a class="icon-dashboard {{request()->routeIs('board') ? 'activ-link' : '' }}"href="{{ route('board')}}"><span>Tableau de bord</span></a>
-                <a class="icon-search {{request()->routeIs('search') ? 'activ-link' : '' }}" href="{{ route('search')}}"><span>Rechercher</span></a>
                 </nav>
             </div>
             <nav class="sidebar-nav sidebar-nav-bottom">
                 <a class="icon-settings {{request()->routeIs('settings') ? 'activ-link' : '' }}" href="{{ route('settings')}}"><span>Paramètres</span></a>
+                <a class="icon-logout" href="{{ route('logout') }}"><span>Déconnexion</span></a>
             </nav>
         </div>
     

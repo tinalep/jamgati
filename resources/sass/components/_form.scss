@@ -5,7 +5,7 @@
 .form-container{
     display:flex;
     flex-direction: row;
-    padding: 50px 50px 0 0;
+    padding: 50px 0 0 0;
 }
 
 .form-group{
@@ -13,18 +13,79 @@
 }
 
 .form-edit{
+    display: none;
     background: rgba(230, 92, 0, 0.05);
     border: 2px solid rgba(230, 92, 0, 0.05);
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     min-height: 84vh;
+    max-height: 84vh;
     width: 270px;
     min-width: 270px;
+    overflow-y: scroll; 
+    @include lg-breakpoint(){  
+        display: block; 
+    }
+    &::-webkit-scrollbar{
+        width: 5px;        
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(230, 92, 0, 0.15);
+        border-radius: 10px;
+    }
 }
 
 .form-show{
-    margin-left: 40px;
     width: 100%;
+    overflow-x: scroll;
+    max-height: 84vh;
+    padding-right: 15px;
+    margin-left: 15px;
+    @include md-breakpoint(){
+        padding-right: 30px;
+        margin-left: 40px;
+    }
+
+    &::-webkit-scrollbar{
+        width: 5px;
+        height: 5px;        
+        border-radius: 10px;
+
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(230, 92, 0, 0.15);
+        border-radius: 10px;
+    }
+}
+
+.form-show__header{
+    flex-wrap: wrap;
+}
+
+.form-show__buttons{
+    .button{
+        margin: 0;
+        margin-top: 15px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        width: auto;
+        span{
+            display: none;
+        }
+        @include md-breakpoint(){
+            span{
+                display: block;
+            }
+
+            i{
+                display: none;
+            }
+        }
+    }
+
     
 }
 
@@ -235,9 +296,13 @@
 }
 
 #table-root .form-show__typography{
-    display: flex;
+    display: none;
     align-items: center;
+    flex-wrap: wrap;
     margin: 30px 0;
+    @include lg-breakpoint(){
+        display: flex;
+    }
     input{
         &.active{
             background-color: #ee9b47;
@@ -284,8 +349,8 @@
 }
 
 .app-show__helper{
-    min-height: 1.5rem;
-    margin: 30px 0;
+    // min-height: 1.5rem;
+    // margin: 30px 0;
 }
 .app-pre{
     min-height: 200px;

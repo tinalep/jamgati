@@ -20,8 +20,6 @@ class BoardController extends Controller
         // return view('board');
         $forms = \App\Form::where('user_id',Auth::user()->id)->paginate(3);
         $navs = \App\Nav::where('user_id',Auth::user()->id)->paginate(3);
-
-
         return view('board', ['forms'=>$forms, 'navs'=>$navs]);
     }
 

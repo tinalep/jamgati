@@ -1,5 +1,5 @@
 //Icon 
-$icons: ("icon-plus-circle", "icon-dashboard", "icon-search", "icon-settings");
+$icons: ("icon-plus-circle", "icon-dashboard", "icon-search", "icon-settings", "icon-logout");
 
 @each $icon-name in $icons{
     .#{$icon-name}{

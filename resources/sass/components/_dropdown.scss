@@ -38,4 +38,14 @@
 .dropdown-item{
     font-family: $font-lato;
     text-align: center;
+
+    &:hover,
+    &:focus{
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    &:target{
+        background-color: red;
+    }
 }
