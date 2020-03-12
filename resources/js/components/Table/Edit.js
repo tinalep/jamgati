@@ -63,7 +63,7 @@ const Edit = props =>{
                                         <input data-table='fusion' onClick={props.tableHandler} className="border-0 bg-transparent" alt="fusion" type="image" src={svgUrl+'../../resources/assets/images/fusion-button.svg'}/>
                                     </div>
                                     <div className="col-6">
-                                        <p>Annuler la fusion</p>
+                                        <p>Défusionner</p>
                                         <input data-table='unfusion' onClick={props.tableHandler} className="border-0 bg-transparent" alt="unfusion" type="image" src={svgUrl+'../../resources/assets/images/unfusion-button.svg'}/>
                                     </div>
                                 </div>
@@ -90,11 +90,11 @@ const Edit = props =>{
                                 <div className="row">
                                     <div className="col-6">
                                         <p>Ligne d'en-tête</p>
-                                        <input data-table='rowHeader' onClick={props.tableHandler} className="border-0 bg-transparent" alt="row-header-button" type="image" src={svgUrl+'../../resources/assets/images/row-header-button.svg'}/>
+                                        <input data-table='rowHeader' onClick={props.tableHandler} className={"bg-transparent p-1 "+(props.table.headers.row?"active":"")} alt="row-header-button" type="image" src={svgUrl+'../../resources/assets/images/row-header-button.svg'}/>
                                     </div>
                                     <div className="col-6">
                                         <p>Colonne d'en-tête</p>
-                                        <input data-table='colHeader' onClick={props.tableHandler} className="border-0 bg-transparent" alt="row-header-button" type="image" src={svgUrl+'../../resources/assets/images/col-header-button.svg'}/>
+                                        <input data-table='colHeader' onClick={props.tableHandler} className={"bg-transparent p-1 "+(props.table.headers.col?"active":"")} alt="row-header-button" type="image" src={svgUrl+'../../resources/assets/images/col-header-button.svg'}/>
                                     </div>
                                 </div>
                             </div>

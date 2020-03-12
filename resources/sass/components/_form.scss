@@ -283,3 +283,27 @@
     min-height: 200px;
     max-height: 400px;
 }
+
+.table_custom{
+    th, td{
+        border: solid 1px;
+        &.selected-cell{
+            background-color: #ee5a6b
+        }
+        &.selected-row{
+            background-color: #f7b5bd;
+        }
+        &.selected-col{
+            background-color: #f7b5bd;
+        }
+    }
+    textarea{
+        padding: 10px 5px;
+    }
+    thead th{
+        border: solid 2px
+    }
+    tbody th:first-child{
+        border: solid 2px
+    }
+}

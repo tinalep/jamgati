@@ -37,6 +37,7 @@
         "jsx-to-string": "^1.4.0",
         "ramda": "^0.26.1",
         "react-bootstrap": "^1.0.0-beta.16",
+        "react-color": "^2.18.0",
         "rfs": "^9.0.2"
     }
 }
