@@ -81,14 +81,17 @@ window.onload = function() {
 
         let windowWidth = window.innerWidth;
         const sidebar = document.querySelector('.sidebar');
+        const dashboard = document.querySelector('.page-dashboard');
         const create = document.querySelector('.page-create');
 
-        if(!create){
-            if(windowWidth < 991 && windowWidth > 768){
-                sidebar.classList.add('sidebar--collapsed');
-            }
-            else{
-                sidebar.classList.remove('sidebar--collapsed');
+        if(dashboard){
+            if(!create){
+                if(windowWidth < 991 && windowWidth > 768){
+                    sidebar.classList.add('sidebar--collapsed');
+                }
+                else{
+                    sidebar.classList.remove('sidebar--collapsed');
+                }
             }
         }
 }
