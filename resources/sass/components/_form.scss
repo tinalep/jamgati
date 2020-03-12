@@ -228,17 +228,20 @@
     resize: none;
 }
 
+.app-show__undo button  {  
+    margin: 0 5px;
+    border: solid 2px rgba(0,0,0,0);
+    background-color: unset;
+}
+
 #table-root .form-show__typography{
     display: flex;
     align-items: center;
     margin: 30px 0;
     input{
         &.active{
-            border: solid 2px #EB7808;
+            background-color: #ee9b47;
             border-radius: 5px;
-        }
-        &:focus{
-            outline: none;
         }
         margin: 0 5px;
         padding: 5px;
@@ -254,10 +257,12 @@
         margin: 0 5px;
         border: solid 2px rgba(0,0,0,0);
         background-color: unset;
-        &:focus{
-            outline: none;
-            border: solid 2px #EB7808;
+        &.active{
+            background-color: #ee9b47;
             border-radius: 5px;
+            &.off{
+                color: grey
+            }
         }
     }
     .apply{
@@ -273,6 +278,9 @@
             }
         }
     }
+    .button-copy{
+        background-color: #f7b5bd;
+    }
 }
 
 .app-show__helper{
@@ -282,6 +290,10 @@
 .app-pre{
     min-height: 200px;
     max-height: 400px;
+}
+
+.table-color-selector{
+    width: unset !important;
 }
 
 .table_custom{
