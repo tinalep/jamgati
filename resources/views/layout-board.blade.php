@@ -36,6 +36,7 @@ $user = Auth::user();
             </div>
             <nav class="sidebar-nav sidebar-nav-bottom">
                 <a class="icon-settings {{request()->routeIs('settings') ? 'activ-link' : '' }}" href="{{ route('settings')}}"><span>Paramètres</span></a>
+                <a class="icon-logout" href="{{ route('logout') }}"><span>Déconnexion</span></a>
             </nav>
         </div>
     

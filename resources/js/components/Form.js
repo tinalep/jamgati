@@ -159,9 +159,9 @@ const Form = props => {
                     <div className="form-show__header d-flex justify-content-between">
                         <h2 className="form-show__title">Edition formulaire</h2>
                         <div className="form-show__buttons">
-                            <button aria-label="Export" title="Exporter votre élément" tabindex="0" className="button button-bgnone" onClick={()=>exportPopup(true)}>Exporter</button>
+                            <button aria-label="Export" title="Exporter votre élément" tabindex="0" className="button button-bgnone" onClick={()=>exportPopup(true)}><i class="fas fa-file-export"></i><span>Exporter</span></button>
                                 
-                            <button aria-label="Save" title="Sauvegarder dans votre tableau de bord" tabindex="0" data-toggle="modal" data-target="#saveModal" className="btn-save button button-bgred button-no-border" onClick={save}>Sauvegarder</button>
+                            <button aria-label="Save" title="Sauvegarder dans votre tableau de bord" tabindex="0" data-toggle="modal" data-target="#saveModal" className="btn-save button button-bgred button-no-border" onClick={save}><i class="far fa-save"></i> <span>Sauvegarder</span></button>
                         </div>
                     </div>
                     <div className="form-show__body">
