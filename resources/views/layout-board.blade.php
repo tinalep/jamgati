@@ -63,9 +63,27 @@ $user = Auth::user();
                   </div>
                 </div>
             </div>
+
+            <div class="modal modal-mobile" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Il n'est pas possible d'éditer vos fichiers lorsque vous êtes sur un mobile, si vous souhaitez faire des modifications utiliser un ordinateur</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button button-bgred button-no-border" data-dismiss="modal" aria-label="Close">D'accord</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         </main>
         <a class="doc" href="{{route('doc')}}">?</a>
     </div>
-    <script src="{{asset("js/app.js")}}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{asset("js/app.js")}}"></script>
 </body>

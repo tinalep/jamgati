@@ -1,15 +1,26 @@
-// Check if page is of type "create"
 // window.onload
 window.onload = function() {
     
     checkUrl();
     openSidebar();
     changeSidebar();
+    openModal();
 
     window.onresize = function() {
         openSidebar();
         changeSidebar();
     };
+
+    function openModal(){
+        let windowWidth = window.innerWidth;
+        let create = document.querySelector('.page-create');
+
+        if(create){
+            if(windowWidth < 991){
+                $('.modal-mobile').modal('show')
+            }
+        }
+    }
 
     //Sort table
     const table = document.querySelector('.table_dashboard');
