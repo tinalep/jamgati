@@ -125,7 +125,7 @@ const Edit = props =>{
                     <Accordion.Collapse eventKey="1">
                         <div className="edit-card__body">
                             <div className="edit-card__section">
-                                <label className="import-button button button-bgnone export">
+                                <label className="import-button button button-bgnone import export">
                                     Importer
                                     <input  type='file' accept='.csv' onChange={fileToText}/>
                                 </label>

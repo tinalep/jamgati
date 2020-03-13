@@ -1,3 +1,7 @@
+<?php
+$user = Auth::user();
+?>
+
 @extends('layout-board')
 
 @section('content')
@@ -111,6 +115,17 @@
                 <p>
                     Pour changer le style du menu, nous vous permettons de choisir sur quel niveau vous voulez
                     intervenir : le niveau 1 (parents de liens ou non) ou le niveau 2 (enfants de liens).
+                </p>
+                <h2 class="heading-2">
+                    Comment importer mon contenu ?
+                </h2>
+                <p>
+                    La fonctionnalité d'import n'est disponible qu'avec la création de tableau, si vous êtes connecté.
+                </p>
+                <p>
+                    Dirigez vous vers le bandeau de gauche et vers l'onglet Importer pour choisir le fichier que
+                    vous souhaitez importer sur Jamgati. Ce fichier doit obligatoirement être un format CSV (un fichier tableur)
+                    pour pouvoir afficher correctement vos données.
                 </p>
             </div>
         </div>
