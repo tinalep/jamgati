@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="help">
+                    <a href="{{ route('doc') }}" class="help">
                         <div class="icon">
                             <img src="{{asset("assets/images/icon-help.svg")}}" loading="lazy" alt="Page d'aide">
                         </div>
@@ -97,7 +97,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://github.com/tinalep/jamgati">
+                    <a href="https://github.com/tinalep/jamgati" target='_blank'>
                         <div class="icon">
                             <img src="{{asset("assets/images/icon-github.svg")}}" loading="lazy" alt="Git Hub">
                         </div>

@@ -279,7 +279,6 @@ const Edit = props =>{
                            </div>
                         </div>
                     </Accordion.Collapse>
-                    <button onClick={()=>console.log(props.elements)}>TEST</button>
                 </div>
             </Accordion>
         </div>
