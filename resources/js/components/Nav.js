@@ -12,7 +12,7 @@ const Nav = props => {
 
     const [mode, setMode] = useState('create')
     const [elements, setElements]=useState([]);
-    const [navName, setNavName] = useState('Mon menu (cliquez pour modifier)')
+    const [navName, setNavName] = useState('Mon menu')
     const [hovered, setHovered]=useState(-1)
     const [navStyle, setNavStyle]=useState(
         {

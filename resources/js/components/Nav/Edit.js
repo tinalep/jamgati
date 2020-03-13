@@ -203,9 +203,9 @@ const Edit = props =>{
 
     return (
         <div className="form-edit">
-            <div className="form-edit__header" >
-                <h2 onClick={(e)=>{setTitleEdit(true); e.target.nextSibling.focus()}} className={titleEdit?'d-none':''}>{props.navName}<i className="fas fa-pen ml-auto"></i></h2>
-                <input onBlur={()=>{setTitleEdit(false)}}  id='inputToFocus' className='d-block' style={titleEdit?{}:{border: 'none', width:'0', height: '0'}}  value={props.navName} onChange={(e)=>props.setNavName(e.target.value)}/>
+            <div className="form-edit__header d-flex" >
+                <textarea maxLength='30' id='inputToFocus' className='d-block'  value={props.navName} onChange={(e)=>props.setNavName(e.target.value)}/>
+                <i onClick={()=>{$("#inputToFocus").focus()}} className="fas fa-pen ml-auto"></i>
             </div>
             <Accordion defaultActiveKey='0'>
                 <div className="edit-card">

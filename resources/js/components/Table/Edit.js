@@ -60,13 +60,13 @@ const Edit = props =>{
                                 <div className="row">
                                     <div className="col">
                                         <p>Ligne</p>
-                                        <input disabled={props.selected.empty} data-table='lineBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" alt="insert line bottom" src={svgUrl+'../../resources/assets/images/insert-line-bottom.svg'}/>
-                                        <input data-table='lineAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" alt="insert line top" src={svgUrl+'../../resources/assets/images/insert-line-top.svg'}/>
+                                        <input data-table='lineBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" alt="insert line top" src={svgUrl+'../../resources/assets/images/insert-line-top.svg'}/>
+                                        <input data-table='lineAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" alt="insert line bottom" src={svgUrl+'../../resources/assets/images/insert-line-bottom.svg'}/>
                                     </div>
                                     <div className="col">
                                         <p>Colonne</p>
-                                        <input data-table='columnBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" alt="insert column right" src={svgUrl+'../../resources/assets/images/insert-column-right.svg'} />
-                                        <input data-table='columnAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" alt="insert column left" src={svgUrl+'../../resources/assets/images/insert-column-left.svg'}/>
+                                        <input data-table='columnBefore' onClick={props.tableHandler} className="border-0 bg-transparent" type="image" alt="insert column left" src={svgUrl+'../../resources/assets/images/insert-column-left.svg'}/>
+                                        <input data-table='columnAfter' onClick={props.tableHandler} className="ml-2 border-0 bg-transparent" type="image" alt="insert column right" src={svgUrl+'../../resources/assets/images/insert-column-right.svg'} />
                                     </div>
                                 </div>
                             </div>
