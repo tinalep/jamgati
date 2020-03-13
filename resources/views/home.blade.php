@@ -168,15 +168,18 @@
                             longdesc="#bootIMG">
                         <div class="text" id="bootIMG">
                             <p><strong>Bootstrap</strong></p>
-                            <p>Pour permettre aux utilisateurs de votre site d’accéder au contenu quelque soit </p>
+                            <p>
+                                Pour permettre aux utilisateurs de votre site d’accéder au contenu quelque soit la taille de votre écran, Bootstrap est l’outil indispensable exploité par Jamgati.
+                            </p>
                         </div>
                     </div>
                     <div class="col-md-6 tech">
                         <img src="assets/images/img-js.png" loading="lazy" alt="Logo Javascript" longdesc="#jsIMG">
                         <div class="text" id="jsIMG">
                             <p><strong>Javascript</strong></p>
-                            <p>Principalement utilisé pour les menus, le langage javascript permet de créer des
-                                animations simples telles que celle utilisé pour l’ouverture du menu burger.</p>
+                            <p>
+                                Envie d’ajouter des fonctionnalités simples et efficaces comme la transformation du style du menu en fonction de la résolution sur laquelle vous naviguez ? Jamgati vous propose plusieurs animations gérées grâce au langage Javascript.
+                            </p>
                         </div>
                     </div>
                 </div>
