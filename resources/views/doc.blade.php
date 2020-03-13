@@ -4,6 +4,10 @@ $user = Auth::user();
 
 @extends('layout-board')
 
+@section('title')
+    Tableau de bord - Documentation
+@endsection
+
 @section('content')
     <div class="section">
         <div class="container">
