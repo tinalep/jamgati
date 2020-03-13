@@ -39,6 +39,7 @@
         &:hover{
             background: transparent;
             color: $color-orange;
+            border: 3px solid $color-orange;
         }
     }
     
@@ -65,4 +66,5 @@
         background: transparent;
         text-decoration: underline;
     }
+
 } 

@@ -292,10 +292,17 @@
 }
 
 .settings{
+    margin-top: 40px;
+    margin-left: 15px;
     height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include md-breakpoint(){
+        margin-top: 0;
+        margin-left: 0;
+    }
     
     .button{
         width: fit-content;
