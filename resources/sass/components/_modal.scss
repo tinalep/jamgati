@@ -46,4 +46,20 @@
     .close{
         color:$color-text;
     }
+
+    .form-control{
+        &:focus{
+            border-color: $color-orange;
+            box-shadow: none;
+        }
+    }
+
+    .form-group{
+        text-align: left;
+        .col-form-label{
+            padding-left: 0;
+            padding-right: 0;
+            font-weight: normal;
+        }
+    }
 }
