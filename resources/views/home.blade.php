@@ -53,7 +53,9 @@
             </div>
 
             <div class="video">
+                <div class="content">
                 <iframe src="https://www.youtube.com/embed/ZEwpK7rSNRA?showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
 
         </div>
