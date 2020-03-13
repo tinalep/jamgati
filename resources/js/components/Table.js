@@ -17,10 +17,11 @@ const Table = props => {
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
     const [temp, setTemp] = useState({lvl: 1, tab: []})
-    const [typo, setTypo] = useState({fontFamily: 'Lato', textAlign: 'center', fontSize: '16px'})
+    const [typo, setTypo] = useState({fontFamily: '0', textAlign: '0', fontSize: '0', fontWeight: '0', fontStyle: '0', color: '0', textDecoration: '0', textStyle: '0'})
     const [exportMode, setExportMode] = useState('default')
     const tempSize = 15
-    const initCellStyle = {fontFamily: 'Lato', textAlign: 'center', fontSize: '16px', fontWeight: 'unset', color: '#000000', textDecoration: 'none', textStyle: 'none'}
+    const initTypo = {fontFamily: '0', textAlign: '0', fontSize: '0', fontWeight: '0', fontStyle: '0', color: '0', textDecoration: '0', textStyle: '0'}
+    const initCellStyle = {fontFamily: 'Lato', textAlign: 'center', fontSize: '16px', fontWeight: 'unset', fontStyle: 'unset', color: '#000000', textDecoration: 'none', textStyle: 'none'}
     const initCell = {content: 'Nouvelle cellule', style:initCellStyle, size:{lon: 1, type: 'cell'}}
     const fonts = ['0','Arial', 'Courier New', 'Lato', 'Roboto', 'Times', 'Times New Roman']
     const fontsSize =[0]
@@ -41,8 +42,6 @@ const Table = props => {
         else if(table.lines.length===0&&mode==='create'){
             let t = createTab()
             setTable(t)
-            let style = t.lines[selected.cell.l].cells[selected.cell.c].style
-            setTypo(style)
         }
     }, []);
 
@@ -272,22 +271,28 @@ const Table = props => {
         switch(target.dataset.typo){
             case 'font' : t.fontFamily = target.value; break;
             case 'size' : t.fontSize = target.value; break;
-            case 'bold' : t.fontWeight = t.fontWeight==='bold'?'unset':'bold'; break;
-            case 'italic' : t.color = t.fontStyle==='italic'?'unset':'italic'; break;
-            case 'underline' : t.color = t.textDecoration==='underline'?'unset':'underline'; break;
-            case 'left' : case 'right' : case 'center' : t.align = target.dataset.typo===t.align? '0':type; break;
+            case 'bold' : t.fontWeight = t.fontWeight==='bold'?'regular':'bold'; break;
+            case 'italic' : t.fontStyle = t.fontStyle==='italic'?'unset':'italic'; break;
+            case 'underline' : t.textDecoration = t.textDecoration==='underline'?'none':'underline'; break;
+            case 'left' : case 'right' : case 'center' : t.textAlign = target.dataset.typo===t.textAlign? '0':target.dataset.typo; break;
             default : console.log("Problem in typoHandler")
         }
         console.log(t)
         setTypo(t)
     }
 
-    const handleChangeComplete = (color) => {
+    const handleChangeColor = (color) => {
         let t = R.clone(typo)
         t.color = color.hex
         console.log(t)
         setTypo(t)
       };
+    const handleChangeBg= (color) => {
+    let t = R.clone(typo)
+    t.backgroundColor = color.hex
+    console.log(t)
+    setTypo(t)
+    };
 
     const applyTypo = (e)=>{
         let t = R.clone(table)
@@ -298,53 +303,29 @@ const Table = props => {
             case 'applyAll' :
                 t.lines.forEach((line)=>{
                     line.cells.forEach((cell)=>{
-                        cell.style.fontSize = typo.fontSize=='0'?cell.style.fontSize:typo.fontSize
-                        cell.style.fontFamily = typo.fontFamily=='0'?cell.style.fontFamily:typo.fontFamily
-                        cell.style.textAlign = typo.textAlign=='0'?cell.style.textAlign:typo.textAlign
-                        cell.style.color = typo.color=='0'?cell.style.color:typo.color
-                        cell.style.fontWeight = typo.fontWeight
-                        cell.style.textDecoration = typo.textDecoration
-                        cell.style.textStyle = typo.textStyle
+                        cell = applyToCell(cell)
                     })
                 });
                 break;
             case 'applyLine' :
                 t.lines[selected.cell.l].cells.forEach((cell)=>{
-                        cell.style.fontSize = typo.fontSize=='0'?cell.style.fontSize:typo.fontSize
-                        cell.style.fontFamily = typo.fontFamily=='0'?cell.style.fontFamily:typo.fontFamily
-                        cell.style.textAlign = typo.textAlign=='0'?cell.style.textAlign:typo.textAlign
-                        cell.style.color = typo.color=='0'?cell.style.color:typo.color
-                        cell.style.fontWeight = typo.fontWeight
-                        cell.style.textDecoration = typo.textDecoration
-                        cell.style.textStyle = typo.textStyle
+                        cell = applyToCell(cell)
                     })
                 break;
             case 'applyCol' :
                 t.lines.forEach((line)=>{
                     let cell = line.cells[selected.cell.c]
-                    cell.style.fontSize = typo.fontSize=='0'?cell.style.fontSize:typo.fontSize
-                    cell.style.fontFamily = typo.fontFamily=='0'?cell.style.fontFamily:typo.fontFamily
-                    cell.style.textAlign = typo.textAlign=='0'?cell.style.textAlign:typo.textAlign
-                    cell.style.color = typo.color=='0'?cell.style.color:typo.color
-                    cell.style.fontWeight = typo.fontWeight
-                    cell.style.textDecoration = typo.textDecoration
-                    cell.style.textStyle = typo.textStyle
+                    cell = applyToCell(cell)
                     line.cells[selected.cell.c] = cell
                 });
                 break;
             case 'applyCell' :
                 let cell = t.lines[selected.cell.l].cells[selected.cell.c]
-                cell.style.fontSize = typo.fontSize=='0'?cell.style.fontSize:typo.fontSize
-                cell.style.fontFamily = typo.fontFamily=='0'?cell.style.fontFamily:typo.fontFamily
-                cell.style.textAlign = typo.textAlign=='0'?cell.style.textAlign:typo.textAlign
-                cell.style.color = typo.color=='0'?cell.style.color:typo.color
-                cell.style.fontWeight = typo.fontWeight
-                cell.style.textDecoration = typo.textDecoration
-                cell.style.textStyle = typo.textStyle
+                cell = applyToCell(cell)
                 t.lines[selected.cell.l].cells[selected.cell.c] = cell
                 console.log(cell.style)
                 break;
-            default : console.log("Problem in typoHandler")
+            default : console.log("Problem in applyTypo")
         }
         if(save.tab.length>=tempSize) save.tab.splice(0,save.tab.length+1-tempSize)
         else
@@ -354,8 +335,20 @@ const Table = props => {
         }
         save.tab.push({table:t, selected:selected})
         if(table!==t) setTemp(save)
-        
+        setTypo(initTypo)
         setTable(t)
+    }
+
+    const applyToCell=(c)=>{
+        let cell = c
+        cell.style.fontSize = typo.fontSize=='0'?cell.style.fontSize:typo.fontSize
+        cell.style.fontFamily = typo.fontFamily=='0'?cell.style.fontFamily:typo.fontFamily
+        cell.style.textAlign = typo.textAlign=='0'?cell.style.textAlign:typo.textAlign
+        cell.style.color = typo.color=='0'?cell.style.color:typo.color
+        cell.style.fontWeight = typo.fontWeight=='0'?cell.style.fontWeight:typo.fontWeight
+        cell.style.textDecoration = typo.textDecoration=='0'?cell.style.textDecoration:typo.textDecoration
+        cell.style.fontStyle = typo.fontStyle=='0'?cell.fontStyle:typo.fontStyle
+        return cell
     }
 
     const setCellSize=(cell)=>{
@@ -372,6 +365,7 @@ const Table = props => {
         return size;
     }
 
+
     const showTable = ()=>{
         let tableContent =
         table.lines.map((line,idL)=>{
@@ -381,14 +375,14 @@ const Table = props => {
                     {
                     return(
                         <th onClick={(e)=>preventDefault(e)} className={giveSelectedClass(idL,idC)+' '+(cell.size.type==='null'?'d-none':'')} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
-                            <textarea spellcheck="false" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} data-table="cell" style={cell.style} onChange={tableHandler} value={cell.content} />
+                            <textarea spellCheck="false" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} data-table="cell" style={cell.style} onChange={tableHandler} value={cell.content} />
                         </th>)
                     }
                     else
                     {
                     return(
                         <td className={giveSelectedClass(idL,idC)+' '+(cell.size.type==='null'?'d-none':'')} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
-                            <textarea spellcheck="false" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} style={cell.style} data-table="cell" onChange={tableHandler} value={cell.content} />
+                            <textarea spellCheck="false" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} style={cell.style} data-table="cell" onChange={tableHandler} value={cell.content} />
                         </td>)
                     }
                     })}
@@ -415,7 +409,6 @@ const Table = props => {
         let sel = {empty:false, line: l, column: c, cell:{l:l,c:c}}
         if(!(selected.cell.l===l&&selected.cell.c===c)){
             setSelected(sel)
-            setTypo(table.lines[l].cells[c].style)
         }
     }
 
@@ -554,29 +547,43 @@ const Table = props => {
                     </div>
                     <div className="form-show__body">
                         <h4 className="app-show__helper">{helper}</h4>
+                        <div className="app-show__undo">
+                            <button aria-label="Undo" className="ml-auto" disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt fa-2x "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
+                            <button aria-label="Redo" disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt fa-2x "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
+                        </div>
                         <div className="form-show__typography">
                             <select data-typo='font' value={typo.fontFamily} onChange={typoHandler}>
                                 {fonts.map((f,i)=>{return(<option style={{fontFamily: f}} key={i} value={f}>{f=='0'?'Choisir une police':f}</option>)})}
                             </select>
                             <select data-typo='size' value={typo.fontSize} onChange={typoHandler}>
-                                {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s==0?'Taille':s}</option>)})}
+                                {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s=="0"?'Taille':s}</option>)})}
                             </select>
-                            <button><i className="fas fa-bold"></i></button>
-                            <button><i className="fas fa-italic"></i></button>
-                            <button><i className="fas fa-underline"></i></button>
-                            <div className="dropdown mr-auto">
-                                <button aria-label="Apply" className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button data-typo="bold" className={(typo.fontWeight==='bold'?'active':'')} onClick={typoHandler}><i data-typo="bold" className={"fas fa-bold "+(typo.fontWeight==='bold'?'on':'off')}></i></button>
+                            <button data-typo="italic" className={(typo.fontStyle==='italic'?'active':'')} onClick={typoHandler}><i data-typo="italic" className={"fas fa-italic "+(typo.fontStyle==='italic'?'on':'off')}></i></button>
+                            <button data-typo="underline" className={(typo.textDecoration==='underline'?'active':'')} onClick={typoHandler}><i data-typo="underline" className={"fas fa-underline "+(typo.textDecoration==='underline'?'on':'off')}></i></button>
+                            <div className="dropdown table-color-selector">
+                                <button aria-label="Colors" className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i style={{color: typo.color}} className="fas fa-tint"></i>
                                 </button>
-                                <div className="dropdown-menu text-align-left" aria-labelledby="dropdownMenuButton">
-                                    <BlockPicker colors={['#000000', '#FFFFFF', '#EB7808', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']} color={typo.color} onChangeComplete={handleChangeComplete}/>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <BlockPicker colors={['#000000', '#FFFFFF', '#EB7808', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']} color={typo.color} onChangeComplete={handleChangeColor}/>
+                                </div>
+                            </div>
+                            <div className="dropdown table-color-selector">
+                                <button aria-label="Background colors" className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i style={{color: typo.backgroundColor}} className="fas fa-fill"></i>
+                                </button>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <BlockPicker colors={['#000000', '#FFFFFF', '#EB7808', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']} color={typo.backgroundColor} onChangeComplete={handleChangeBg}/>
                                 </div>
                             </div>
                             <input className={typo.textAlign==='left'?'active':''} data-typo='left' onClick={typoHandler} type="image" alt="align left" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
                             <input className={typo.textAlign==='center'?'active':''} data-typo='center' onClick={typoHandler} type="image" alt="align center" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
                             <input className={typo.textAlign==='right'?'active':''} data-typo='right' onClick={typoHandler} type="image" alt="align right" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>
 
-                            <div className="dropdown apply mr-auto p-1">
+                            <button className='button-copy' onClick={()=>setTypo(table.lines[selected.cell.l].cells[selected.cell.c].style)}>Copier style</button>
+
+                            <div className="dropdown apply p-1">
                                 <button aria-label="Apply" className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Appliquer ...
                                 </button>
@@ -587,9 +594,6 @@ const Table = props => {
                                     <button aria-label="AppliCell" data-typo='applyCell' className="dropdown-item" onClick={applyTypo} >Pour la cellule selectionnée</button>
                                 </div>
                             </div>
-
-                            <button aria-label="Undo" className="ml-auto" disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt fa-2x "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
-                            <button aria-label="Redo" disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt fa-2x "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
                         </div>
                         <div className="form-show__preview" id="tablePreview">
                             {showTable()}

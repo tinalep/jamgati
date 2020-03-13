@@ -1,18 +1,29 @@
-// Check if page is of type "create"
 // window.onload
 window.onload = function() {
     
     checkUrl();
     openSidebar();
     changeSidebar();
+    openModal();
 
     window.onresize = function() {
         openSidebar();
         changeSidebar();
     };
 
+    function openModal(){
+        let windowWidth = window.innerWidth;
+        let create = document.querySelector('.page-create');
+
+        if(create){
+            if(windowWidth < 991){
+                $('.modal-mobile').modal('show')
+            }
+        }
+    }
+
     //Sort table
-    const table = document.querySelector('#table_dashboard');
+    const table = document.querySelector('.table_dashboard');
     if(table){
         const compare = (ids, asc) => (row1, row2) => {
             const tdValue = (row, ids) => row.children[ids].textContent;
@@ -81,14 +92,17 @@ window.onload = function() {
 
         let windowWidth = window.innerWidth;
         const sidebar = document.querySelector('.sidebar');
+        const dashboard = document.querySelector('.page-dashboard');
         const create = document.querySelector('.page-create');
 
-        if(!create){
-            if(windowWidth < 991 && windowWidth > 768){
-                sidebar.classList.add('sidebar--collapsed');
-            }
-            else{
-                sidebar.classList.remove('sidebar--collapsed');
+        if(dashboard){
+            if(!create){
+                if(windowWidth < 991 && windowWidth > 768){
+                    sidebar.classList.add('sidebar--collapsed');
+                }
+                else{
+                    sidebar.classList.remove('sidebar--collapsed');
+                }
             }
         }
 }

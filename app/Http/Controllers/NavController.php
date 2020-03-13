@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\nav;
+use App\Nav;
 use App\Http\Requests\StoreFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

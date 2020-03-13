@@ -8,10 +8,16 @@
     width: 240px;
     border-right: 1px solid $color-grey;
     // padding: 20px 25px;
-    margin-right: 60px;
+    margin-right: 40px;
     z-index: 6;
     background: $color-white;
     transition: 0.3s all ease-in-out;
+
+    .icon-logout{
+        @include md-breakpoint(){
+            display: none;
+        }
+    }
 
     @include md-breakpoint(){
         position: initial;
