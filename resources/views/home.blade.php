@@ -146,7 +146,9 @@
                     <img src="assets/images/img-bootstrap.png" loading="lazy" alt="Logo Bootstrap" longdesc="#bootIMG">
                     <div class="text" id="bootIMG">
                         <p><strong>Bootstrap</strong></p>
-                        <p>Pour permettre aux utilisateurs de votre site d’accéder au contenu quelque soit </p>
+                        <p>
+                            Pour permettre aux utilisateurs de votre site d’accéder au contenu quelque soit la taille de votre écran, Bootstrap est l’outil indispensable exploité par Jamgati.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-6 tech">
