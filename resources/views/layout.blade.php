@@ -53,7 +53,7 @@
                 <nav>
                     <ul role="menubar" aria-label="string">
                         <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('home') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('home') }}">Accueil</a></li>
-                        <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('tab.create') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('table.create') }}">Tableau</a></li>
+                        <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('table.create') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('table.create') }}">Tableau</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('form.create') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('form.create') }}">Formulaire</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('nav.create') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('nav.create') }}">Menu</a></li>
                         <li role="none"><a role="menuitem" tabindex="0" class="{{request()->routeIs('doc') ? 'nav-link activ-link' : 'nav-link' }}" href="{{ route('doc') }}">Documentation</a></li>
