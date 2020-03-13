@@ -1,6 +1,7 @@
-@extends('layout-board')
+@extends('layout')
 
 @section('content')
+<main name="content" role="main">
     <div class="section">
         <div class="container">
             <div class="row main-title">
@@ -115,4 +116,5 @@
             </div>
         </div>
     </div>
+</main>
 @endsection
