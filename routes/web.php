@@ -19,6 +19,7 @@ Route::post('/dl/test', 'BoardController@dl')->name('dl');
 
 // Table
 Route::get('/table/loadall', 'TableController@loadall')->name('table.loadall');
+Route::get('/table/loadModel', 'TableController@loadModel')->name('table.loadModel');
 Route::get('/table/{table}/load', 'TableController@load')->name('table.load');
 Route::resource('/table', 'TableController');
 
@@ -37,9 +38,9 @@ Route::get('/choice', 'BoardController@choice')->name('choice');
 Route::get('/search', 'SearchController@index')->name('search');
 
 // Guest routes
-Route::get('/nav/create', 'NavController@create')->name('nav.create');
-Route::get('/tab/create', 'TableController@create')->name('tab.create');
-Route::get('/form/create', 'FormController@create')->name('form.create');
+// Route::get('/nav/create', 'NavController@create')->name('nav.create');
+// Route::get('/tab/create', 'TableController@create')->name('tab.create');
+// Route::get('/form/create', 'FormController@create')->name('form.create');
 
 Route::get('/doc', 'HomeController@doc')->name('doc');
 

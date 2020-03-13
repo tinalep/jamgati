@@ -89,6 +89,22 @@ class TableController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @return void
+     */
+    public function loadModel()
+    {
+        $table = new \App\Table();
+        $model = \App\Table::where('id', '4')->get()[0];
+        $table->table = $model->table;
+        $table->name = $model->name;
+        $table->user_id = Auth::user()->id;
+        $table->save();
+        return redirect()->route('table.edit', ['table'=>$table]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\table  $table
