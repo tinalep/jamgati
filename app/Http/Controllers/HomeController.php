@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -58,7 +59,8 @@ class HomeController extends Controller
 
     public function settings()
     {
-        return view('settings');
+        $user = auth()->user();
+        return view('settings',['user'=>$user]);
     }
 }
 
