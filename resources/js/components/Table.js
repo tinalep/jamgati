@@ -28,7 +28,7 @@ const Table = props => {
     const svgUrl = (window.location.href.includes('edit')?'../':'')
     for(let i =10; i<=30; i+=2) fontsSize.push(i+'px')
 
-
+    // Création d'un tableau vierge ou du tableau de l'utilisateur
     useEffect(()=>{
         if(document.getElementById('table-root').dataset.table&&mode==='create'){
             setMode('edit')
@@ -45,16 +45,12 @@ const Table = props => {
         }
     }, []);
 
+    // Fonctions d'intéractions BDD
     const exportPopup = (on)=>{
         document.querySelector('#exportPopup').style.display = (on?'block':'none');
         setExportMode('default')
     }
-
-    const tableToJson = ()=>{
-        let json ={name: tableName, table: table}
-        return json
-    }
-
+    
     const save = ()=>{
         let json = tableToJson();
         if(mode==='create'){
@@ -74,7 +70,46 @@ const Table = props => {
             $('.modal.save').modal('hide')
          }, 5000);
     }
+    
+    const showHtmlTable = ()=>{
+        let style =''
+        let tableContent =
+        table.lines.map((line,idL)=>{
+            return(<tr key={idL}>
+                {line.cells.map((cell,idC)=>{
+                    style+= '.cell'+idL+'-'+idC+' { font-size: '+cell.style.fontSize+'; font-family: '+cell.style.fontFamily+'; text-align: '+cell.style.textAlign+';}'
+                    return(cell.size.type==='null'?null:
+                        <td className={"cell"+idL+'-'+idC} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} key={idC}>{cell.content}</td>)
+                    })}
+                </tr>)
+        })
+        let tableDom =
+        <>
+            <style dangerouslySetInnerHTML={{__html: style}} />
+            <table className="table table-bordered table-striped">
+                <thead className="thead-light">
+                    {tableContent[0]}
+                </thead>
+                <tbody>
+                    {tableContent.filter(e=>e!==tableContent[0])}
+                </tbody>
+            </table>
+        </>
+        return beauty_html(ReactDOMServer.renderToStaticMarkup(tableDom))
+    }
 
+    const showCsvTable = ()=>{
+        let csv = ''
+        table.lines.forEach((line,idL)=>{
+                line.cells.forEach((cell,idC)=>{
+                    csv+=(cell.size.type==="null"?'':cell.content)
+                    csv+=(idC===line.cells.length-1?'':';')
+                })
+                csv+='\n'
+        })
+        return csv
+    }
+    
     const loadTable = (table)=>{
         setTableName(table.name);
         let t = R.clone(table);
@@ -84,6 +119,51 @@ const Table = props => {
         let save=R.clone(temp)
         save.tab.push({table:t, selected:selected})
         setTemp(save)
+    }
+
+    const loadTableFromFile = (content,ext)=>{
+        console.log(content)
+        let s = {empty: false, line: 0, column: 0, cell: {l:0,c:0}}
+        let t = {lines: [], parameters: {nbLines: 0, nbColumns: 0, style: {}}, mode:'edit', headers:{row: false, col: false}}
+        setSelected(s)
+        switch(ext){
+            case 'csv' :
+                let lines = []
+                let arrayLines = content.split('\n')
+                arrayLines.forEach((l,id)=>{
+                    let arrayCells = l.split(';');
+                    let line = {}
+                    let cells = []
+                    arrayCells.forEach((c,id)=>{
+                        let cell = R.clone(initCell)
+                        cell.content=c
+                        cells.push(cell)
+                    })
+                    line.cells=cells
+                    console.log(arrayCells.length)
+                    arrayCells.length>1? lines.push(line): console.log('Bien ouej')
+                })
+                t.lines=lines
+                t.parameters.nbLines = lines.length
+                t.parameters.nbColumns = lines[0].cells.length
+                break;
+        }
+        let save = R.clone(temp)
+        if(save.tab.length>=tempSize) save.tab.splice(0,save.tab.length+1-tempSize)
+        else
+        {
+            save.tab.splice(save.lvl, tempSize-save.lvl)
+            save.lvl = save.tab.length+1
+
+        }
+        save.tab.push({table:t, selected:s})
+        setTemp(save)
+        setTable(t)
+    }
+
+    const tableToJson = ()=>{
+        let json ={name: tableName, table: table}
+        return json
     }
 
     const createTab = ()=>{
@@ -147,6 +227,20 @@ const Table = props => {
     }
 
     const giveSelectedClass = (l,c)=>{
+        let obj = isAdj(l,c)
+        if(table.mode=='fusion')
+        {
+            if(obj.bool)
+            {
+                if(obj.bool&&obj.type=='cell') return 'selected-cell'
+                if(obj.bool&&obj.type=='col') return 'selected-fusion'
+                if(obj.bool&&obj.type=='row') return 'selected-fusion'
+                if(obj.bool&&obj.type=='square') return 'selected-fusion'
+            }
+                
+        }
+        else
+        {
         if(selected.cell.l===l&&selected.cell.c===c){
             return 'selected-cell'
         }
@@ -157,17 +251,26 @@ const Table = props => {
             return 'selected-row'
         }
         else return ''
+        }
     }
 
     const isAdj = (l,c)=>{
+        let sel = table.lines[selected.cell.l].cells[selected.cell.c]
         let obj={bool: false, type: 'row'}
-        if(selected.cell.l===l){
-            obj.type='col'
-            obj.bool=(Math.abs(selected.cell.c-c)===1)
+        if(selected.cell.l==l){
+            if(selected.cell.c===c){
+                obj.bool=true
+                obj.type='cell'
+            }
+            else if((sel.size.type=='cell'||sel.size.type=='col')&&Math.abs(selected.cell.c-c)==1){
+                obj.bool=(selected.cell.c*c!=0)
+                obj.type=(sel.size.type=='cell'?'row':'square')
+            }
         }
-        if(selected.cell.c===c){
-            obj.type='row'
-            obj.bool=(Math.abs(selected.cell.l-l)===1)&&(selected.cell.l*l>0)
+        else if (selected.cell.c==c&&(sel.size.type=='cell'||sel.size.type=='row')&&Math.abs(selected.cell.l-l)==1)
+        {         
+            obj.bool=(selected.cell.l*l!=0)
+            obj.type=(sel.size.type=='cell'?'col':'square')
         }
         return obj
     }
@@ -250,6 +353,24 @@ const Table = props => {
                     setHelper('Selectionnez une cellule avec laquelle vous souhaitez fusionner votre cellule.')
                 }
                 break;
+            case 'unfusion' :
+                let sel = updTable.lines[selected.line].cells[selected.column]
+                let lon = sel.size.lon
+                if(lon>1)
+                {
+                    setHelper('')
+                    if(sel.size.type=='row'||sel.size.type=='square')
+                        updTable.lines[selected.line].cells[selected.column+1].size.type='cell'
+                    if(sel.size.type=='col')
+                        updTable.lines[selected.line+1].cells[selected.column].size.type='cell'
+                    if(sel.size.type=='square')
+                        updTable.lines[selected.line+1].cells[selected.column+1].size.type='cell'
+                    sel.size.lon=1
+                    sel.size.type='cell'
+                }
+                else
+                    setHelper('Veuillez selectionner une cellule qui a été fusionnée') 
+                break;
             default : console.log('Problem with the tableHandler')
         }
         let save = R.clone(temp)
@@ -286,13 +407,14 @@ const Table = props => {
         t.color = color.hex
         console.log(t)
         setTypo(t)
-      };
+    }
+    
     const handleChangeBg= (color) => {
-    let t = R.clone(typo)
-    t.backgroundColor = color.hex
-    console.log(t)
-    setTypo(t)
-    };
+        let t = R.clone(typo)
+        t.backgroundColor = color.hex
+        console.log(t)
+        setTypo(t)
+    }
 
     const applyTypo = (e)=>{
         let t = R.clone(table)
@@ -345,6 +467,7 @@ const Table = props => {
         cell.style.fontFamily = typo.fontFamily=='0'?cell.style.fontFamily:typo.fontFamily
         cell.style.textAlign = typo.textAlign=='0'?cell.style.textAlign:typo.textAlign
         cell.style.color = typo.color=='0'?cell.style.color:typo.color
+        cell.style.backgroundColor = typo.backgroundColor=='0'?cell.style.backgroundColor:typo.backgroundColor
         cell.style.fontWeight = typo.fontWeight=='0'?cell.style.fontWeight:typo.fontWeight
         cell.style.textDecoration = typo.textDecoration=='0'?cell.style.textDecoration:typo.textDecoration
         cell.style.fontStyle = typo.fontStyle=='0'?cell.fontStyle:typo.fontStyle
@@ -365,7 +488,6 @@ const Table = props => {
         return size;
     }
 
-
     const showTable = ()=>{
         let tableContent =
         table.lines.map((line,idL)=>{
@@ -374,14 +496,14 @@ const Table = props => {
                     if(idL===0&&table.headers.row||idC===0&&table.headers.col)
                     {
                     return(
-                        <th onClick={(e)=>preventDefault(e)} className={giveSelectedClass(idL,idC)+' '+(cell.size.type==='null'?'d-none':'')} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
+                        <th onClick={(e)=>preventDefault(e)} className={giveSelectedClass(idL,idC)+' '+(cell.size.type==='null'?'d-none':'')} colSpan={setCellSize(cell).row} rowSpan={setCellSize(cell).col} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
                             <textarea spellCheck="false" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} data-table="cell" style={cell.style} onChange={tableHandler} value={cell.content} />
                         </th>)
                     }
                     else
                     {
                     return(
-                        <td className={giveSelectedClass(idL,idC)+' '+(cell.size.type==='null'?'d-none':'')} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
+                        <td className={giveSelectedClass(idL,idC)+' '+(cell.size.type==='null'?'d-none':'')} colSpan={setCellSize(cell).row} rowSpan={setCellSize(cell).col} style={{backgroundColor: cell.style.backgroundColor}} onClick={()=>handleSelected(idL,idC)} key={idC}>
                             <textarea spellCheck="false" cols={Math.max(20,cell.content.length)} rows={1+cell.content.length - cell.content.replace(/\n/g,"").length} onFocus={()=>handleSelected(idL,idC)} style={cell.style} data-table="cell" onChange={tableHandler} value={cell.content} />
                         </td>)
                     }
@@ -414,13 +536,17 @@ const Table = props => {
 
     const handleFusion = (l,c)=>{
         let t = R.clone(table)
-        let adj = isAdj(l,c)
+        let cell = t.lines[l].cells[c]
+        let sel = R.clone(t.lines[selected.cell.l].cells[selected.cell.c])
+        let obj = isAdj(l,c)
         let save = R.clone(temp)
-        if(adj.bool)
+        if(obj.bool&&obj.type!='cell')
         {
-            t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.lon++
-            t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.type=adj.type
+            t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.lon=2
+            t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.type=obj.type
             t.lines[Math.max(selected.cell.l,l)].cells[Math.max(selected.cell.c,c)].size.type='null'
+            t.lines[Math.min(selected.cell.l,l)].cells[Math.min(selected.cell.c,c)].size.content=sel.content+'+'+cell.content
+            if(obj.type=='square') t.lines[(sel.size.type==='col'?1:0)+l].cells[(sel.size.type==='row'?1:0)+c].size.type='null'
             if(save.tab.length>=tempSize) save.tab.splice(0,save.tab.length+1-tempSize)
             else
             {
@@ -455,45 +581,6 @@ const Table = props => {
         setSelected((temp.tab[t.lvl-1].selected))
         console.log(temp.tab[t.lvl-1].table)
         setTemp(t)
-    }
-
-    const showHtmlTable = ()=>{
-        let style =''
-        let tableContent =
-        table.lines.map((line,idL)=>{
-            return(<tr key={idL}>
-                {line.cells.map((cell,idC)=>{
-                    style+= '.cell'+idL+'-'+idC+' { font-size: '+cell.style.fontSize+'; font-family: '+cell.style.fontFamily+'; text-align: '+cell.style.textAlign+';}'
-                    return(cell.size.type==='null'?null:
-                        <td className={"cell"+idL+'-'+idC} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} key={idC}>{cell.content}</td>)
-                    })}
-                </tr>)
-        })
-        let tableDom =
-        <>
-            <style dangerouslySetInnerHTML={{__html: style}} />
-            <table className="table table-bordered table-striped">
-                <thead className="thead-light">
-                    {tableContent[0]}
-                </thead>
-                <tbody>
-                    {tableContent.filter(e=>e!==tableContent[0])}
-                </tbody>
-            </table>
-        </>
-        return beauty_html(ReactDOMServer.renderToStaticMarkup(tableDom))
-    }
-
-    const showCsvTable = ()=>{
-        let csv = ''
-        table.lines.forEach((line,idL)=>{
-                line.cells.forEach((cell,idC)=>{
-                    csv+=(cell.size.type==="null"?'':cell.content)
-                    csv+=(idC===line.cells.length-1?'':';')
-                })
-                csv+='\n'
-        })
-        return csv
     }
 
     document.onkeydown = KeyPress;
@@ -534,15 +621,15 @@ const Table = props => {
                 </div>
             </div>
             <div className="form-container">
-                <Edit tableName={tableName} setTableName={setTableName} table={table} tableHandler={tableHandler} selected={selected}/>
+                <Edit tableName={tableName} setTableName={setTableName} table={table} tableHandler={tableHandler} selected={selected} loadTableFromFile={loadTableFromFile} />
                 {/* Partie où est afficher le contenu créé */}
                 <div className="form-show" onClick={unselect}>  
                     <div className="form-show__header d-flex justify-content-between">
                         <h2 className="form-show__title">Edition tableau</h2>
                         <div className="form-show__buttons">
-                            <button aria-label="Export" className="button button-bgnone export" onClick={()=>exportPopup(true)}><i class="fas fa-file-export"></i><span>Exporter</span></button>
+                            <button aria-label="Export" className="button button-bgnone export" onClick={()=>exportPopup(true)}><i className="fas fa-file-export"></i><span>Exporter</span></button>
                                 
-                            <button aria-label="Save" data-toggle="modal" data-target="#saveModal" className="button button-bgred button-no-border save" onClick={save}><i class="far fa-save"></i> <span>Sauvegarder</span></button>
+                            <button aria-label="Save" data-toggle="modal" data-target="#saveModal" className="button button-bgred button-no-border save" onClick={save}><i className="far fa-save"></i> <span>Sauvegarder</span></button>
                         </div>
                     </div>
                     <div className="form-show__body">
@@ -552,12 +639,14 @@ const Table = props => {
                             <button aria-label="Redo" disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt fa-2x "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
                         </div>
                         <div className="form-show__typography">
+                            {/* typos */}
                             <select data-typo='font' value={typo.fontFamily} onChange={typoHandler}>
                                 {fonts.map((f,i)=>{return(<option style={{fontFamily: f}} key={i} value={f}>{f=='0'?'Choisir une police':f}</option>)})}
                             </select>
                             <select data-typo='size' value={typo.fontSize} onChange={typoHandler}>
                                 {fontsSize.map((s,i)=>{return(<option key={i} value={s}>{s=="0"?'Taille':s}</option>)})}
                             </select>
+                            {/* fa buttons */}
                             <button data-typo="bold" className={(typo.fontWeight==='bold'?'active':'')} onClick={typoHandler}><i data-typo="bold" className={"fas fa-bold "+(typo.fontWeight==='bold'?'on':'off')}></i></button>
                             <button data-typo="italic" className={(typo.fontStyle==='italic'?'active':'')} onClick={typoHandler}><i data-typo="italic" className={"fas fa-italic "+(typo.fontStyle==='italic'?'on':'off')}></i></button>
                             <button data-typo="underline" className={(typo.textDecoration==='underline'?'active':'')} onClick={typoHandler}><i data-typo="underline" className={"fas fa-underline "+(typo.textDecoration==='underline'?'on':'off')}></i></button>
@@ -574,18 +663,19 @@ const Table = props => {
                                     <i style={{color: typo.backgroundColor}} className="fas fa-fill"></i>
                                 </button>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <BlockPicker colors={['#000000', '#FFFFFF', '#EB7808', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']} color={typo.backgroundColor} onChangeComplete={handleChangeBg}/>
+                                    <BlockPicker colors={['#000000', '#FFFFFF', '#EB7808', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']} color={typo.backgroundColor=='0'?'#FFFFFF':typo.backgroundColor} onChangeComplete={handleChangeBg}/>
                                 </div>
                             </div>
+                            {/* textalign */}
                             <input className={typo.textAlign==='left'?'active':''} data-typo='left' onClick={typoHandler} type="image" alt="align left" src={svgUrl+'../../resources/assets/images/align-left.svg'}/>
                             <input className={typo.textAlign==='center'?'active':''} data-typo='center' onClick={typoHandler} type="image" alt="align center" src={svgUrl+'../../resources/assets/images/align-center.svg'}/>
                             <input className={typo.textAlign==='right'?'active':''} data-typo='right' onClick={typoHandler} type="image" alt="align right" src={svgUrl+'../../resources/assets/images/align-right.svg'}/>
 
-                            <button className='button-copy' onClick={()=>setTypo(table.lines[selected.cell.l].cells[selected.cell.c].style)}>Copier style</button>
 
-                            <div className="dropdown apply p-1">
-                                <button aria-label="Apply" className="p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Appliquer ...
+                            <button className='button button-bgnone copystyle' onClick={()=>setTypo(table.lines[selected.cell.l].cells[selected.cell.c].style)}>Copier style</button>
+                            <div className="dropdown applystyle">
+                                <button aria-label="Apply" className="button button-bgnone applystyle dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Appliquer style
                                 </button>
                                 <div className="dropdown-menu text-align-left apply-buttons" aria-labelledby="dropdownMenuButton">
                                     <button aria-label="ApplyAll" data-typo='applyAll' className="dropdown-item" onClick={applyTypo} >Pour le tableau entier</button>
@@ -598,8 +688,6 @@ const Table = props => {
                         <div className="form-show__preview" id="tablePreview">
                             {showTable()}
                         </div>
-                        <h4 className="app-show__helper">Temp: size-{temp.tab.length} lvl-{temp.lvl}</h4>
-                        <h4 className="app-show__helper">{selected.cell.l}-{selected.cell.c}</h4>
                     </div>
                     
                 </div>

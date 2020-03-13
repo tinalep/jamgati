@@ -220,7 +220,14 @@
             background: transparent;
         }
     }
-
+    label.import-button{
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        input{
+            display: none;
+        }
+    }
 
 }
 
@@ -318,7 +325,7 @@
             margin: 0 25px;
         }
     }
-    button{
+    &>button, .table-color-selector>button{
         margin: 0 5px;
         border: solid 2px rgba(0,0,0,0);
         background-color: unset;
@@ -343,15 +350,25 @@
             }
         }
     }
-    .button-copy{
-        background-color: #f7b5bd;
+    button.copystyle{
+        padding: 10px 15px;
+        background-color: transparent;
+        border: 3px solid #ee5a6b ;
+        color: #ee5a6b ;
+        transition: 0.3s all ease-in-out;
+    }
+    &>div.dropdown{
+        width: unset;
+    }
+    button.applystyle{
+        padding: 10px 15px;
+        background-color: #ee5a6b ;
+        border: 3px solid transparent;
+        color: white;
+        transition: 0.3s all ease-in-out;
     }
 }
 
-.app-show__helper{
-    // min-height: 1.5rem;
-    // margin: 30px 0;
-}
 .app-pre{
     min-height: 200px;
     max-height: 400px;
@@ -365,17 +382,21 @@
     th, td{
         border: solid 1px;
         &.selected-cell{
-            background-color: #ee5a6b
+            background-color: #ee5a6b !important;
         }
         &.selected-row{
-            background-color: #f7b5bd;
+            background-color: #f7b5bd !important;
         }
         &.selected-col{
-            background-color: #f7b5bd;
+            background-color: #f7b5bd !important;
+        }
+        &.selected-fusion{
+            background-color: #f7b5bd !important;
         }
     }
     textarea{
         padding: 10px 5px;
+        background-color: unset !important;
     }
     thead th{
         border: solid 2px
