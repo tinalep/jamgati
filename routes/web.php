@@ -43,8 +43,13 @@ Route::get('/form/create', 'FormController@create')->name('form.create');
 
 Route::get('/doc', 'HomeController@doc')->name('doc');
 
-//Dashboard
+Route::post('/settings/{user}/edit', 'UserController@update')->name('user.update');
+Route::delete('/settings/{user}', 'UserController@destroy')->name('user.destroy');
 Route::get('/settings', 'HomeController@settings')->name('settings');
+
+
+
+
 
 //Footer
 Route::get('/mentions', 'HomeController@mentions')->name('mentions');
@@ -53,8 +58,3 @@ Route::get('/data', 'HomeController@data')->name('data');
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
-// Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.reset');
-// Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
-// Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('admin.password.token');
-// Route::post('password/reset', 'ResetPasswordController@reset');
