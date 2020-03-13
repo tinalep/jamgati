@@ -17,17 +17,18 @@ const Table = props => {
     const [selected, setSelected] = useState({empty: false, line: 0, column: 0, cell: {l:0,c:0}})
     const [helper, setHelper] = useState('')
     const [temp, setTemp] = useState({lvl: 1, tab: []})
-    const [typo, setTypo] = useState({fontFamily: '0', textAlign: '0', fontSize: '0', fontWeight: '0', fontStyle: '0', color: '0', textDecoration: '0', textStyle: '0'})
+    const [typo, setTypo] = useState({fontFamily: '0', textAlign: '0', fontSize: '0', fontWeight: '0', fontStyle: '0', color: '0', textDecoration: '0', backgroundColor: '0'})
     const [exportMode, setExportMode] = useState('default')
     const tempSize = 15
-    const initTypo = {fontFamily: '0', textAlign: '0', fontSize: '0', fontWeight: '0', fontStyle: '0', color: '0', textDecoration: '0', textStyle: '0'}
-    const initCellStyle = {fontFamily: 'Lato', textAlign: 'center', fontSize: '16px', fontWeight: 'unset', fontStyle: 'unset', color: '#000000', textDecoration: 'none', textStyle: 'none'}
+    const initTypo = {fontFamily: '0', textAlign: '0', fontSize: '0', fontWeight: '0', fontStyle: '0', color: '0', textDecoration: '0', backgroundColor: '0'}
+    const initCellStyle = {fontFamily: 'Lato', textAlign: 'center', fontSize: '16px', fontWeight: 'unset', fontStyle: 'unset', color: '#000000', textDecoration: 'none', backgroundColor: 'none'}
     const initCell = {content: 'Nouvelle cellule', style:initCellStyle, size:{lon: 1, type: 'cell'}}
     const fonts = ['0','Arial', 'Courier New', 'Lato', 'Roboto', 'Times', 'Times New Roman']
     const fontsSize =[0]
     const svgUrl = (window.location.href.includes('edit')?'../':'')
     for(let i =10; i<=30; i+=2) fontsSize.push(i+'px')
 
+    
     // Création d'un tableau vierge ou du tableau de l'utilisateur
     useEffect(()=>{
         if(document.getElementById('table-root').dataset.table&&mode==='create'){
@@ -72,26 +73,41 @@ const Table = props => {
     }
     
     const showHtmlTable = ()=>{
-        let style =''
+        let loadedFonts = []
+        let style =
+        '.table{width: 60%;}'
+        +'.table_custom th, .table_custom td{ border: solid 1px; padding: 10px 5px; background-color: unset !important;}'
+        +'.table_custom thead th{border: solid 2px;}'
+        +'.table_custom tbody th:first-child{border: solid 2px;}'
         let tableContent =
         table.lines.map((line,idL)=>{
             return(<tr key={idL}>
                 {line.cells.map((cell,idC)=>{
-                    style+= '.cell'+idL+'-'+idC+' { font-size: '+cell.style.fontSize+'; font-family: '+cell.style.fontFamily+'; text-align: '+cell.style.textAlign+';}'
+                    style+= '.cell'+idL+'-'+idC+' { font-size: '+cell.style.fontSize+'; font-family: '+cell.style.fontFamily+'; text-align: '+cell.style.textAlign+'; font-style: '+cell.style.fontStyle+'; font-weight: '+cell.style.fontWeight+'; text-decoration: '+cell.style.textDecoration+'; background-color: '+cell.style.backgroundColor+'; color: '+cell.style.color+'}'
+                    loadedFonts.push(cell.style.fontFamily)
                     return(cell.size.type==='null'?null:
                         <td className={"cell"+idL+'-'+idC} colSpan={setCellSize(cell).col} rowSpan={setCellSize(cell).row} key={idC}>{cell.content}</td>)
                     })}
                 </tr>)
         })
+        loadedFonts = loadedFonts.filter( onlyUnique );
+        loadedFonts.forEach((font)=>{
+            style += "@import url('https://fonts.googleapis.com/css?family="+font+"&display=swap');";
+
+        })
+        let thead = tableContent[0]
+        let tbody = tableContent.filter(e=>e!==tableContent[0])
         let tableDom =
         <>
             <style dangerouslySetInnerHTML={{__html: style}} />
-            <table className="table table-bordered table-striped">
-                <thead className="thead-light">
-                    {tableContent[0]}
+            <table className="table_custom">
+                <caption>{tableName}</caption>
+                <thead className="thead_custom">
+                    {table.headers.row?thead:null}
                 </thead>
-                <tbody>
-                    {tableContent.filter(e=>e!==tableContent[0])}
+                <tbody className="tbody_custom">
+                    {table.headers.row?null:thead}
+                    {tbody}
                 </tbody>
             </table>
         </>
@@ -159,6 +175,10 @@ const Table = props => {
         save.tab.push({table:t, selected:s})
         setTemp(save)
         setTable(t)
+    }
+
+    function onlyUnique(value, index, self) { 
+        return self.indexOf(value) === index;
     }
 
     const tableToJson = ()=>{
@@ -633,7 +653,6 @@ const Table = props => {
                         </div>
                     </div>
                     <div className="form-show__body">
-                        <h4 className="app-show__helper">{helper}</h4>
                         <div className="app-show__undo">
                             <button aria-label="Undo" className="ml-auto" disabled={temp.lvl===1} onClick={()=>cancel('undo')}><i className={"fas fa-undo-alt fa-2x "+(temp.lvl===1?"text-secondary":"text-danger")}></i></button>
                             <button aria-label="Redo" disabled={temp.lvl===temp.tab.length} onClick={()=>cancel('redo')}><i className={"fas fa-redo-alt fa-2x "+(temp.lvl===temp.tab.length?"text-secondary":"text-success")}></i></button>
@@ -688,6 +707,7 @@ const Table = props => {
                         <div className="form-show__preview" id="tablePreview">
                             {showTable()}
                         </div>
+                        <h4 className="app-show__helper">{helper}</h4>
                     </div>
                     
                 </div>
