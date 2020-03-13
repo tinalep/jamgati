@@ -1,5 +1,9 @@
 @extends('layout-board')
 
+<?php
+$user = Auth::user();
+?>
+
 @section('title')
     Tableau de bord - Paramètres
 @endsection
