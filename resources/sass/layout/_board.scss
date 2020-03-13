@@ -1,0 +1,311 @@
+.page-dashboard{
+    main{
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 300px);
+        padding-right: 15px;
+        background-image: url(../images/bg-dashboard.svg);
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-position-y: -1350px;
+        background-position-x: -425px;
+        margin-top: 0;
+    }
+
+    .profil.card{
+        display: none;
+        @include md-breakpoint(){
+            display: block;
+        }
+    }
+
+    #burger{
+        left: 20px;
+    }
+
+    .header-board{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 15px;
+    }
+
+    .dashboard{
+        margin-left: 15px;
+
+        @include lg-breakpoint(){
+            margin-left: 0;
+        }
+    }
+
+    .dashboard_header{
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+        margin-top: 50px;
+        @include md-breakpoint(){
+            margin-top: 0;
+        }
+        @include lg-breakpoint(){
+            margin-left: 0;
+        }
+
+        .dropdown{
+            z-index: 4;
+        }
+
+
+        h1{
+            text-align: left;
+        }
+
+        .button{
+            font-size: rem(40);
+            line-height: rem(15);
+            box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
+        }
+    }
+
+    .dashboard_empty{
+        a{
+            text-decoration: underline;
+        }
+    }
+
+    .dashboard_nav{
+        margin-top: 19px;
+        margin-left: 15px;
+        @include lg-breakpoint(){
+            margin-left: 0;
+        }
+        &__link{
+            position: relative;
+            display: inline-block;
+            font-weight: bold;
+            font-style: normal;
+            font-size: rem(18);
+            color: $color-dark-grey;
+            margin-right: 15px;
+            @include md-breakpoint(){
+                margin-right: 47px;
+            }
+            &:after{
+                content: "";
+                display:block;
+                width: 100%;
+                height: 2px;
+                background-color: $color-text;
+                opacity: 0;
+                transition: 0.3s all ease-in-out;
+            }
+            &--active,
+            &:hover{
+                text-decoration: none;
+                color: $color-text;
+                &:after{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .table_dashboard{
+        border-collapse: separate;
+        border-spacing: 20px;
+        @include md-breakpoint(){
+            margin-top: 30px;
+        }
+        thead{
+            border: none;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+            @include md-breakpoint(){
+                // Desktop
+                height: auto;
+                margin: auto;
+                overflow: scroll;
+                padding: auto;
+                position: initial;
+                width: auto;
+            }
+            th{
+                font-weight: normal;
+                font-style: normal;
+                line-height: rem(19);
+                font-size: rem(16);
+                text-transform: uppercase;
+                color: $color-dark-grey;
+                padding: 0 21px;
+                cursor: pointer;
+                &:not(:last-child){
+                    &:after{
+                        content: "\f0dc";
+                        font-family: "Font Awesome 5 Free";
+                        font-weight: 900;
+                        font-size: rem(12);
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+        tbody{
+            tr{
+                display: block;
+                box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
+                border-radius: $border-radius;
+                cursor: pointer;
+                padding: 30px;
+                margin-bottom: 20px;
+                @include md-breakpoint(){
+                    display: table-row;
+                    padding: 0;
+                    margin-bottom: 0;
+                }
+            }
+            td{
+                // border-radius: $border-radius;
+                display: block;
+
+                &:before{
+                    content: attr(data-label);
+                    display: block;
+                    margin-bottom: 15px;
+                    font-weight: normal;
+                    font-style: normal;
+                    line-height: rem(19);
+                    font-size: rem(16);
+                    text-transform: uppercase;
+                    color: $color-dark-grey;
+                }
+                &[data-label="Actions"]{
+                    @include md-breakpoint(){
+                        width: 45%;
+                    }
+                }
+                &[data-label="Titre"]{
+                    @include md-breakpoint(){
+                        width: 35%;
+                    }
+                }
+                @include md-breakpoint(){
+                    display: table-cell;
+                    padding: 20px 0 20px 21px;
+                    background-color: $color-white;
+                    &:first-of-type{
+                        border-top-left-radius: $border-radius;
+                        border-bottom-left-radius: $border-radius
+                    }
+                    &:last-of-type{
+                        border-top-right-radius: $border-radius;
+                        border-bottom-right-radius: $border-radius;
+                    }
+                    &:before{
+                        display: none;
+                    }
+                }
+            }
+
+        }
+        &__title{
+            @include title-small-bold();
+        }
+
+        &__update{
+            @include text();
+        }
+
+        &__action{
+            a{
+                display: inline-block;
+                margin-right: 5px;
+                color: $color-white;
+                padding: 13px 19px;
+                border-radius: 30px;
+                background-color: black;
+                &:first-of-type{
+                    background: $gradient-green;
+                }
+                &:nth-of-type(2){
+                    background: $gradient-red;
+                }
+            }
+        }
+    }
+
+    .pagination{
+        margin-top: 55px;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0 auto;
+        list-style-type: none;
+
+        li{
+            line-height: rem(36);
+            &.active{
+                span{
+                    background: $gradient-orange;
+                    color: $color-white;
+                }
+            }  
+            &.disabled{
+                opacity: 0.3;
+            } 
+        }
+
+        a{
+            color: $color-text;
+            border: none;
+            border-radius: 50%;
+        }
+
+        span{
+            @include title-small-bold();
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: initial;
+            text-align: center;
+            border-radius: 50%;
+            border: none;
+        }
+    }
+
+    .doc{
+        position: fixed;
+        right: 15px;
+        bottom: 15px;
+        background: $gradient-red;
+        color: $color-white;
+        width: 40px;
+        height: 40px;
+        font-weight: bold;
+        line-height: 2.3;
+        text-align: center;
+        border-radius: 50%;
+    }
+}
+
+.settings{
+    margin-top: 40px;
+    margin-left: 15px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include md-breakpoint(){
+        margin-top: 0;
+        margin-left: 0;
+    }
+    
+    .button{
+        width: fit-content;
+        margin-left: 0;
+    }
+}

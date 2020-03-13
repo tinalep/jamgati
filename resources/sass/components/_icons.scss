@@ -1,0 +1,24 @@
+//Icon 
+$icons: ("icon-plus-circle", "icon-dashboard", "icon-search", "icon-settings", "icon-logout");
+
+@each $icon-name in $icons{
+    .#{$icon-name}{
+        &:before{
+            content: "";
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-image: url("../images/#{$icon-name}.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+            margin-right: 25px;
+        }
+        &.activ-link, 
+        &:hover{
+            &:before{
+                background-image: url("../images/#{$icon-name}-red.svg");
+            }
+        }
+    }
+}

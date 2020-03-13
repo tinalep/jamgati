@@ -1,0 +1,407 @@
+.Form{
+    text-align: left;
+}
+
+.form-container{
+    display:flex;
+    flex-direction: row;
+    padding: 50px 0 0 0;
+}
+
+.form-group{
+    padding-top: 0px;
+}
+
+.form-edit{
+    display: none;
+    background: rgba(230, 92, 0, 0.05);
+    border: 2px solid rgba(230, 92, 0, 0.05);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    min-height: 84vh;
+    max-height: 84vh;
+    width: 270px;
+    min-width: 270px;
+    overflow-y: scroll; 
+    @include lg-breakpoint(){  
+        display: block; 
+    }
+    &::-webkit-scrollbar{
+        width: 5px;        
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(230, 92, 0, 0.15);
+        border-radius: 10px;
+    }
+}
+
+.form-show{
+    width: 100%;
+    overflow-x: scroll;
+    max-height: 84vh;
+    padding-right: 15px;
+    margin-left: 15px;
+    @include md-breakpoint(){
+        padding-right: 30px;
+        margin-left: 40px;
+    }
+
+    &::-webkit-scrollbar{
+        width: 5px;
+        height: 5px;        
+        border-radius: 10px;
+
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(230, 92, 0, 0.15);
+        border-radius: 10px;
+    }
+}
+
+.form-show__header{
+    flex-wrap: wrap;
+}
+
+.form-show__buttons{
+    .button{
+        margin: 0;
+        margin-top: 15px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        width: auto;
+        span{
+            display: none;
+        }
+        @include md-breakpoint(){
+            span{
+                display: block;
+            }
+
+            i{
+                display: none;
+            }
+        }
+    }
+
+    
+}
+
+.form-edit__header{
+    padding: 15px 25px;
+    border-bottom: solid 2px rgba(230, 92, 0, 0.05);
+    font-size: rem(18);
+        textarea{
+        font-weight: bold;
+        font-size: rem(18);
+        background-color: rgba(0,0,0,0);
+        border: none;
+        color: #212529;
+        overflow: hidden;
+        resize: none;
+    }
+
+    .fa{
+        font-size: rem(10);
+    }
+
+    h2{
+        font-size: rem(18);
+        display: flex;
+        align-items: center;
+    }
+}
+.form-edit__title{
+    font-weight: bold;
+    color: #000000;
+}
+.form-show__title{
+    @include font-size(rem(48));
+    font-weight: 800;
+    margin: unset;
+}
+
+.form-show__body{
+    height: auto;
+}
+
+
+.form-show__preview{
+    margin: auto;
+}
+
+.edit-button{
+    background: white;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 5px;
+    font-weight: bold;
+    color: black;
+    border-radius: 50px;
+}
+
+.edit-button:hover{ 
+    background: rgba(230, 92, 0, 0.37);
+}
+
+
+.edit-card{
+    border-bottom: solid 2px rgba(230, 92, 0, 0.05);
+}
+
+.edit-card__header{
+    padding: 15px 25px;
+    position: relative;
+}
+
+.edit-card__title{
+    font-weight: bold;
+    font-size: rem(16);
+    color: $color-dark-grey;
+}
+
+.edit-card__subtitle{
+    font-weight: bold;
+    color: #464646;
+    font-size: 18px;
+
+}
+.edit-card__button{
+    position: absolute;
+    font-weight: bold;
+    right: 20px;
+    cursor: pointer;
+}
+
+.edit-card__header:hover{
+    color: black;
+}
+
+
+.edit-card__section{
+    padding: 10px 25px;
+    &:not(:last-child){
+        border-bottom: solid 2px rgba(230, 92, 0, 0.05);
+    }
+    .active{
+        border: solid 2px #EB7808;
+        border-radius: 5px;
+    }
+
+    input{
+        &[type="text"]{
+            display: block;
+            background: transparent;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 5px;
+            margin: 10px 0;
+        }
+    }
+
+    select{
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    button{
+        padding: 8px 15px;
+        background: $gradient-orange;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        margin: 5px 5px 5px 0;
+
+        &.custom-faminus{
+            background: $gradient-red;
+        }
+        &.bg-transparent{
+            background: transparent;
+        }
+    }
+    label.import-button{
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        input{
+            display: none;
+        }
+    }
+
+}
+
+.edit-card__type{
+    color: #000000;
+    font-weight: bold;
+}
+
+.select-field{
+    padding: 10px 0px;
+}
+
+.edit-card__label{
+    padding-top:10px;
+}
+
+.custom-fa{
+    margin-left: 15px;
+    border: solid 1px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+//POPUP D'EXPORT
+
+
+.form-show__popup{
+    margin: 15% auto; /* 15% from the top and centered */
+    background-color: white;
+    width: 50%;
+    padding: 50px;
+    position: relative;
+}
+
+#exportPopup{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 50; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.form-show__close{
+    position: absolute;
+    z-index: 100; /* Sit on top */
+    top:5px ;
+    right:5px;
+    background-color: red;
+}
+.show__exporttext{
+    border: solid 1px;
+    background-color: rgb(211, 209, 209);
+}
+
+#table-root table textarea{
+    background-color: rgba(0,0,0,0);
+    border:none;
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
+.app-show__undo button  {  
+    margin: 0 5px;
+    border: solid 2px rgba(0,0,0,0);
+    background-color: unset;
+}
+
+#table-root .form-show__typography{
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    @include lg-breakpoint(){
+        display: flex;
+    }
+    input{
+        &.active{
+            background-color: #ee9b47;
+            border-radius: 5px;
+        }
+        margin: 0 5px;
+        padding: 5px;
+    }
+    select{
+        border: none;
+        border-bottom: solid 1px black;
+        &:not(:first-child){
+            margin: 0 25px;
+        }
+    }
+    &>button, .table-color-selector>button{
+        margin: 0 5px;
+        border: solid 2px rgba(0,0,0,0);
+        background-color: unset;
+        &.active{
+            background-color: #ee9b47;
+            border-radius: 5px;
+            &.off{
+                color: grey
+            }
+        }
+    }
+    .apply{
+        width: unset;
+        background-color: rgb(255, 154, 53);
+        border-radius: 5px;
+        &-buttons{
+            padding: 5px;
+            button:hover{
+                outline: none;
+                border: solid 2px #EB7808;
+                border-radius: 5px;
+            }
+        }
+    }
+    button.copystyle{
+        padding: 10px 15px;
+        background-color: transparent;
+        border: 3px solid #ee5a6b ;
+        color: #ee5a6b ;
+        transition: 0.3s all ease-in-out;
+    }
+    &>div.dropdown{
+        width: unset;
+    }
+    button.applystyle{
+        padding: 10px 15px;
+        background-color: #ee5a6b ;
+        border: 3px solid transparent;
+        color: white;
+        transition: 0.3s all ease-in-out;
+    }
+}
+
+.app-pre{
+    min-height: 200px;
+    max-height: 400px;
+}
+
+.table-color-selector{
+    width: unset !important;
+}
+
+.table_custom{
+    th, td{
+        border: solid 1px;
+        &.selected-cell{
+            background-color: #ee5a6b !important;
+        }
+        &.selected-row{
+            background-color: #f7b5bd !important;
+        }
+        &.selected-col{
+            background-color: #f7b5bd !important;
+        }
+        &.selected-fusion{
+            background-color: #f7b5bd !important;
+        }
+    }
+    textarea{
+        padding: 10px 5px;
+        background-color: unset !important;
+    }
+    thead th{
+        border: solid 2px
+    }
+    tbody th:first-child{
+        border: solid 2px
+    }
+}

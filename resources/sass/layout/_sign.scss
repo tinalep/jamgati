@@ -1,0 +1,91 @@
+.sign{
+    height: stretch;
+    background-image: url(../images/img-tools.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    .row{
+        height: 100%;
+        align-items: center;
+    }
+
+    .card{
+        &-header{
+            background: transparent;
+            border: none;
+        }
+    }
+
+    .form-group{
+        .col-form-label{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .col-12{
+            padding: 0;
+        }
+    }
+
+    .form-control{
+        &:focus{
+            border-color: $color-orange;
+            box-shadow: none;
+        }
+    }
+
+    .form-check{
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin-top: 35px;
+        input{
+            width: 38px;
+            height: 38px;
+            opacity: 0;
+            &:checked{
+                &+label{
+                    &:after{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        label{
+            position: relative;
+            padding-left: 55px;
+            line-height: rem(34);
+            &:before{
+                content: "";
+                position: absolute;
+                left: 0;
+                display: block;
+                width: 38px;
+                height: 38px;
+                border: 1px solid #ced4da;
+                border-radius: 0.2rem;
+            }
+            &:after{
+                content: "\f00c";
+                position: absolute;
+                left: 8px;
+                top: 4px;
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                font-size: rem(23);
+                opacity: 0;
+                transition: 0.3s all ease-in-out;
+            }
+        }
+    }
+
+    button[type="submit"]{
+        width: stretch;
+        margin-top: 20px!important;
+        & + a{
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+}

@@ -1,8 +1,37 @@
-// Common 
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//Common 
+@import "common/reset";
+@import 'common/mixins';
 @import 'common/global';
 @import 'common/variables';
+@import 'common/functions';
 
-// Components
+//Components
+@import 'components/typography';
+@import 'components/icons';
+@import 'components/profil';
+@import 'components/buttons';
+@import 'components/section';
+@import 'components/card';
+@import 'components/sidebar';
+@import 'components/table';
+@import 'components/paragraph';
+@import 'components/form';
+@import 'components/nav';
+@import "components/dropdown";
+@import "components/choices";
+@import "components/modal";
+@import "components/guest";
 
-// Layout
+//Layout 
 @import 'layout/header';
+@import 'layout/footer';
+@import 'layout/home';
+@import 'layout/board';
+@import "layout/sign";
+@import "layout/create";

@@ -1,60 +1,28 @@
-// Fonts
-@font-face {
-    font-family: 'Lato Regular';
-    src: url('../assets/fonts/lato-regular-webfont.woff2') format('woff2'),
-         url('../assets/fonts/lato-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Lato Light';
-    src: url('lato-light-webfont.woff2') format('woff2'),
-         url('lato-light-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Lato Thin';
-    src: url('lato-thin-webfont.woff2') format('woff2'),
-         url('lato-thin-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Lato Bold';
-    src: url('lato-bold-webfont.woff2') format('woff2'),
-         url('lato-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Lato Semibold';
-    src: url('lato-bold-webfont.woff2') format('woff2'),
-         url('lato-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Lato Extrabold';
-    src: url('lato-extrabold-webfont.woff2') format('woff2'),
-         url('lato-extrabold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Lato Black';
-    src: url('lato-black-webfont.woff2') format('woff2'),
-         url('lato-black-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 // Layout
 body{
-    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+    @include font-size(16px);
     margin: 0 auto;
+    overflow-x: hidden;
+    height: 100%;
+
+    &.page-create{
+        .modal-backdrop{
+            display: none;
+        }
+    }
 }
 
-a {
-    text-decoration: none;
+
+main{
+    margin-top: 94px;
+    flex-grow: 1;
+    overflow-x: hidden;
+    
+    @include md-breakpoint() {
+        overflow-x: unset;
+    }
 }

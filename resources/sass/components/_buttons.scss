@@ -1,0 +1,70 @@
+.button {
+    width: 80%;
+    margin: 10px;
+    border-radius : 50px;
+    text-align: center;
+    font-weight: 700;
+
+    &:focus{
+       outline: none;
+    }
+    
+    @include md-breakpoint() {
+        display: inline;
+        width: auto;
+        margin: 15px;
+    }
+    
+    &-no-border{
+        border: none;
+    }
+    
+    &-bgred {
+        padding: 18px 28px;
+        background: $gradient-red;
+        color: $color-white;
+        transition: 0.3s all ease-in-out;
+
+        &:hover{
+            color: $color-white;
+        }
+    }
+
+    &-bgorange {
+        padding: 18px 28px;
+        background: $gradient-orange;
+        border-color: $gradient-orange;
+        color: $color-white;
+        transition: 0.3s all ease-in-out;
+        &:hover{
+            background: transparent;
+            color: $color-orange;
+            border: 3px solid $color-orange;
+        }
+    }
+    
+    &-bgnone {
+        padding: 15px 28px;
+        background-color: transparent;
+        border: 3px solid $color-red;
+        color: $color-red;
+        transition: 0.3s all ease-in-out;
+        &:hover{
+            background-color: $color-red;
+            color: $color-white;
+        }
+    }
+
+    &-round{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        padding: 8px 8px;
+    }
+
+    &-link{
+        background: transparent;
+        text-decoration: underline;
+    }
+
+} 

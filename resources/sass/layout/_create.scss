@@ -1,0 +1,34 @@
+.page-create{
+    main{
+        background-image: url(../images/bg-edit.svg);
+        background-position-y: -585px;
+        background-position-x: 470px;
+        padding: 0;
+    }
+
+    .sidebar{
+        margin-right: 0;
+    }
+
+    .header-board{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .link-back{
+            padding-top: 10px;
+            padding-left: 60px;
+            font-weight: bold;
+            @include md-breakpoint(){
+                padding-left: 25px;
+            }
+            &:before{
+                content: "\f060";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                font-size: rem(20);
+                margin-right: 10px;
+            }
+        }
+    }
+}

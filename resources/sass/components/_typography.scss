@@ -1,0 +1,130 @@
+@mixin heading-1(){
+    @include font-size(rem(34));
+    font-weight: bold;
+    font-style: normal;
+    line-height: auto;
+    text-align: justify;
+
+    @include md-breakpoint(){
+        @include font-size(rem(60));
+    }
+    @include lg-breakpoint(){
+        @include font-size(rem(72));
+        line-height: rem(86);
+    }
+}
+
+@mixin heading-2(){
+    @include font-size(rem(24));
+    font-style: normal;
+    font-weight: bold;
+    line-height: auto;
+    margin: 0 auto;
+    span{
+        display: block;
+        @include font-size(rem(18));
+        font-style: normal;
+        font-weight: bold;
+        line-height: rem(22);
+        text-transform: uppercase;
+        color: $color-dark-grey;
+    }
+
+    &--center{
+        text-align: center;
+    }
+
+    @include md-breakpoint(){
+        @include font-size(rem(30));
+    }
+    @include lg-breakpoint(){
+        @include font-size(rem(48));
+        line-height: rem(58);
+    }
+}
+
+@mixin heading-3(){
+    @include font-size(rem(18));
+    font-style: normal;
+    font-weight: bold;
+    line-height: rem(29);
+
+    @include md-breakpoint(){
+        @include font-size(rem(20));
+    }
+    @include lg-breakpoint(){
+        @include font-size(rem(24));
+        line-height: rem(29);
+    }
+    
+}
+
+@mixin heading-4 {
+    @include font-size(rem(20));
+    font-style: normal;
+    font-weight: bold;
+    line-height: rem(24);
+}
+
+@mixin title-small-bold($color : $color-text){
+    font-weight: bold;
+    font-size: rem(16);
+    color: $color;
+}
+
+@mixin text($color: $color-text){
+    font-weight: 300;
+    font-size: rem(16);
+    line-height: rem(19);
+    color: $color;
+    margin: 1rem 0;
+}
+
+h1{
+    @include heading-1();
+}
+
+h2{
+    @include heading-2();
+}
+
+h3{
+    @include heading-3();
+}
+
+h4{
+    @include heading-4();
+}
+
+p{
+    @include text($color-text);
+}
+
+b, strong{
+    font-weight: bold;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+    &:hover{
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+.heading-1{
+    @include heading-1();
+}
+
+.heading-2{
+    @include heading-2();
+}
+
+.heading-3{
+    @include heading-3();
+}
+
+.heading-4{
+    @include heading-4();
+}

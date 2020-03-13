@@ -1,0 +1,14 @@
+.card{
+    display: flex;
+    justify-content: center;
+    min-width: 172px;
+    padding: 13px 28px;
+    background-color: $color-white;
+    box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
+    border: none;
+    border-radius: 30px;
+    &-header{
+        background: none;
+        border: none;
+    }
+}

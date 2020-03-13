@@ -7,20 +7,37 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "start": "node resources/js/components/App.js"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "@babel/preset-react": "^7.8.3",
+        "axios": "^0.19.2",
+        "bootstrap": "^4.4.1",
         "cross-env": "^5.1",
+        "jquery": "^3.2",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
+        "popper.js": "^1.12",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
-        "sass-loader": "^7.1.0",
-        "vue-template-compiler": "^2.6.10"
+        "sass": "^1.20.1",
+        "sass-loader": "7.*",
+        "vue": "^2.6.11",
+        "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "bootstrap": "^4.3.1",
-        "rfs": "^9.0.0"
+        "@fortawesome/fontawesome-svg-core": "^1.2.26",
+        "@fortawesome/free-solid-svg-icons": "^5.12.0",
+        "@fortawesome/react-fontawesome": "^0.1.8",
+        "gsap": "^3.0.2",
+        "js-beautify": "^1.10.3",
+        "js-file-download": "^0.4.10",
+        "jsx-to-string": "^1.4.0",
+        "ramda": "^0.26.1",
+        "react-bootstrap": "^1.0.0-beta.16",
+        "react-color": "^2.18.0",
+        "rfs": "^9.0.2"
     }
 }

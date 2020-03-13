@@ -1,0 +1,72 @@
+.choice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90vh;
+    padding-left: 15px;
+    @include md-breakpoint(){
+        padding-left: 0;
+    }
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    @include md-breakpoint() {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.choices_bloc {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    border-radius: 30px;
+    color: $color-white;
+    margin-bottom: 15px;
+    
+    &:first-child{
+        background: $gradient-red;
+    }
+    &:nth-child(2){
+        background: $gradient-orange;
+    }
+    &:nth-child(3){
+        background: $gradient-green;
+    }
+    @include md-breakpoint(){
+        width: calc(100%/3 - 15px);
+        margin-left: 15px;
+    }
+}
+
+.choices_bloc_item{
+    margin-top: 20px;
+
+    a{
+        display: block;
+        color: $color-white;
+        margin: 5px;
+    }
+}
+
+// .choice_drop {
+//     z-index: 0;
+// } 
+
+// .choice_drop a, .choice_drop a:active{
+//     color: $color-text !important;
+//     background-color: transparent !important;
+//     border: none;
+// }
+
+// .choice_drop a:hover {
+//     color: $color-red;
+//     background-color: transparent;
+//     border: none;
+// }

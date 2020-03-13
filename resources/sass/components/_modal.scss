@@ -1,0 +1,65 @@
+.modal{
+    top:50%;
+    transform: translateY(-20%);
+
+    &.save{
+        top: auto!important;
+        left: auto;
+        right: 60px;
+        bottom: -15px;
+        width: auto;
+        height: auto;
+        transform: translateY(0);
+
+        .modal-dialog{
+            padding-bottom: 3px;
+            background: $gradient-red;
+            border-radius: 0.3rem;
+            box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.06);
+        }
+        .modal-content{
+            border: none;
+        }
+
+        .fa-save{
+            display: inline-block;
+            color: $color-red;
+            margin-right: 10px;
+        }
+    }
+
+    &-header{
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    &-body{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .cancel{
+        background: none;
+        border: none;
+    }
+
+    .close{
+        color:$color-text;
+    }
+
+    .form-control{
+        &:focus{
+            border-color: $color-orange;
+            box-shadow: none;
+        }
+    }
+
+    .form-group{
+        text-align: left;
+        .col-form-label{
+            padding-left: 0;
+            padding-right: 0;
+            font-weight: normal;
+        }
+    }
+}
