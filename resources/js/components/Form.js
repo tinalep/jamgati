@@ -13,7 +13,7 @@ const beauty_html = require('js-beautify').html;
 const Form = props => {
     
     const [mode, setMode] = useState('create')
-    const [formName, setFormName] = useState('Formulaire de contact (click to change title)')
+    const [formName, setFormName] = useState('Mon formulaire')
     const [fields, setFields] = useState([]);
     const [exportMode, setExportMode] = useState('default')
 
@@ -153,7 +153,7 @@ const Form = props => {
                 </div>
             </div>
             <div className="form-container">
-                <Edit onClickAdd={addField} onClickUpdate={updateFields} onClickDelete={deleteField} fields={fields} />
+                <Edit formName={formName} setFormName={setFormName} onClickAdd={addField} onClickUpdate={updateFields} onClickDelete={deleteField} fields={fields} />
                 {/* Partie où est afficher le contenu créé */}
                 <div className="form-show">
                     <div className="form-show__header d-flex justify-content-between">
@@ -165,9 +165,6 @@ const Form = props => {
                         </div>
                     </div>
                     <div className="form-show__body">
-                        <div className="form-show__typography">
-                            <h3><input style={{border: 'none', width: '100%'}} value={formName} onChange={(e)=>setFormName(e.target.value)}/></h3>
-                        </div>
                         <div className="form-show__preview" id="formPreview">
 
                     

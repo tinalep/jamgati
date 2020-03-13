@@ -141,8 +141,9 @@ const Edit = props =>{
     return (
         <div className="form-edit">
             {/* Fenêtre d'édition de champ (RECTANGLE DE GAUCHE) */}
-            <div className="form-edit__header">
-                <h2 className="form-edit__title">Titre formulaire</h2>
+            <div className="form-edit__header d-flex" >
+                <textarea maxLength='30' id='inputToFocus' className='d-block'  value={props.formName} onChange={(e)=>props.setFormName(e.target.value)}/>
+                <i onClick={()=>{$("#inputToFocus").focus()}} className="fas fa-pen ml-auto"></i>
             </div>
             <Accordion defaultActiveKey='0'>
                 <div className="edit-card">
