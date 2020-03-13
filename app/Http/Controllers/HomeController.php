@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
-use App\User;
 
 class HomeController extends Controller
 {
@@ -24,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(Auth::check()){
+            return ['redirect'=> route('board')];
+        } else {
+            return view('home');
+        }
     }
 
     public function createFormGuest()
@@ -54,13 +58,16 @@ class HomeController extends Controller
 
     public function doc()
     {
-        return view('doc');
+        if (Auth::check()) {
+            return view('doc');
+        } else {
+            return view('docguest');
+        }
     }
 
     public function settings()
     {
-        $user = auth()->user();
-        return view('settings',['user'=>$user]);
+        return view('settings');
     }
 }
 

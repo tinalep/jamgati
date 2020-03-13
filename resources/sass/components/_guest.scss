@@ -2,7 +2,14 @@
     padding-top: 50px;
 
     .button-bgred {
-        pointer-events: none;
         background: $color-grey;
+        pointer-events: none;
+    }
+
+    .import {
+        border: none;
+        background: $color-grey;
+        color: grey;
+        pointer-events: none;
     }
 }

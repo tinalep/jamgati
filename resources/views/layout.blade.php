@@ -4,7 +4,7 @@
     <head>
         <title>Jamgati</title>
         <meta charset="utf-8">
-        <meta name="description" content="description de la page">
+        <meta name="Jamgati, générateur et editeur de code en ligne" content="description de la page">
         <link rel="stylesheet" href="{{asset("css/app.css")}}" async>
         
         <meta name="viewport" content="width=device-width, initial-scale=1">

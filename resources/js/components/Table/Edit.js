@@ -12,6 +12,21 @@ const Edit = props =>{
     // },[]);
 
     const svgUrl = (window.location.href.includes('edit')?'../':'')
+    let fileReader = new FileReader()
+    const [activeKey, setActiveKey] = useState('0')
+
+    const handleFileRead = (e,ext) =>{
+        const content = fileReader.result;
+        props.loadTableFromFile(content,ext)
+        setActiveKey('0')
+    }
+
+    const fileToText = (e)=>{
+        let file = e.target.files[0]
+        let ext = file.name.split('.').pop()
+        fileReader.onloadend = (e)=>handleFileRead(e,ext)
+        fileReader.readAsText(file)
+    }
     
     return (
         <div className="form-edit">
@@ -19,9 +34,9 @@ const Edit = props =>{
                 <textarea maxLength='30' id='inputToFocus' className='d-block'  value={props.tableName} onChange={(e)=>props.setTableName(e.target.value)}/>
                 <i onClick={()=>{$("#inputToFocus").focus()}} className="fas fa-pen ml-auto"></i>
             </div>
-            <Accordion defaultActiveKey='0'>
+            <Accordion defaultActiveKey='0' activeKey={activeKey=='0'?'0':'1'}>
                 <div className="edit-card">
-                    <Accordion.Toggle className="edit-card__header" as="div"  eventKey="0">
+                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>setActiveKey(!activeKey)} eventKey="0">
                         <span className="edit-card__title">Tableau</span>
                         <span className="edit-card__button">+</span>
                     </Accordion.Toggle>
@@ -102,23 +117,18 @@ const Edit = props =>{
                     </Accordion.Collapse>
                 </div>
                 <div className="edit-card">
-                    <Accordion.Toggle className="edit-card__header" as="div" eventKey="1">
-                        <span className="edit-card__title">Style
+                    <Accordion.Toggle className="edit-card__header" as="div" onClick={()=>setActiveKey(!activeKey)} eventKey="1">
+                        <span className="edit-card__title">Importer
                         </span>
                         <span className="edit-card__button">+</span>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="1">
                         <div className="edit-card__body">
                             <div className="edit-card__section">
-                                <h4 className="edit-card__subtitle">Tableau</h4>
-                                <p>Bordures</p>
-                                <p>Couleur de fond</p>
-                            </div>
-                            <div className="edit-card__section">
-                                <h4 className="edit-card__subtitle">EN-TÊTE</h4>
-                            </div>
-                            <div className="edit-card__section">
-
+                                <label className="import-button button button-bgnone import export">
+                                    Importer
+                                    <input  type='file' accept='.csv' onChange={fileToText}/>
+                                </label>
                             </div>
                         </div>
                     </Accordion.Collapse>
