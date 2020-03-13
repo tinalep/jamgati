@@ -14,7 +14,7 @@ $user = Auth::user();
         <div class="choices_bloc">
             <h3>Créer un tableau</h3>
             <div class="choices_bloc_item">
-              <a href="{{route('tab.create')}}">Vierge</a>        
+              <a href="{{route('table.create')}}">Vierge</a>        
               <a href="#">Liste de courses</a>
               <a href="#">Agenda de la semaine</a>
               <a href="#">Facture</a>
