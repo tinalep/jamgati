@@ -127,10 +127,14 @@ const Table = props => {
     }
     
     const loadTable = (table)=>{
-        setTableName(table.name);
-        let t = R.clone(table);
+        setTableName(table.name)
+        let t = R.clone(table)
         t=JSON.parse(table.table)
-        console.log(t)
+        t.lines.forEach((line)=>{
+            line.cells.forEach((cell)=>{
+                if(cell.content==null) cell.content = ''
+            })
+        })
         setTable(t)
         let save=R.clone(temp)
         save.tab.push({table:t, selected:selected})
@@ -221,9 +225,9 @@ const Table = props => {
                 }
                 t.lines.splice((pos==-1?t.lines.length:selected.line+pos),0,line)
             }
-            else
+            else{
             t.lines.splice((pos==-1?t.lines.length-1:selected.line),1)
-            
+            }
         }
         return t
     }
@@ -247,9 +251,10 @@ const Table = props => {
     }
 
     const giveSelectedClass = (l,c)=>{
-        let obj = isAdj(l,c)
+        
         if(table.mode=='fusion')
         {
+            let obj = isAdj(l,c)
             if(obj.bool)
             {
                 if(obj.bool&&obj.type=='cell') return 'selected-cell'
